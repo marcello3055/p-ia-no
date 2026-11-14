@@ -1,0 +1,8 @@
+{
+  "name": "p-ia-no",
+  "private": true,
+  "version": "0.0.3",
+  "scripts": {
+    "dev": ".venv/bin/python scripts/preview.py"
+  }
+}

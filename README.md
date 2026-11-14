@@ -1,8 +1,9 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 0.2
-Interface React/TypeScript e API FastAPI mínimas. A tela consulta de verdade `/api/health`, informa sucesso/erro e permite tentar novamente. Os três ambientes são apresentados como planejados: ainda não existem uploads, treinamento ou geração musical.
+## Estado — Bloco 1.1
+Três abas navegáveis: Treinamento, Arranjar e Meus modelos. Dois seletores e players no Treinamento; um no Estúdio; biblioteca vazia verdadeira.
+Seleção local de MP3/WAV/FLAC até 100 MiB. Remover/substituir arquivos, pausa ao mudar de aba. Arquivos permanecem durante a troca de abas, mas se perdem ao recarregar ou fechar. Nenhum áudio é enviado ao servidor. Não há treinamento ou geração musical.
 
 ## Execução local pelo agente
 Requisitos: Python 3.12 com venv/pip; Node 24 e npm 11; acesso aos registries npm/PyPI na instalação. Nenhuma chave de serviço ou GPU necessária.

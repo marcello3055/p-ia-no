@@ -1,33 +1,28 @@
-# Progresso — Bloco 0.2
+# Progresso — Bloco 1.1
 Data: 14/11/2026. Repositório privado: https://github.com/marcello3055/p-ia-no
-Checkpoint remoto anterior: 409f5f3b377aa134954ef1906fcf9465166ca6bd (Bloco 0.1).
-O commit que contém este documento é o checkpoint do Bloco 0.2.
+Checkpoint remoto anterior: c5680d23a4a4376db726ef3476d9ba63b060a2ae.
+O commit que contém este documento é o checkpoint do Bloco 1.1.
 
-## Concluído
-- Acesso GitHub de leitura/escrita confirmado; documentação 0.1 sincronizada sem apagar o commit inicial do usuário.
-- Interface React/TypeScript/Vite com identidade P-IA-NO e layout responsivo em CSS.
-- Consulta real a /api/health, timeout, estado de erro e botão para tentar novamente.
-- API FastAPI com capacidades ainda indisponíveis explicitamente marcadas como falsas.
-- Frontend compilado servido pela API na mesma origem; proxy Vite para desenvolvimento.
-- Ambiente Python isolado, dependências fixadas e hashes; lockfile npm com versões exatas de dependências diretas.
-- Scripts de instalação/execução e testes, sem necessidade de credenciais/GPU.
-- Restrição do usuário registrada: componentes gratuitos/open source; nenhum serviço pago.
+## Implementado
+- Três abas, roles ARIA, navegação por clique e setas/Home/End.
+- Seletores e players locais para orquestra, referência e música inédita.
+- Object URLs liberadas na substituição/remoção; arquivos preservados entre abas.
+- Pausa na troca de abas ou ao iniciar outro player.
+- Limites de formato/tamanho, mensagens para arquivos vazios, inválidos ou indecodificáveis.
+- Aviso de ausência de persistência e biblioteca de modelos vazia verdadeira.
+- Adaptador de preview temporário scripts/preview.py. Nenhuma dependência nova.
 
-## Verificação
-- PASS: TypeScript e build Vite.
-- PASS: 2 testes da API: health e rejeição de endpoint de arranjo inexistente.
-- PASS: servidor HTTP real temporário: health, HTML e todos os assets compilados.
-- PASS: verificação do checkpoint estrutural.
-- Licenças declaradas dos componentes diretos verificadas nos metadados instalados.
-- Navegação visual no Chrome/Android e botão de repetição no navegador NÃO foram testados; testes HTTP não substituem esses testes.
-- Script setup.sh documentado; instalação efetiva nesta sessão usou uv no Python e npm install, seguida de build. Reinstalação completa a partir dos lockfiles ainda não repetida para economizar recursos.
+## Testes efetivamente executados
+- PASS: build TypeScript/Vite, 2 testes API, smoke HTTP para API/HTML/assets e check_checkpoint.py.
+- PASS Chrome desktop: três abas; ArrowLeft; WAV sintético de 12 s carregado (readyState 4); play confirmou paused=false; troca de aba confirmou paused=true; retorno preservou arquivo; remoção confirmada.
+- PASS Chrome: .txt rejeitado; .wav danificado mostrou erro de reprodução; botão de conexão funcionou.
+- Inspeção visual desktop realizada. Não houve avaliação auditiva humana/musical: trata-se de tom sintético.
+- Android real e viewport móvel NÃO testados. CSS responsivo implementado.
+- MP3/FLAC, arquivo vazio/grande e pausa entre dois players implementados, mas não exercitados separadamente no navegador neste bloco.
 
-## Ainda não implementado
-Uploads, armazenamento de músicas, abas funcionais, processamento, modelos de transcrição, MIDI, evolução, exportação, autenticação e publicação permanente. Nenhum resultado musical foi gerado. Não existe URL pública utilizável no celular.
+## Limites
+Sem upload ao servidor, persistência musical, autenticação, transcrição, treinamento ou geração. Sem URL pública permanente; preview é temporário. Nenhum serviço pago ativado. Dados sintéticos de teste fora do Git.
+GitHub é a fonte principal. Commits remotos pela integração preservam main; histórico Git local tem SHAs próprios. Não fazer force-push. Ler README, ARCHITECTURE e TODO antes de retomar.
 
-## Continuidade
-Ler README/ARCHITECTURE/TODO antes de modificar. GitHub é a fonte principal. Esta sessão usa a integração GitHub para commits remotos; não há autenticação Git/gh no terminal. Histórico remoto preserva o commit inicial do usuário e commits por bloco; o Git local tem SHAs próprios. Sempre verificar main remoto antes de publicar outro checkpoint e nunca fazer force-push.
-Nenhum serviço tarifado foi ativado. Não há acesso ao saldo de créditos do usuário. Encerrar aqui e aguardar autorização.
-
-## Próximo bloco proposto — 1.1
-Transformar os três ambientes planejados em abas navegáveis, testar a interface em navegador desktop/móvel e preparar o primeiro fluxo de seleção/reprodução local de áudio, explicitamente sem armazenamento durável ainda. Persistência de uploads no servidor será um bloco separado, com testes próprios e definição de armazenamento gratuito. Não integrar IA neste próximo bloco.
+## Próximo bloco — 1.2 (aguardar autorização)
+Upload validado e limitado na API, SQLite e arquivos fora do Git para desenvolvimento; registro/listagem de pares e reprodução após reinício do processo. Não confundir persistência local com durabilidade após perda do ambiente temporário. Armazenamento gratuito externo e backup precisam ser definidos antes do uso permanente. Autenticação antes de exposição pública. Sem IA.

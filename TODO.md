@@ -18,7 +18,11 @@
 - [ ] Etapa 7: estúdio padrão/avançado e histórico.
 - [ ] Etapa 8: avaliação auditiva, estabilidade e implantação com orçamento autorizado.
 
-## Próximo: Bloco 1.1 (aguardar autorização)
-- [ ] Abas navegáveis e validação em navegador.
-- [ ] Seleção e player de áudio local, sem alegar persistência.
-- [ ] Planejar persistência no servidor em incremento separado.
+## Bloco 1.1
+- [x] Abas navegáveis e Chrome desktop.
+- [x] Seleção, player e erros de arquivos locais.
+- [ ] Verificação em Android/viewport móvel.
+## Próximo bloco 1.2 — exige autorização
+- [ ] Upload validado e limitado; SQLite e armazenamento local fora do Git.
+- [ ] Registro/listagem dos pares e reprodução após reinício.
+- [ ] Definir caminho de durabilidade gratuita externa antes de uso permanente.
