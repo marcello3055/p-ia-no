@@ -22,7 +22,11 @@
 - [x] Abas navegáveis e Chrome desktop.
 - [x] Seleção, player e erros de arquivos locais.
 - [ ] Verificação em Android/viewport móvel.
-## Próximo bloco 1.2 — exige autorização
-- [ ] Upload validado e limitado; SQLite e armazenamento local fora do Git.
-- [ ] Registro/listagem dos pares e reprodução após reinício.
-- [ ] Definir caminho de durabilidade gratuita externa antes de uso permanente.
+## Bloco 1.2 — concluído
+- [x] Upload validado/limitado, SQLite e armazenamento fora do Git.
+- [x] Registro/listagem de pares e recuperação após reinício real.
+- [x] Interface Salvar, progresso e players HTTP.
+## Próximo bloco 1.3 — aguardar autorização
+- [ ] Backup e restauração com integridade em ambiente novo.
+- [ ] Definir armazenamento gratuito durável antes de músicas reais.
+- [ ] Autenticação antes de eventual publicação.

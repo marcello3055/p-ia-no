@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-export function AudioInput({ id, title }: { id: string; title: string }) {
+export function AudioInput({ id, title, onFileChange }: { id: string; title: string; onFileChange?: (file: File | null) => void }) {
   const [file, setFile] = useState<File | null>(null);
   const [url, setUrl] = useState('');
   const [error, setError] = useState('');
@@ -12,6 +12,7 @@ export function AudioInput({ id, title }: { id: string; title: string }) {
     setUrl(objectUrl);
     return () => URL.revokeObjectURL(objectUrl);
   }, [file]);
+  useEffect(() => { onFileChange?.(file); }, [file, onFileChange]);
   function clear() {
     audio.current?.pause(); setFile(null); setReady(false); setError('');
     if (input.current) input.current.value = '';

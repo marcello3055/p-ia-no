@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "1.1",
+  "stage": "1.2",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "local-audio-preview",
+  "status": "development-audio-storage",
   "open_source_only": true
 }

@@ -1,16 +1,20 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 1.1
-Três abas navegáveis: Treinamento, Arranjar e Meus modelos. Dois seletores e players no Treinamento; um no Estúdio; biblioteca vazia verdadeira.
-Seleção local de MP3/WAV/FLAC até 100 MiB. Remover/substituir arquivos, pausa ao mudar de aba. Arquivos permanecem durante a troca de abas, mas se perdem ao recarregar ou fechar. Nenhum áudio é enviado ao servidor. Não há treinamento ou geração musical.
+## Estado — Bloco 1.2
+Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
+
+Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
+
+**Sem backup externo ou garantia após descarte do ambiente.** Não confundir reiniciar a aplicação com preservar dados após perder o servidor. Não expor publicamente: ainda é uma aplicação de desenvolvimento de usuário único e sem autenticação. Executar com apenas um processo/worker. Nenhum treinamento ou geração musical implementado.
 
 ## Execução local pelo agente
-Requisitos: Python 3.12 com venv/pip; Node 24 e npm 11; acesso aos registries npm/PyPI na instalação. Nenhuma chave de serviço ou GPU necessária.
+Requisitos: FFmpeg/ffprobe disponível no PATH (validação de áudio); Python 3.12 com venv/pip; Node 24 e npm 11; acesso aos registries npm/PyPI na instalação. Nenhuma chave de serviço ou GPU necessária.
 1. `bash scripts/setup.sh` instala dependências fixadas e compila a interface.
 2. `bash scripts/run_local.sh` inicia API e interface em http://127.0.0.1:8000.
 3. `.venv/bin/python -m unittest discover -s tests -v` verifica API.
 4. `.venv/bin/python scripts/smoke_http.py` verifica o serviço real e os assets compilados.
+5. `.venv/bin/python scripts/test_restart.py` verifica salvar, encerrar o processo e recuperar arquivos após reinício.
 
 Desenvolvimento: iniciar a API com o script acima e, em outro terminal, `npm --prefix apps/web run dev`. Vite encaminha `/api` para a API local. Build: `npm --prefix apps/web run build`.
 Esses comandos são para o agente; o usuário não precisa executá-los. O endereço local não abre no celular do usuário; hospedagem permanente ainda não configurada.

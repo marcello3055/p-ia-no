@@ -7,7 +7,9 @@ class ApiTest(unittest.TestCase):
             response = client.get('/api/health')
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json()['service'], 'p-ia-no-api')
-            self.assertFalse(any(response.json()['capabilities'].values()))
+            self.assertTrue(response.json()['capabilities']['uploads'])
+            self.assertFalse(response.json()['capabilities']['training'])
+            self.assertFalse(response.json()['capabilities']['arrangement'])
     def test_unimplemented_arrangement_does_not_accept_requests(self):
         with TestClient(app) as client:
             self.assertIn(client.post('/api/arrange').status_code, (404, 405))

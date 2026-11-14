@@ -1,28 +1,28 @@
-# Progresso — Bloco 1.1
+# Progresso — Bloco 1.2
 Data: 14/11/2026. Repositório privado: https://github.com/marcello3055/p-ia-no
-Checkpoint remoto anterior: c5680d23a4a4376db726ef3476d9ba63b060a2ae.
-O commit que contém este documento é o checkpoint do Bloco 1.1.
+Checkpoint anterior: 362524463116e8ff1e136916c0f5339cc4887a81.
+O commit contendo este documento é o checkpoint 1.2.
 
 ## Implementado
-- Três abas, roles ARIA, navegação por clique e setas/Home/End.
-- Seletores e players locais para orquestra, referência e música inédita.
-- Object URLs liberadas na substituição/remoção; arquivos preservados entre abas.
-- Pausa na troca de abas ou ao iniciar outro player.
-- Limites de formato/tamanho, mensagens para arquivos vazios, inválidos ou indecodificáveis.
-- Aviso de ausência de persistência e biblioteca de modelos vazia verdadeira.
-- Adaptador de preview temporário scripts/preview.py. Nenhuma dependência nova.
+- Upload em streaming, validação por ffprobe, MP3/WAV/FLAC, 100 MiB/arquivo, 30 min e quota 1 GiB.
+- SQLite e data/audio fora do Git, nomes internos UUID e deduplicação SHA-256.
+- Criação/listagem de pares nomeados e áudios; reprodução com suporte a Range.
+- Interface Salvar, progresso de envio/validação, erros, Atualizar lista e players dos arquivos salvos.
+- Seleção permanece local até clicar Salvar; aviso explícito de durabilidade limitada.
 
-## Testes efetivamente executados
-- PASS: build TypeScript/Vite, 2 testes API, smoke HTTP para API/HTML/assets e check_checkpoint.py.
-- PASS Chrome desktop: três abas; ArrowLeft; WAV sintético de 12 s carregado (readyState 4); play confirmou paused=false; troca de aba confirmou paused=true; retorno preservou arquivo; remoção confirmada.
-- PASS Chrome: .txt rejeitado; .wav danificado mostrou erro de reprodução; botão de conexão funcionou.
-- Inspeção visual desktop realizada. Não houve avaliação auditiva humana/musical: trata-se de tom sintético.
-- Android real e viewport móvel NÃO testados. CSS responsivo implementado.
-- MP3/FLAC, arquivo vazio/grande e pausa entre dois players implementados, mas não exercitados separadamente no navegador neste bloco.
+## Evidências
+- Build TypeScript/Vite aprovado.
+- 8 testes API aprovados: saúde, endpoint musical inexistente, bytes/pares reabertos, Range, duplicação, entrada inválida/traversal, quota/limite em streaming, arquivo ausente e referências inválidas.
+- test_restart.py: servidor real encerrado e recriado; par recuperado e ambos os áudios byte a byte iguais.
+- Smoke HTTP: saúde, HTML e assets servidos corretamente.
+- Chrome desktop: par sintético salvo pela interface, listagem confirmada após reload, reprodução HTTP iniciou (paused=false, duração 12 s); aba Arranjar listou áudio salvo.
+- Dados sintéticos de QA fora do Git. Nenhuma música do usuário usada. Par sintético não é evidência de aprendizado.
+- MP3/FLAC e Android real ainda não exercitados neste bloco; áudio de teste WAV sintético. Queda de energia/interrupção abrupta não testada.
 
-## Limites
-Sem upload ao servidor, persistência musical, autenticação, transcrição, treinamento ou geração. Sem URL pública permanente; preview é temporário. Nenhum serviço pago ativado. Dados sintéticos de teste fora do Git.
-GitHub é a fonte principal. Commits remotos pela integração preservam main; histórico Git local tem SHAs próprios. Não fazer force-push. Ler README, ARCHITECTURE e TODO antes de retomar.
+## Limitações
+Sem backup externo, hospedagem permanente, autenticação, múltiplos workers ou múltiplos usuários. Arquivos sobrevivem a reinício normal, NÃO ao descarte do ambiente. Pode haver arquivos órfãos após encerramento abrupto; recuperação automática pendente. Atualizar lista busca novos dados entre abas.
+Sem transcrição, evolução, MIDI, modelos aprovados ou geração de piano. Nenhum recurso tarifado ativado e nenhuma dependência nova instalada.
+GitHub é a fonte principal do código. Dados e DB não enviados. Histórico local difere dos SHAs remotos; publicar pela integração sobre main observado, sem force-push.
 
-## Próximo bloco — 1.2 (aguardar autorização)
-Upload validado e limitado na API, SQLite e arquivos fora do Git para desenvolvimento; registro/listagem de pares e reprodução após reinício do processo. Não confundir persistência local com durabilidade após perda do ambiente temporário. Armazenamento gratuito externo e backup precisam ser definidos antes do uso permanente. Autenticação antes de exposição pública. Sem IA.
+## Próximo bloco — 1.3 (aguardar autorização)
+Backup e restauração verificável dos pares/áudios, com hashes e validação de caminhos, para recuperação em ambiente novo; esclarecer a escolha de armazenamento gratuito durável antes de receber músicas reais. Sem IA ou hospedagem pública. Não iniciar outra etapa nesta sessão.
