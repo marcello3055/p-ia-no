@@ -38,3 +38,7 @@ Arquivos e pesos fora do Git, acesso privado e URLs temporárias. Antes de hospe
 ## Custos e implantação
 Nenhum serviço contratado. CPU atende estrutura, MIDI e primeiras reduções; desempenho será medido, não estimado como garantia. Para MT3/transcrição pesada, reservar arquitetura para GPU externa sob demanda; aluguel só após benchmark e autorização.
 Candidatos de infraestrutura a comparar na implantação: hospedagem estática Sites; API/worker em container Linux com volume persistente; PostgreSQL gerenciado e objetos S3. Provedores e planos ainda não escolhidos; não há promessa de camada gratuita permanente. Antes da contratação, apresentar preço vigente, GPU-hora × duração medida, armazenamento, tráfego e teto autorizado. Suspender tarefas ao atingir limites. Não há acesso ao saldo de créditos do usuário.
+
+## Atualização do Bloco 0.2
+Componentes implementados: React/TypeScript/Vite e FastAPI/Uvicorn. Produção local usa a mesma origem HTTP: FastAPI serve o build e /api/health; desenvolvimento usa proxy Vite. Sem necessidade de CORS aberto. Bind somente em loopback: publicação exige etapa posterior de autenticação e infraestrutura.
+Regra adicional do usuário: somente ferramentas gratuitas/open source; serviços pagos não serão adotados. Dependências novas exigem verificação de licença antes da adoção. Software livre não garante computação gratuita. Fontes, estilos e scripts da interface são locais.

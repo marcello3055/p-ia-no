@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "0.1",
+  "stage": "0.2",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "planning-only"
+  "status": "web-api-foundation",
+  "open_source_only": true
 }
