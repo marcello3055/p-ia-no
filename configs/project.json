@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "name": "P-IA-NO",
+  "stage": "0.1",
+  "population_size": 100,
+  "allow_paid_compute": false,
+  "transcription_enabled": false,
+  "status": "planning-only"
+}

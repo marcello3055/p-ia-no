@@ -1,0 +1,40 @@
+# Arquitetura inicial — decisão 001
+Data: 14/11/2026. Arquitetura escolhida; implementação pendente.
+
+## Componentes
+| Componente | Escolha inicial | Motivo |
+|---|---|---|
+| Interface | React + TypeScript + Vite, responsiva | Aplicação de três abas sem necessidade inicial de SSR; saída estática hospedável separadamente |
+| API | Python 3.12 + FastAPI | Integração com ferramentas musicais; API separada de tarefas demoradas |
+| Executor | Processo Python separado | Não bloquear requisições ou manter uma chamada HTTP por todo treinamento |
+| Protótipo local | SQLite + diretório de dados fora do Git | Poucas dependências; somente uma instância inicialmente |
+| Nuvem durável | PostgreSQL + armazenamento de objetos compatível com S3 | Metadados, tarefas e objetos independentes do ciclo de vida dos servidores |
+| Representação | JSON musical versionado + MIDI | JSON preserva confiança, vozes, mãos e proveniência que MIDI não representa bem |
+| Renderização | Adaptador FluidSynth + piano SF2 com licença verificada | Renderização offline em CPU; instrumento exato ainda não selecionado |
+
+A interface poderá ser hospedada como site estático. O ambiente Sites usa Workers e não substitui o executor Python de ML. Não colocar modelos musicais, tarefas longas ou arquivos grandes dentro do frontend. Para desenvolvimento, API e worker executam no ambiente disponível; isso não equivale a hospedagem permanente.
+
+## Fluxo planejado
+Upload privado → validação → tarefa persistida → análise em cache → representação musical → redução/otimização → avaliação → renderização dos finalistas → arquivos e histórico.
+Cada tarefa terá proprietário, estado, progresso, erro, tentativas, cancelamento e checkpoint. O worker deverá adquirir uma tarefa atomicamente, renovar sua posse e permitir retomada após interrupção. Implementar inicialmente uma instância; fila distribuída só quando necessária.
+
+## Cache e representação
+Chave de análise: hash do arquivo + versão do analisador + hash dos parâmetros e modelo. Guardar alturas, onsets, durações, compassos/tempos, vozes, confiança e origem. Distinguir tempo musical de segundos de execução; pedal e rubato pertencem também à interpretação.
+
+## Arranjadores e evolução
+100 candidatos configuráveis compartilham analisadores; seus genomas contêm parâmetros e estratégias de redução. Começar com seleção, elitismo, mutação e recombinação simples, com diversidade mensurável. Considerar NSGA-II apenas se o baseline justificar.
+Currículo: melodia → harmonia/acompanhamento → tocabilidade → expressividade. Guardar métricas separadas, pesos e mínimos obrigatórios. Avaliar simbolicamente; renderizar finalistas. Não apresentar escores como comprovação de qualidade auditiva.
+
+Aprovar cria snapshot imutável com nome, versão, parentesco, parâmetros, seed, código/commit, dependências fixadas, IDs/revisões/hashes de modelos, análises, avaliadores e instrumento. Ajustar cria nova versão. Refinamento de uma música nunca atualiza o aprovado. Reprodutibilidade numérica exige registrar hardware e operações não determinísticas; áudio bit a bit não será prometido sem teste.
+
+## Avaliação e alinhamento
+Métricas supervisionadas: notas alinhadas, contorno, ritmo, baixo, harmonia, densidade e restrições pianísticas; referência não é única solução correta. Avaliador autônomo usa representação da orquestra e restrições pianísticas, com incerteza explícita. Sua qualidade precisa ser validada por escuta e repertório reservado.
+DTW sobre chroma/representações melódicas é baseline; introduções, repetições e cortes exigem segmentação e correção humana. Alinhamento fraco deve bloquear comparação enganosa.
+Divisão treino/validação por composição completa, inclusive versões e trechos relacionados. 5–20 pares calibram parâmetros; não justificam treinar modelo geral do zero nem alegar generalização.
+
+## Persistência, importação e segurança
+Arquivos e pesos fora do Git, acesso privado e URLs temporárias. Antes de hospedar uploads: autenticação, isolamento por usuário, limites de tamanho/duração, validação real de formato e processamento com limites de recursos. Importar JSON e formatos permitidos, nunca executar código/pickle de pacote importado; rejeitar caminhos escapando do diretório, arquivos excessivos e hashes inválidos. Respeitar licenças e usar referências externas quando pesos/amostras não puderem ser redistribuídos.
+
+## Custos e implantação
+Nenhum serviço contratado. CPU atende estrutura, MIDI e primeiras reduções; desempenho será medido, não estimado como garantia. Para MT3/transcrição pesada, reservar arquitetura para GPU externa sob demanda; aluguel só após benchmark e autorização.
+Candidatos de infraestrutura a comparar na implantação: hospedagem estática Sites; API/worker em container Linux com volume persistente; PostgreSQL gerenciado e objetos S3. Provedores e planos ainda não escolhidos; não há promessa de camada gratuita permanente. Antes da contratação, apresentar preço vigente, GPU-hora × duração medida, armazenamento, tráfego e teto autorizado. Suspender tarefas ao atingir limites. Não há acesso ao saldo de créditos do usuário.

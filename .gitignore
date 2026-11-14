@@ -1,0 +1,36 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Dependencies/builds
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+coverage/
+# Private runtime/artifacts
+data/
+uploads/
+artifacts/
+checkpoints/
+*.db
+*.sqlite*
+*.mp3
+*.wav
+*.flac
+*.mid
+*.midi
+*.sf2
+*.sf3
+*.sfz
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.zip
+*.bundle
