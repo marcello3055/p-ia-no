@@ -1,28 +1,27 @@
-# Progresso — Bloco 1.2
+# Progresso — Bloco 1.3
 Data: 14/11/2026. Repositório privado: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: 362524463116e8ff1e136916c0f5339cc4887a81.
-O commit contendo este documento é o checkpoint 1.2.
+Checkpoint anterior: fa3fd21875620795e25834b872287c7dca99fcfb.
+O commit contendo este documento é o checkpoint 1.3.
 
 ## Implementado
-- Upload em streaming, validação por ffprobe, MP3/WAV/FLAC, 100 MiB/arquivo, 30 min e quota 1 GiB.
-- SQLite e data/audio fora do Git, nomes internos UUID e deduplicação SHA-256.
-- Criação/listagem de pares nomeados e áudios; reprodução com suporte a Range.
-- Interface Salvar, progresso de envio/validação, erros, Atualizar lista e players dos arquivos salvos.
-- Seleção permanece local até clicar Salvar; aviso explícito de durabilidade limitada.
+- ZIP portátil contendo manifesto versionado, áudios e pares, sem banco SQLite executável, código ou credenciais.
+- Exportação via /api/backup e link Baixar backup dos dados na aba Meus modelos.
+- Restauração pelo agente via scripts/backup.py, somente em diretório inexistente; sem alterar biblioteca atual.
+- Validação de hashes, tamanho, formato/duração, schema, referências, duplicatas e caminhos; rejeição de links e entradas inesperadas.
+- Destinos existentes preservados, limpeza de saída incompleta em falhas normais, temporário de download removido após resposta.
+- Documentação de recuperação e instrução simples: guardar ZIP fora do ambiente.
 
-## Evidências
-- Build TypeScript/Vite aprovado.
-- 8 testes API aprovados: saúde, endpoint musical inexistente, bytes/pares reabertos, Range, duplicação, entrada inválida/traversal, quota/limite em streaming, arquivo ausente e referências inválidas.
-- test_restart.py: servidor real encerrado e recriado; par recuperado e ambos os áudios byte a byte iguais.
-- Smoke HTTP: saúde, HTML e assets servidos corretamente.
-- Chrome desktop: par sintético salvo pela interface, listagem confirmada após reload, reprodução HTTP iniciou (paused=false, duração 12 s); aba Arranjar listou áudio salvo.
-- Dados sintéticos de QA fora do Git. Nenhuma música do usuário usada. Par sintético não é evidência de aprendizado.
-- MP3/FLAC e Android real ainda não exercitados neste bloco; áudio de teste WAV sintético. Queda de energia/interrupção abrupta não testada.
+## Verificações
+- 18 testes aprovados (8 anteriores + 10 de backup).
+- Testados: exportar/restaurar em pasta nova; IDs/pares e bytes preservados; endpoint gera ZIP restaurável; biblioteca vazia; não sobrescrever destinos; rejeitar corrupção, traversal, referências/arquivos ausentes, entradas duplicadas, links e declaração excessiva de tamanho; limpar exportação incompleta.
+- Build TypeScript/Vite aprovado. Testes da API e fluxo de restauração são reais, com WAV sintético.
+- O link novo não foi clicado no navegador neste bloco; download verificado pelo endpoint HTTP de teste. Android/MP3/FLAC permanecem pendentes.
+- Código local permaneceu disponível após manutenção do ambiente; checkpoint remoto conferido antes da edição. Não foi necessário recuperar dados do usuário.
 
 ## Limitações
-Sem backup externo, hospedagem permanente, autenticação, múltiplos workers ou múltiplos usuários. Arquivos sobrevivem a reinício normal, NÃO ao descarte do ambiente. Pode haver arquivos órfãos após encerramento abrupto; recuperação automática pendente. Atualizar lista busca novos dados entre abas.
-Sem transcrição, evolução, MIDI, modelos aprovados ou geração de piano. Nenhum recurso tarifado ativado e nenhuma dependência nova instalada.
-GitHub é a fonte principal do código. Dados e DB não enviados. Histórico local difere dos SHAs remotos; publicar pela integração sobre main observado, sem force-push.
+Sem importação pela interface (restauração feita pelo agente), backup automático, armazenamento externo contratado, hospedagem permanente ou autenticação. Backup só protege contra perda do ambiente se o ZIP for guardado fora dele. Não é criptografado nem assinado. Sem simulação de queda de energia; temporários podem sobrar em encerramento abrupto. Uso local de usuário único/um processo.
+Nenhuma dependência nova ou recurso pago. Sem modelos treinados/transcrição/evolução. Áudios, banco e ZIPs fora do Git.
+GitHub é a fonte principal do código; commits locais e remotos têm SHAs próprios. Não fazer force-push.
 
-## Próximo bloco — 1.3 (aguardar autorização)
-Backup e restauração verificável dos pares/áudios, com hashes e validação de caminhos, para recuperação em ambiente novo; esclarecer a escolha de armazenamento gratuito durável antes de receber músicas reais. Sem IA ou hospedagem pública. Não iniciar outra etapa nesta sessão.
+## Próximo bloco recomendado — 2.1 (aguardar autorização)
+Iniciar representação musical MIDI e testes pequenos de leitura/escrita e extração de notas, tempos e durações; sem transcrição de MP3, evolução ou geração orquestral. Não iniciar nesta sessão. Publicação e validação Android continuam pendentes e não devem ser consideradas concluídas.

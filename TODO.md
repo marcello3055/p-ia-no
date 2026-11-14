@@ -26,7 +26,12 @@
 - [x] Upload validado/limitado, SQLite e armazenamento fora do Git.
 - [x] Registro/listagem de pares e recuperação após reinício real.
 - [x] Interface Salvar, progresso e players HTTP.
-## Próximo bloco 1.3 — aguardar autorização
-- [ ] Backup e restauração com integridade em ambiente novo.
-- [ ] Definir armazenamento gratuito durável antes de músicas reais.
+## Bloco 1.3 — concluído
+- [x] Backup e restauração com integridade em pasta nova.
+- [x] Download manual de ZIP; restauração operada pelo agente.
+- [ ] Armazenamento gratuito externo automático e backup recorrente.
 - [ ] Autenticação antes de eventual publicação.
+- [ ] Validação móvel e download do backup no navegador.
+## Próximo bloco 2.1 — aguardar autorização
+- [ ] Representação de notas/tempos e leitura/escrita MIDI com casos controlados.
+- [ ] Avaliador será um incremento posterior; não treinar modelos ainda.
