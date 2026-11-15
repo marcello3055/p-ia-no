@@ -52,3 +52,6 @@ ZIP de dados com manifesto JSON versionado, SHA-256 e arquivos permitidos; SQLit
 
 ## Bloco 2.1 — núcleo simbólico
 Módulo Python independente de API/frontend: Score/Note/Event, tempo PPQN e conversão em segundos pelo mapa global. Eventos de controle preservados; roles/mãos não inferidos. MIDI exportado é reconstruído a partir da representação; testes comprovam que edição simbólica altera a saída. Padrões/limites em docs/MIDI.md. Próximo componente: métricas iniciais, sem chamar essas métricas de qualidade artística.
+
+## Bloco 2.2 — avaliador inicial
+Comparação simbólica independente da API. Pareamento um a um por altura/início, métricas separadas com cobertura, índices e configuração versionada. Unidades musicais ou segundos configuráveis; sem alinhamento implícito. Métricas não representam qualidade artística. Detalhes em docs/EVALUATOR.md.

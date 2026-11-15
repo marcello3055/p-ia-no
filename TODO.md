@@ -35,6 +35,9 @@
 ## Bloco 2.1 — concluído
 - [x] Leitura/escrita MIDI e representação de notas/tempos.
 - [x] Testes controlados e CLI operada pelo agente.
-## Próximo bloco 2.2 — aguardar autorização
-- [ ] Métricas iniciais entre dois MIDIs e casos de referência controlados.
-- [ ] Integração do avaliador com interface em incremento posterior.
+## Bloco 2.2 — concluído
+- [x] Métricas iniciais entre dois MIDIs, casos controlados e CLI.
+## Próximo bloco 2.3 — aguardar autorização
+- [ ] Interface de comparação MIDI e relatório explicável.
+- [ ] API limitada para análise MIDI, sem processamento de áudio.
+- [ ] Testes de interface e erros de envio.
