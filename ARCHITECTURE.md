@@ -70,3 +70,6 @@ packages/music/render.py chama a biblioteca nativa FluidSynth via ctypes, agenda
 
 ## Bloco 3.3 — integração web experimental
 POST /api/experimental/piano recebe MIDI binário até 5 MiB/120 s; reduz e renderiza em worker thread com exclusão por processo. AnyIO não abandona trabalho ao cancelar, preservando limpeza/lock. Temporários removidos ao terminar; resposta JSON contém arquivos base64 e relatórios. React cria blobs para player/downloads e libera URLs ao trocar entrada/desmontar. Sem histórico, filas ou persistência de resultados.
+
+## Planejado — referências por URL
+Adicionar uma referência de origem separada do arquivo de áudio armazenado, com metadados e estado de acesso independentes. Arquivo local e URL podem coexistir no mesmo exemplo sem perda de identidade. Reutilizar a abstração no Laboratório e no Estúdio; migração/backup futuros preservam registros atuais. Player incorporado não disponibiliza áudio ao analisador. Obtenção futura condicionada a meio autorizado e validações de rede/mídia. Especificação: docs/URL_IMPORT.md. Nenhuma alteração de código neste checkpoint.

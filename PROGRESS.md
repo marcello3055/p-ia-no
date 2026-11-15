@@ -14,3 +14,8 @@ Sem transcrição MP3, modelo treinado ou arranjador aprovado. Resultado tempor�
 
 ## Próximo bloco recomendado — prova de viabilidade MP3 (aguardar autorização)
 Conforme recomendação na revisão de progresso: após integração básica, testar análise de um trecho curto de MP3 antes de investir no motor evolutivo. Verificar modelo livre compatível com ambiente/CPU, licença e requisitos, testar material autorizado e registrar falhas. Não prometer transcrição orquestral correta nem qualidade de arranjo a partir desse teste. Etapas evolutivas e biblioteca permanecem no plano.
+
+## Checkpoint documental — importação por URL, 15/11/2026
+Checkpoint funcional preservado: ff2bb71064ad44deb7247929241b61a5121deb4b (Bloco 3.3).
+Registrado requisito de URL YouTube e arquivo direto, combinações independentes nos pares, integração ao Estúdio, metadados/player permitidos, referência durável e solicitação de arquivo sem perda de dados quando áudio não estiver autorizado. docs/URL_IMPORT.md detalha fases e critérios de aceitação; TODO, requisitos e arquitetura atualizados.
+Somente documentação; nenhuma integração, download ou extração implementada. Revisão documental e git diff --check; não repetidos testes de código já aprovados (66 no checkpoint funcional). Prova de viabilidade MP3 continua como próximo bloco recomendado, aguardando autorização. URLs serão implementadas em incremento dedicado de interface e aquisição posterior, sem substituir funcionalidades aprovadas.

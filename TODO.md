@@ -60,3 +60,9 @@
 - [ ] Selecionar e verificar um transcritor livre compatível com CPU/ambiente.
 - [ ] Testar trecho curto autorizado antes de investir no motor evolutivo; registrar erros e limites.
 - [ ] Não tratar transcrição experimental como redução orquestral concluída.
+
+## Importação por URL — planejada, sem antecipar a tarefa atual
+- [ ] URL-1: interface e identificação no Treinamento/Estúdio; opções independentes arquivo/URL, metadados, embed permitido, referência persistente e anexo posterior sem perda de dados. Migração/backup compatíveis.
+- [ ] URL-2: obtenção autorizada de áudio e URLs diretas MP3/WAV/FLAC; validações de mídia/rede e integração ao processamento.
+- [ ] URL-3: origem por URL no fluxo definitivo e histórico do Estúdio.
+- [ ] Validar critérios de docs/URL_IMPORT.md em pequenos blocos. A prova de viabilidade MP3 permanece como próximo bloco recomendado.
