@@ -73,3 +73,6 @@ POST /api/experimental/piano recebe MIDI binário até 5 MiB/120 s; reduz e rend
 
 ## Planejado — referências por URL
 Adicionar uma referência de origem separada do arquivo de áudio armazenado, com metadados e estado de acesso independentes. Arquivo local e URL podem coexistir no mesmo exemplo sem perda de identidade. Reutilizar a abstração no Laboratório e no Estúdio; migração/backup futuros preservam registros atuais. Player incorporado não disponibiliza áudio ao analisador. Obtenção futura condicionada a meio autorizado e validações de rede/mídia. Especificação: docs/URL_IMPORT.md. Nenhuma alteração de código neste checkpoint.
+
+## MP3-2a — preparação reutilizável
+packages/music/audio_clip.py valida arquivo local com FFprobe e decodifica trecho limitado por FFmpeg; saída mono PCM16/22.050 Hz. Cache identificado por hash de entrada/configuração/versão FFmpeg, com integridade da saída conferida antes da reutilização. scripts/prepare_audio_clip.py é operado pelo agente. Não há mudanças na API, frontend, armazenamento web ou adaptador de transcrição.

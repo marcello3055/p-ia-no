@@ -1,24 +1,18 @@
-# Progresso — prova MP3-1
+# Progresso — MP3-2a, preparação de trechos
 Data: 15/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: f90e1a960c6c50b1331e53d69f465ae0f900da0a (planejamento URL); último funcional web: ff2bb71064ad44deb7247929241b61a5121deb4b.
-O commit deste documento é o checkpoint do experimento MP3-1.
+Checkpoint anterior: b1348090502b9c78aa14805f7f098af712af3468 (experimento sintético MP3-1).
+O commit deste documento é o checkpoint MP3-2a. Último frontend funcional: ff2bb71064ad44deb7247929241b61a5121deb4b.
 
-## Executado
-Basic Pitch 0.4.0 com modelo ONNX oficial do pacote PyPI, inferência real em CPU. Ambiente .venv-audio isolado: TensorFlow declarado upstream não é compatível com Python 3.12; alternativa ONNX instalada explicitamente, setuptools 80.9.0 resolve pkg_resources do resampy. Dependências fixadas, script de reprodução, modelo/SoundFont identificados por hash. Nenhum gasto, GPU, download de música alheia, treinamento ou mudança na aplicação.
-Criados três MP3s sintéticos com FluidSynth/TimGM6mb e notas conhecidas: melodia de piano, acordes e flauta+cordas. Script preserva ativações e eventos; relatório textual incluído no Git, áudios/pesos fora do Git.
+## Implementado
+Preparação interna de arquivo local MP3/WAV/FLAC: valida formato real, tamanho/duração, recorta 1–30 segundos e gera WAV mono PCM16/22.050 Hz. Original preservado; relatório com hashes, parâmetros, versão FFmpeg, duração efetiva e indicação de silêncio/fim. Cache íntegro é reutilizado sem decodificar novamente. CLI para operação pelo agente; nenhuma ação técnica exigida do usuário. Fonte: packages/music/audio_clip.py; documentação docs/AUDIO_CLIPS.md.
+Arquivos do projeto e ambientes foram encontrados após aviso de manutenção; não foi necessária recuperação/reinstalação. Nenhuma dependência nova, GPU ou gasto.
 
-## Resultados reais
-Melodia: 8 notas esperadas, 12 estimadas, 8 correspondências; F1 altura/ataque 0,800.
-Acordes: 16 esperadas, 19 estimadas, 16 correspondências; F1 0,914.
-Mistura: 24 esperadas, 46 estimadas, 23 correspondências; precisão 0,500, F1 0,657.
-F1 incluindo duração: 0,000 / 0,571 / 0,171 respectivamente. Critérios: altura exata, ataque ±100 ms, duração ±máximo(150 ms,20%). Não são avaliações de qualidade artística. Pico RSS 423,64 MiB; inferência inicial 11,54 s e posteriores ~0,10–0,11 s em trechos de cerca de 7 s. Primeiro caso inclui preparação/JIT; não extrapolar tempos.
+## Testado
+71 testes passaram: 66 anteriores e cinco novos. Recorte real MP3, taxa/canais, preservação do original, cache sem regravação, fim de arquivo, silêncio, parâmetros inválidos, conteúdo falso, cache corrompido, configuração diferente, WAV/FLAC e execução CLI. Checkpoint e whitespace verificados. Sem mudança de frontend; build/Chrome não repetidos. Aviso Starlette/httpx pré-existente permanece.
 
-## Verificação
-Três inferências completas; conferidos arquivos MP3 e consistência dos relatórios. Python compila, script shell validado, verificação do checkpoint e git diff --check. Sem repetir os 66 testes da aplicação pois nenhum código/dependência dela foi alterado. Receita de reinstalação registrada, não repetida em ambiente limpo. Não houve escuta artística.
+## Limites
+Nenhuma gravação orquestral real foi fornecida; NÃO houve validação musical real neste bloco. Testes usam sinais sintéticos. Recorte temporal, não reconhecimento de frases. Downmix pode cancelar sinais fora de fase. Ferramenta interna não deve ser publicada como serviço de decodificação de arquivos adversariais. Cache e relatórios privados fora do Git, não incluídos no backup web. Sem nova inferência, interface de transcrição, evolução ou modelo aprovado.
+O ensaio anterior Basic Pitch/ONNX permanece preservado em experiments/audio-probe-results.json: mistura sintética teve 23 correspondências de 24 esperadas, mas 46 notas estimadas (precisão 0,5). Não é evidência de transcrição orquestral confiável. Planejamento URL intacto.
 
-## Limites e decisão
-Viabilidade computacional demonstrada; fidelidade orquestral NÃO demonstrada. Basic Pitch é documentado upstream como melhor para um instrumento por vez. Mistura sintética evidenciou muitas notas extras e erros de duração. Ativações não são confiança calibrada. Sem reconhecimento de melodia, separação, alinhamento ou expressividade. Não integrado ao site. Dados binários locais podem expirar, mas receita e resultados controlados estão versionados.
-Planejamento de URLs permanece preservado em docs/URL_IMPORT.md; nenhuma extração implementada.
-
-## Próximo bloco recomendado — MP3-2 (aguardar autorização e arquivo)
-Testar um trecho orquestral real autorizado, de preferência 15–30 segundos, fornecido pelo usuário ou outra fonte autorizada verificada. Inspecionar notas extras e durações; comparar áudio/transcrição sem alegar precisão objetiva quando não houver referência simbólica. Não iniciar treinamento evolutivo nem concluir que Basic Pitch será o transcritor definitivo. Não converter manualmente o arquivo pelo usuário.
+## Próximo bloco — MP3-2b (aguardar arquivo e autorização)
+Receber MP3 orquestral autorizado, selecionar 15–30 s com a ferramenta pronta, executar transcrição experimental e inspecionar erros. Usuário pode anexar música inteira, sem cortar/converter. Não usar conteúdo privado de outras tarefas nem extrair áudio de URLs. Sem arquivo, esta validação continua bloqueada; evitar novos testes sintéticos que apenas repitam o já conhecido.

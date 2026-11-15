@@ -72,3 +72,8 @@
 - [x] Três MP3s sintéticos, métricas contra notas conhecidas, versões e hashes preservados.
 - [ ] Próximo bloco MP3-2: trecho orquestral real autorizado (idealmente 15–30 s), inspeção/escuta e avaliação de falsos positivos/durações. Não integrar ao site como solução validada.
 - [ ] Caso não haja arquivo autorizado disponível, solicitar um ao usuário; não extrair áudio de URLs.
+
+## MP3-2a — preparação de gravação real concluída
+- [x] Validar áudio completo local e preparar recorte até 30 s sem ação técnica do usuário.
+- [x] Cache com integridade, relatório e testes de MP3/WAV/FLAC, limites e falhas.
+- [ ] MP3-2b: receber gravação orquestral autorizada, selecionar trecho e executar avaliação experimental; não considerar exemplos sintéticos como validação real.

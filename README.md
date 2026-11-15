@@ -57,3 +57,6 @@ Na aba Arranjar, abaixo do upload de áudio original, a ferramenta experimental 
 
 ## Prova de viabilidade MP3 (experimento separado)
 Basic Pitch/ONNX já transcreveu três MP3s sintéticos em CPU. Foram medidas notas extras e erros de duração; não há validação orquestral real nem integração desse transcritor ao site. Receita e resultados: [experiments/README.md](experiments/README.md). O ambiente da aplicação continua separado e inalterado.
+
+## Preparação de trechos (MP3-2a)
+Ferramenta interna recorta MP3/WAV/FLAC automaticamente para testes de até 30 segundos, preservando o original e reutilizando resultados íntegros. O usuário pode fornecer o arquivo inteiro. [Detalhes](docs/AUDIO_CLIPS.md). Ainda sem transcrição de gravação orquestral real ou alteração da interface.
