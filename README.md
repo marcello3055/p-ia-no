@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 3.2
+## Estado — Bloco 3.3
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -51,3 +51,6 @@ Primeira redução experimental MIDI para duas mãos, com relatório de decisõe
 
 ## Áudio de piano (Bloco 3.2)
 Renderizador interno gera WAV/MP3 reais a partir do MIDI reduzido, com FluidSynth e TimGM6mb. Limite inicial de 120 s, sem interface de renderização ou transcrição de áudio. Consulte [RENDERER.md](docs/RENDERER.md).
+
+## Piano experimental no site (Bloco 3.3)
+Na aba Arranjar, abaixo do upload de áudio original, a ferramenta experimental aceita MIDI de até 5 MiB/120 s e gera piano com player e downloads MIDI/WAV/MP3/JSON. Resultados temporários, fora da biblioteca e backup. Ainda não transforma MP3 orquestral em piano.

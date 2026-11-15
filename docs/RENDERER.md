@@ -17,3 +17,8 @@ Relatório registra versões reais, parâmetros, pico PCM, contagem/duração e 
 
 ## Verificação
 Teste real percorre redução → MIDI → WAV → MP3 → decodificação FFmpeg. Verifica duração, estéreo, taxa, sinal e pico; testa também destino existente, SoundFont ausente, duração excessiva e programa não pianístico. Não equivale a escuta humana. Nenhuma música privada usada. Transcrição de MP3 orquestral e player para resultados gerados continuam pendentes.
+
+## Integração web — Bloco 3.3
+Painel na aba Arranjar; POST /api/experimental/piano recebe application/octet-stream. Limite contado durante streaming de 5 MiB; duração máxima 120 s antes da redução. Um pedido por processo, ocupado retorna 503; MIDI inválido retorna 422; falta de dependência retorna 503. Sem autenticação, somente desenvolvimento; não publicar a API aberta.
+Retorna MIDI/WAV/MP3 em base64 e relatórios. Até aproximadamente 33 MiB de resposta para 120 s, com cópias adicionais em memória no navegador: solução temporária, requer streaming/armazenamento para músicas longas e celulares. Timeout cliente de 180 s não interrompe necessariamente a síntese. Sem porcentagem inventada. Não há fila, cancelamento de síntese, histórico ou backup desses resultados. A trava é por processo; não usar múltiplos workers.
+66 testes aprovados; Chrome desktop gerou exemplo sintético de 7 notas/6,5 s, reproduziu (currentTime avançando, sem erro) e baixou MP3. Android, carga concorrente e escuta artística não validados.

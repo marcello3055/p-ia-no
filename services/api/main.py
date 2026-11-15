@@ -11,6 +11,7 @@ from services.api.backup import export_backup
 from fastapi.staticfiles import StaticFiles
 from services.api.storage import Store
 from services.api.midi_compare import compare_router
+from services.api.piano import piano_router
 
 def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     root = Path(data_dir or os.environ.get('PIANO_DATA_DIR', Path(__file__).resolve().parents[2] / 'data'))
@@ -18,6 +19,7 @@ def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     app = FastAPI(title='P-IA-NO', version='0.0.4', docs_url=None, redoc_url=None)
     app.include_router(store.router())
     app.include_router(compare_router())
+    app.include_router(piano_router())
     @app.get('/api/backup')
     async def download_backup():
         temporary = Path(tempfile.mkdtemp(prefix='piano-export-'))
@@ -35,7 +37,7 @@ def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     @app.get('/api/health')
     def health():
         return {'status': 'ok', 'service': 'p-ia-no-api', 'version': '0.0.4',
-                'capabilities': {'uploads': True, 'training': False, 'arrangement': False},
+                'capabilities': {'uploads': True, 'training': False, 'arrangement': False, 'experimental_midi_piano': True},
                 'storage': 'development-local'}
     web_dist = Path(__file__).resolve().parents[2] / 'apps/web/dist'
     if web_dist.is_dir():

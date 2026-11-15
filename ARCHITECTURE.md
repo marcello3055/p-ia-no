@@ -67,3 +67,6 @@ packages/music/reduce.py implementa heurística determinística sobre Score; scr
 
 ## Bloco 3.2 — renderização offline
 packages/music/render.py chama a biblioteca nativa FluidSynth via ctypes, agenda notas no tempo absoluto e grava PCM em blocos. FFmpeg codifica MP3. Sem dispositivo de áudio, GPU ou dependência Python adicional. Entrada reduzida limitada, destino novo e relatório de reprodução. Documentação: docs/RENDERER.md.
+
+## Bloco 3.3 — integração web experimental
+POST /api/experimental/piano recebe MIDI binário até 5 MiB/120 s; reduz e renderiza em worker thread com exclusão por processo. AnyIO não abandona trabalho ao cancelar, preservando limpeza/lock. Temporários removidos ao terminar; resposta JSON contém arquivos base64 e relatórios. React cria blobs para player/downloads e libera URLs ao trocar entrada/desmontar. Sem histórico, filas ou persistência de resultados.

@@ -52,6 +52,11 @@
 - [x] Validar licença/disponibilidade do renderizador e amostras gratuitas.
 - [x] Renderização WAV/MP3 real com testes; escuta humana pendente.
 
-## Próximo bloco 3.3 — aguardar autorização
-- [ ] Integrar redução/renderização experimental à interface, com player e exportações.
-- [ ] Validar fluxo no navegador; identificar claramente entrada MIDI interna e ausência de transcrição MP3.
+## Bloco 3.3 — concluído
+- [x] Integrar redução/renderização experimental à interface, com player e exportações.
+- [x] Validar fluxo Chrome desktop; entrada MIDI experimental identificada.
+
+## Próximo bloco recomendado — prova de viabilidade MP3 (aguardar autorização)
+- [ ] Selecionar e verificar um transcritor livre compatível com CPU/ambiente.
+- [ ] Testar trecho curto autorizado antes de investir no motor evolutivo; registrar erros e limites.
+- [ ] Não tratar transcrição experimental como redução orquestral concluída.

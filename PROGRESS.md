@@ -1,17 +1,16 @@
-# Progresso — Bloco 3.2
+# Progresso — Bloco 3.3
 Data: 15/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: db91d245f7586ccd62f12e8cea8649abd5ab6a31.
-O commit deste documento é o checkpoint 3.2.
+Checkpoint anterior: 90406cda05fa8ba476c74d57c694babb6494ed68.
+O commit deste documento é o checkpoint 3.3.
 
 ## Implementado
-Renderização offline real de MIDI reduzido para WAV estéreo 44,1 kHz PCM16 e MP3 192 kbit/s. FluidSynth 2.4.4 + piano do TimGM6mb já disponíveis, sem instalação/GPU/custo. CLI, limites de entrada, recusa de sobrescrita e relatório com parâmetros, versões e hashes. Licenças/origens documentadas em docs/RENDERER.md. Sem binários, amostras ou áudio no Git.
+Na aba Arranjar: painel experimental MIDI → redução → piano, estado de processamento/erro, player e exportação MIDI/WAV/MP3/JSON. API limitada 5 MiB/120 s, uma geração por processo, execução fora do event loop e limpeza de temporários. Resultados não entram no histórico/backup. Textos distinguem explicitamente upload MP3 original e ferramenta MIDI interna. Nenhuma dependência nova ou gasto.
 
-## Verificado
-63 testes aprovados, incluindo três novos: síntese real e decodificação MP3; duração, sinal, ausência de saturação no exemplo, canais/taxa; destino existente; amostras ausentes; duração excessiva; rejeição de programa orquestral. Verificação do checkpoint e whitespace. Frontend não mudou; build e navegador não repetidos. Aviso Starlette/httpx já existente permanece sem falha.
+## Testado
+66 testes passaram (63 anteriores + 3 API). Síntese real via endpoint, arquivos e relatório, ausência de áudio na biblioteca, erros de conteúdo/tamanho/duração e renderizador indisponível. TypeScript e build Vite aprovados. Chrome desktop: seleção MIDI sintético de 7 notas, geração concluída (6,5 s), player em reprodução com tempo avançando e sem erro, download MP3 concluído. Não houve escuta artística, teste Android ou de carga concorrente. Checkpoint/whitespace verificados.
 
-## Limites
-Sem escuta/avaliação artística ou demonstração de repertório real. Timbre inicial, sem nova expressividade/pedal e cauda fixa de 3 s. Limite experimental 120 s; síntese interna sem API/player para resultados. Não há transcrição de MP3 orquestral nem treinamento. Upload/reprodução dos áudios originais permanece independente. Objetivo final segue entrada MP3 → arranjo de piano audível, sem conversão manual pelo usuário.
-Hospedagem permanente, autenticação, Android e armazenamento durável de resultados ainda pendentes.
+## Limitações
+Sem transcrição MP3, modelo treinado ou arranjador aprovado. Resultado temporário em memória do navegador, resposta base64 grande (até ~33 MiB); fechar/recarregar ou trocar entrada perde resultado se não baixado. Não é infraestrutura pública segura: sem autenticação, fila e persistência de resultados. Timeout do cliente não cancela síntese. Trava por processo; somente um worker. Hospedagem permanente pendente. O objetivo final permanece MP3 orquestral → piano sem conversão manual pelo usuário.
 
-## Próximo bloco — 3.3 (aguardar autorização)
-Integrar redução e renderização experimental à interface, com estado de processamento, player e exportação, antes do motor evolutivo. Entrada simbólica identificada como ferramenta experimental; MP3 continua objetivo das etapas de análise de áudio.
+## Próximo bloco recomendado — prova de viabilidade MP3 (aguardar autorização)
+Conforme recomendação na revisão de progresso: após integração básica, testar análise de um trecho curto de MP3 antes de investir no motor evolutivo. Verificar modelo livre compatível com ambiente/CPU, licença e requisitos, testar material autorizado e registrar falhas. Não prometer transcrição orquestral correta nem qualidade de arranjo a partir desse teste. Etapas evolutivas e biblioteca permanecem no plano.
