@@ -49,3 +49,6 @@ Limites: 100 MiB/arquivo, 30 minutos, 1 GiB de áudio; sem transcrição. Lock a
 
 ## Bloco 1.3 — backup portátil
 ZIP de dados com manifesto JSON versionado, SHA-256 e arquivos permitidos; SQLite é reconstruído em pasta nova, nunca importado como banco executável. Endpoint de exportação e ferramenta CLI de restauração, com validação e limpeza em falha. Biblioteca ativa não é substituída automaticamente. Backup manual baixado para dispositivo externo é a opção inicial sem serviço pago; automação/durabilidade em nuvem permanece pendente. Ver docs/BACKUP.md.
+
+## Bloco 2.1 — núcleo simbólico
+Módulo Python independente de API/frontend: Score/Note/Event, tempo PPQN e conversão em segundos pelo mapa global. Eventos de controle preservados; roles/mãos não inferidos. MIDI exportado é reconstruído a partir da representação; testes comprovam que edição simbólica altera a saída. Padrões/limites em docs/MIDI.md. Próximo componente: métricas iniciais, sem chamar essas métricas de qualidade artística.

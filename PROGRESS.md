@@ -1,27 +1,24 @@
-# Progresso — Bloco 1.3
-Data: 14/11/2026. Repositório privado: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: fa3fd21875620795e25834b872287c7dca99fcfb.
-O commit contendo este documento é o checkpoint 1.3.
+# Progresso — Bloco 2.1
+Data: 14/11/2026 (fuso do usuário). Repositório: https://github.com/marcello3055/p-ia-no
+Checkpoint anterior: c2137709e1cd315c859fc6b51257971619058b6d.
+O commit que contém este documento é o checkpoint 2.1.
 
 ## Implementado
-- ZIP portátil contendo manifesto versionado, áudios e pares, sem banco SQLite executável, código ou credenciais.
-- Exportação via /api/backup e link Baixar backup dos dados na aba Meus modelos.
-- Restauração pelo agente via scripts/backup.py, somente em diretório inexistente; sem alterar biblioteca atual.
-- Validação de hashes, tamanho, formato/duração, schema, referências, duplicatas e caminhos; rejeição de links e entradas inesperadas.
-- Destinos existentes preservados, limpeza de saída incompleta em falhas normais, temporário de download removido após resposta.
-- Documentação de recuperação e instrução simples: guardar ZIP fora do ambiente.
+- Mido 1.3.3 e packaging 26.3 instalados, licenças verificadas, lockfile com hashes; nenhuma atualização dos demais pacotes.
+- Núcleo MIDI tipo 0/1: Score, Note e Event, trilhas/canais, alturas, intensidades, inícios/fins e conversão ticks/semínimas/segundos.
+- Mapa de andamento global; preservação de controles, programas e metadados. Pedal não confundido com duração da tecla.
+- Exportação real a partir da representação, incluindo edições de notas.
+- CLI de inspeção/reexportação sem sobrescrever destinos. Sem integração MIDI no site ainda.
 
 ## Verificações
-- 18 testes aprovados (8 anteriores + 10 de backup).
-- Testados: exportar/restaurar em pasta nova; IDs/pares e bytes preservados; endpoint gera ZIP restaurável; biblioteca vazia; não sobrescrever destinos; rejeitar corrupção, traversal, referências/arquivos ausentes, entradas duplicadas, links e declaração excessiva de tamanho; limpar exportação incompleta.
-- Build TypeScript/Vite aprovado. Testes da API e fluxo de restauração são reais, com WAV sintético.
-- O link novo não foi clicado no navegador neste bloco; download verificado pelo endpoint HTTP de teste. Android/MP3/FLAC permanecem pendentes.
-- Código local permaneceu disponível após manutenção do ambiente; checkpoint remoto conferido antes da edição. Não foi necessário recuperar dados do usuário.
+- 27 testes aprovados: 18 anteriores e 9 novos de MIDI.
+- Casos MIDI sintéticos: acordes, simultaneidade, repetição, velocity zero, tempo padrão, mudança de tempo dentro de nota, canais/trilhas, pedal/compasso/programa, silêncio final, zero duração, edição simbólica e reexportação, entradas inválidas e CLI.
+- Arquivos com notas sem fim ou pareamento ambíguo recusados. SMPTE/tipo 2 recusados. SysEx descartado com aviso. Pitch bend preservado como evento.
+- Nenhum áudio gerado ou modelo treinado. MIDI real de repertório do usuário ainda não testado. Nenhum teste visual adicional: interface não mudou.
 
-## Limitações
-Sem importação pela interface (restauração feita pelo agente), backup automático, armazenamento externo contratado, hospedagem permanente ou autenticação. Backup só protege contra perda do ambiente se o ZIP for guardado fora dele. Não é criptografado nem assinado. Sem simulação de queda de energia; temporários podem sobrar em encerramento abrupto. Uso local de usuário único/um processo.
-Nenhuma dependência nova ou recurso pago. Sem modelos treinados/transcrição/evolução. Áudios, banco e ZIPs fora do Git.
-GitHub é a fonte principal do código; commits locais e remotos têm SHAs próprios. Não fazer force-push.
+## Limites e continuidade
+Sem avaliador musical ainda; sem inferência de melodia, vozes/mãos, transcrição de MP3, redução pianística ou evolução. JSON exportado é informativo; importação JSON não implementada. Backups de dados, armazenamento local e interface dos blocos anteriores mantidos. Android, hospedagem, autenticação e backup automático continuam pendentes.
+GitHub é a fonte principal do código; áudio/bancos/MIDIs gerados não versionados. Histórico remoto difere do local; usar integração sobre SHA observado, sem force-push. Sem gastos externos/GPU. Ler docs/MIDI.md para limites e testes antes de ampliar.
 
-## Próximo bloco recomendado — 2.1 (aguardar autorização)
-Iniciar representação musical MIDI e testes pequenos de leitura/escrita e extração de notas, tempos e durações; sem transcrição de MP3, evolução ou geração orquestral. Não iniciar nesta sessão. Publicação e validação Android continuam pendentes e não devem ser consideradas concluídas.
+## Próximo bloco — 2.2 (aguardar autorização)
+Avaliador inicial entre dois MIDIs com métricas explicáveis de alturas, início/duração e precisão/recall, usando exemplos controlados. Separar erro musical de diferença de andamento; não afirmar avaliação de expressividade/generalização. Não executar neste bloco.

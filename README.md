@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 1.3
+## Estado — Bloco 2.1
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -33,3 +33,6 @@ Dados e modelos fora do Git. Dependências JavaScript em package-lock.json; Pyth
 
 ## Backup e recuperação
 Ver [docs/BACKUP.md](docs/BACKUP.md). O ZIP contém dados e áudios, não código/modelos/credenciais. Nenhum arquivo de áudio ou backup é versionado no GitHub. O agente pode restaurar com `scripts/backup.py`; o usuário não precisa executar comandos.
+
+## Núcleo MIDI (Bloco 2.1)
+Leitura de MIDI tipo 0/1, extração de notas com trilha/canal, intensidade, início e duração em ticks/semínimas/segundos. Exportação de MIDI a partir dessa representação. Interface de upload MIDI ainda não implementada. O agente pode executar `scripts/inspect_midi.py arquivo.mid --json notas.json --midi copia.mid` para inspecionar e reexportar, sem sobrescrever arquivos existentes. Ver docs/MIDI.md.

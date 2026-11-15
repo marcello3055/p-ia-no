@@ -32,6 +32,9 @@
 - [ ] Armazenamento gratuito externo automático e backup recorrente.
 - [ ] Autenticação antes de eventual publicação.
 - [ ] Validação móvel e download do backup no navegador.
-## Próximo bloco 2.1 — aguardar autorização
-- [ ] Representação de notas/tempos e leitura/escrita MIDI com casos controlados.
-- [ ] Avaliador será um incremento posterior; não treinar modelos ainda.
+## Bloco 2.1 — concluído
+- [x] Leitura/escrita MIDI e representação de notas/tempos.
+- [x] Testes controlados e CLI operada pelo agente.
+## Próximo bloco 2.2 — aguardar autorização
+- [ ] Métricas iniciais entre dois MIDIs e casos de referência controlados.
+- [ ] Integração do avaliador com interface em incremento posterior.
