@@ -1,17 +1,17 @@
-# Progresso — Bloco 3.1
+# Progresso — Bloco 3.2
 Data: 15/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior remoto: a7009dab9b486c59971db2d0af7a860c035c8fc0 (2.4).
-O commit deste documento constitui o checkpoint 3.1.
+Checkpoint anterior: db91d245f7586ccd62f12e8cea8649abd5ab6a31.
+O commit deste documento é o checkpoint 3.2.
 
 ## Implementado
-Redutor simbólico determinístico com prioridade grave/aguda, mãos separadas, alcance e polifonia configuráveis, tratamento de sustentação e duplicatas. MIDI de piano com tempo preservado; relatório de seleção/descarte e parâmetros. CLI sem sobrescrever arquivos, hashes de entrada/saída. Nenhuma dependência nova, GPU ou serviço pago.
+Renderização offline real de MIDI reduzido para WAV estéreo 44,1 kHz PCM16 e MP3 192 kbit/s. FluidSynth 2.4.4 + piano do TimGM6mb já disponíveis, sem instalação/GPU/custo. CLI, limites de entrada, recusa de sobrescrita e relatório com parâmetros, versões e hashes. Licenças/origens documentadas em docs/RENDERER.md. Sem binários, amostras ou áudio no Git.
 
-## Testado
-60 testes aprovados (53 anteriores + 7 novos). Novos casos: redução de acordes, limites durante sustentação, duplicatas/reataques, exclusão de percussão e notas fora do piano, remoção de instrumentos/controladores, tempo, imutabilidade, determinismo, entradas inválidas, exportação/releitura e CLI sem sobrescrita. Sem alterações no frontend; build/navegador não repetidos. Aviso de depreciação Starlette/httpx permanece sem falha.
+## Verificado
+63 testes aprovados, incluindo três novos: síntese real e decodificação MP3; duração, sinal, ausência de saturação no exemplo, canais/taxa; destino existente; amostras ausentes; duração excessiva; rejeição de programa orquestral. Verificação do checkpoint e whitespace. Frontend não mudou; build e navegador não repetidos. Aviso Starlette/httpx já existente permanece sem falha.
 
-## Limitações
-Algoritmo experimental, não modelo treinado. Voz aguda não é reconhecimento de melodia; limites de mão não garantem tocabilidade. Sem qualidade artística/auditiva validada, acompanhamento novo, pedal ou expressividade. Uso interno pelo agente, sem API/UI para redução. Não gera áudio nem transcreve MP3. Upload/reprodução de MP3 dos blocos anteriores permanecem disponíveis no ambiente de desenvolvimento. Objetivo final continua upload MP3 orquestral e saída piano audível, sem conversão manual pelo usuário.
-Hospedagem permanente, autenticação, validação Android, backup externo automático e músicas reais seguem pendentes. Dados musicais privados fora do Git.
+## Limites
+Sem escuta/avaliação artística ou demonstração de repertório real. Timbre inicial, sem nova expressividade/pedal e cauda fixa de 3 s. Limite experimental 120 s; síntese interna sem API/player para resultados. Não há transcrição de MP3 orquestral nem treinamento. Upload/reprodução dos áudios originais permanece independente. Objetivo final segue entrada MP3 → arranjo de piano audível, sem conversão manual pelo usuário.
+Hospedagem permanente, autenticação, Android e armazenamento durável de resultados ainda pendentes.
 
-## Próximo bloco recomendado — 3.2 (aguardar autorização)
-Renderização inicial do MIDI em áudio de piano com ferramenta e amostras gratuitas de licença compatível. Verificar disponibilidade/licenças antes de instalar; testar saída audível WAV e, se viável, MP3. Não iniciar transcrição nem treinamento evolutivo nesse bloco.
+## Próximo bloco — 3.3 (aguardar autorização)
+Integrar redução e renderização experimental à interface, com estado de processamento, player e exportação, antes do motor evolutivo. Entrada simbólica identificada como ferramenta experimental; MP3 continua objetivo das etapas de análise de áudio.

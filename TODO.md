@@ -48,6 +48,10 @@
 - [x] Redutor MIDI experimental e distribuição básica entre mãos.
 - [x] MIDI de piano e testes controlados; sem renderização de áudio neste bloco.
 
-## Próximo bloco 3.2 — aguardar autorização
-- [ ] Validar licença/disponibilidade do renderizador e amostras gratuitas.
-- [ ] Renderização audível WAV/MP3 com testes; sem transcrição neste bloco.
+## Bloco 3.2 — concluído
+- [x] Validar licença/disponibilidade do renderizador e amostras gratuitas.
+- [x] Renderização WAV/MP3 real com testes; escuta humana pendente.
+
+## Próximo bloco 3.3 — aguardar autorização
+- [ ] Integrar redução/renderização experimental à interface, com player e exportações.
+- [ ] Validar fluxo no navegador; identificar claramente entrada MIDI interna e ausência de transcrição MP3.

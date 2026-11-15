@@ -64,3 +64,6 @@ patterns.py opera sobre notas normalizadas pelo avaliador. Classes de altura por
 
 ## Bloco 3.1 — redução simbólica
 packages/music/reduce.py implementa heurística determinística sobre Score; scripts/reduce_midi.py exporta MIDI e relatório rastreável. Três trilhas, um canal de piano; restrições consideram notas sustentadas. Sem dependências novas. Regras e limitações em docs/REDUCER.md.
+
+## Bloco 3.2 — renderização offline
+packages/music/render.py chama a biblioteca nativa FluidSynth via ctypes, agenda notas no tempo absoluto e grava PCM em blocos. FFmpeg codifica MP3. Sem dispositivo de áudio, GPU ou dependência Python adicional. Entrada reduzida limitada, destino novo e relatório de reprodução. Documentação: docs/RENDERER.md.

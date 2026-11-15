@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "3.1",
+  "stage": "3.2",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "experimental-symbolic-piano-reducer",
+  "status": "offline-piano-wav-mp3-renderer",
   "open_source_only": true
 }
