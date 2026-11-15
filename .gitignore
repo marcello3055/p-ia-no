@@ -34,3 +34,6 @@ checkpoints/
 *.onnx
 *.zip
 *.bundle
+
+# Isolated audio experiments
+.venv-audio/

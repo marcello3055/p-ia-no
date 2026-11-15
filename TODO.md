@@ -66,3 +66,9 @@
 - [ ] URL-2: obtenção autorizada de áudio e URLs diretas MP3/WAV/FLAC; validações de mídia/rede e integração ao processamento.
 - [ ] URL-3: origem por URL no fluxo definitivo e histórico do Estúdio.
 - [ ] Validar critérios de docs/URL_IMPORT.md em pequenos blocos. A prova de viabilidade MP3 permanece como próximo bloco recomendado.
+
+## Prova MP3-1 — ensaio sintético concluído
+- [x] Modelo oficial Basic Pitch/ONNX e inferência CPU em ambiente isolado.
+- [x] Três MP3s sintéticos, métricas contra notas conhecidas, versões e hashes preservados.
+- [ ] Próximo bloco MP3-2: trecho orquestral real autorizado (idealmente 15–30 s), inspeção/escuta e avaliação de falsos positivos/durações. Não integrar ao site como solução validada.
+- [ ] Caso não haja arquivo autorizado disponível, solicitar um ao usuário; não extrair áudio de URLs.

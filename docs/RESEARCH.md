@@ -24,3 +24,6 @@ Fontes:
 Risco principal: extrair corretamente melodia e harmonia de gravação orquestral densa. Separação, transcrição e redução são problemas distintos. Nenhuma destas ferramentas isoladamente entrega o produto final. Testar primeiro pipeline simbólico controlado, depois adicionar áudio em adaptadores substituíveis.
 
 Critérios futuros de escolha: precisão em trechos autorizados representativos, latência, RAM/VRAM, licença dos pesos, manutenção e qualidade auditiva. Não escolher pelo tamanho do modelo ou popularidade apenas.
+
+## Ensaio CPU em 15/11/2026
+Basic Pitch 0.4.0/ONNX executado em ambiente separado Python 3.12; necessário contornar dependência declarada de TensorFlow incompatível e fixar setuptools para resampy. Três MP3s sintéticos transcritos de verdade. Mistura flauta/cordas: 23 correspondências em 24 notas esperadas, mas 46 estimadas; precisão 0,5 e F1 0,657 para altura/ataque. Não validado em orquestra real. Receita, dependências e dados completos: experiments/README.md e experiments/audio-probe-results.json. Mantém decisão experimental, sem adotar como transcritor definitivo ou conectar ao produto.

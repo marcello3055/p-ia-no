@@ -54,3 +54,6 @@ Renderizador interno gera WAV/MP3 reais a partir do MIDI reduzido, com FluidSynt
 
 ## Piano experimental no site (Bloco 3.3)
 Na aba Arranjar, abaixo do upload de áudio original, a ferramenta experimental aceita MIDI de até 5 MiB/120 s e gera piano com player e downloads MIDI/WAV/MP3/JSON. Resultados temporários, fora da biblioteca e backup. Ainda não transforma MP3 orquestral em piano.
+
+## Prova de viabilidade MP3 (experimento separado)
+Basic Pitch/ONNX já transcreveu três MP3s sintéticos em CPU. Foram medidas notas extras e erros de duração; não há validação orquestral real nem integração desse transcritor ao site. Receita e resultados: [experiments/README.md](experiments/README.md). O ambiente da aplicação continua separado e inalterado.
