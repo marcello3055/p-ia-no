@@ -40,6 +40,10 @@
 ## Bloco 2.3 — concluído
 - [x] Painel MIDI, API limitada e download JSON.
 - [x] Testes API e fluxo Chrome desktop, inclusive erro.
-## Próximo bloco 2.4 — aguardar autorização
-- [ ] Métricas harmônicas básicas e padrões rítmicos com casos controlados.
-- [ ] Manter limites explícitos: não equivalem a qualidade artística.
+## Bloco 2.4 — concluído
+- [x] Classes de altura e padrões de ataques com testes controlados.
+- [x] Métricas no relatório/API/painel, com limites explícitos.
+- [ ] Nova verificação visual/móvel dos diagnósticos.
+## Próximo bloco 3.1 — aguardar autorização
+- [ ] Redutor MIDI experimental e distribuição básica entre mãos.
+- [ ] MIDI de piano e testes controlados; sem renderização de áudio neste bloco.

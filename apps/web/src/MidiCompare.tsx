@@ -6,6 +6,8 @@ type Report = {
   pitch_inventory_only: Metric; pitch_and_onset: Metric; pitch_onset_and_duration: Metric;
   matched_errors: {onset_mae: number | null; duration_mae: number | null; sample_count: number};
   unmatched_reference_indices: number[]; unmatched_candidate_indices: number[];
+  pitch_class_diagnostics: {global_distribution_overlap: number | null; temporal_pitch_class_jaccard: number | null};
+  rhythm_diagnostics: {reference_attack_count: number; candidate_attack_count: number; matched_attacks: number; f1: number; relative_interval_similarity: number | null; relative_interval_unavailable_reason: string | null};
   warnings: string[]; limitations: string[];
   files?: {reference: string; candidate: string};
 };
@@ -79,6 +81,13 @@ export function MidiCompare() {
       <p className="hint">Precisão: proporção das notas candidatas com correspondência. Cobertura: proporção das notas da referência encontradas. F1 equilibra as duas.</p>
       <p>Erro médio de início: {report.matched_errors.onset_mae === null ? 'sem pares para calcular' : `${report.matched_errors.onset_mae.toFixed(3)} ${label}`}. Duração: {report.matched_errors.duration_mae === null ? 'sem pares para calcular' : `${report.matched_errors.duration_mae.toFixed(3)} ${label}`}.</p>
       <p className="hint">Médias calculadas somente sobre {report.matched_errors.sample_count} pares. Notas sem correspondência: {report.unmatched_reference_indices.length} na referência; {report.unmatched_candidate_indices.length} no candidato. Notas de percussão excluídas: {report.counts.excluded_reference} / {report.counts.excluded_candidate}.</p>
+      <h3>Classes de altura e ritmo</h3>
+      <p>Distribuição global de classes de altura: {report.pitch_class_diagnostics.global_distribution_overlap === null ? 'sem duração suficiente' : percentage(report.pitch_class_diagnostics.global_distribution_overlap)}. Coincidência temporal: {report.pitch_class_diagnostics.temporal_pitch_class_jaccard === null ? 'sem duração suficiente' : percentage(report.pitch_class_diagnostics.temporal_pitch_class_jaccard)}.</p>
+      <p className="hint">Classes de altura agrupam notas de mesmo nome em oitavas diferentes. A distribuição global ignora a ordem; a coincidência temporal compara as classes ativas ao longo do tempo. Nenhuma delas reconhece função harmônica ou qualidade do arranjo.</p>
+      <p>Correspondência de ataques (F1): {percentage(report.rhythm_diagnostics.f1)} — {report.rhythm_diagnostics.matched_attacks} coincidências em {report.rhythm_diagnostics.reference_attack_count} ataques de referência e {report.rhythm_diagnostics.candidate_attack_count} candidatos.</p>
+      <p>Padrão relativo de intervalos entre ataques: {report.rhythm_diagnostics.relative_interval_similarity === null ? 'não calculado' : percentage(report.rhythm_diagnostics.relative_interval_similarity)}.</p>
+      {report.rhythm_diagnostics.relative_interval_unavailable_reason && <p className="hint">{report.rhythm_diagnostics.relative_interval_unavailable_reason}</p>}
+      <p className="hint">Notas simultâneas contam como um ataque. O padrão relativo ignora deslocamento global e mudança uniforme de andamento; não compara alturas, durações ou expressividade.</p>
       {report.warnings.map(warning => <p className="notice" key={warning}>{warning}</p>)}
       <details><summary>Limites desta avaliação</summary><ul>{report.limitations.map(item => <li key={item}>{item}</li>)}</ul></details>
       {download && <a className="backup-link" href={download} download="P-IA-NO-comparacao-MIDI.json">Baixar relatório completo (JSON)</a>}

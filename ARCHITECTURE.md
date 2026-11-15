@@ -58,3 +58,6 @@ Comparação simbólica independente da API. Pareamento um a um por altura/iníc
 
 ## Bloco 2.3 — comparação pela interface
 Painel React MidiCompare e endpoint efêmero /api/midi/compare; upload binário limitado, sem dependência multipart ou persistência. Comparação em thread, um pedido por processo. Resultados anteriores invalidados ao mudar seleção/configuração. Download JSON no cliente. Não equivale a treinamento nem áudio gerado.
+
+## Bloco 2.4 — diagnósticos complementares
+patterns.py opera sobre notas normalizadas pelo avaliador. Classes de altura por duração e Jaccard temporal via varredura de eventos (sem matriz de frames), ataques únicos e intervalos normalizados. Retorna dados explicáveis e null quando não há suporte suficiente. Integrado à API, JSON e painel por evaluator_version 0.2.0.

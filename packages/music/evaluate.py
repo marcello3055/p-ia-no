@@ -3,6 +3,7 @@ from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 import math
 from .midi import Score
+from .patterns import pitch_classes, attack_patterns
 
 @dataclass(frozen=True)
 class EvaluationConfig:
@@ -76,7 +77,7 @@ def evaluate(reference: Score, candidate: Score, config: EvaluationConfig | None
     inventory = sum((Counter(n['pitch'] for n in ref) & Counter(n['pitch'] for n in cand)).values())
     mae = lambda key: sum(abs(row[key]) for row in matched) / len(matched) if matched else None
     return {
-        'schema_version': 1, 'evaluator_version': '0.1.0', 'config': asdict(config),
+        'schema_version': 1, 'evaluator_version': '0.2.0', 'config': asdict(config),
         'counts': {'reference': len(ref), 'candidate': len(cand), 'matched_pitch_onset': len(matched),
                    'matched_with_duration': duration_matches,
                    'excluded_reference': len(reference.notes) - len(ref),
@@ -87,6 +88,8 @@ def evaluate(reference: Score, candidate: Score, config: EvaluationConfig | None
         'matched_errors': {'onset_mae': mae('onset_error'), 'duration_mae': mae('duration_error'),
                            'duration_match_rate': duration_matches / len(matched) if matched else None,
                            'sample_count': len(matched), 'time_unit': config.time_unit},
+        'pitch_class_diagnostics': pitch_classes(ref, cand),
+        'rhythm_diagnostics': attack_patterns(ref, cand, config.onset_tolerance),
         'matches': matched,
         'unmatched_reference_indices': [n['index'] for n in ref if n['index'] not in ref_used],
         'unmatched_candidate_indices': [n['index'] for n in cand if n['index'] not in cand_used],
