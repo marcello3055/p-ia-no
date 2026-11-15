@@ -1,24 +1,25 @@
-# Progresso — Bloco 2.2
+# Progresso — Bloco 2.3
 Data: 14/11/2026 (fuso do usuário). Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: e86ae6b8e02f2fbbb71013f493a39a57963d4f4d.
-O commit que contém este documento é o checkpoint 2.2.
+Checkpoint anterior: 8cc7d821d60b2cd1bbad27f04e809d00039b2bd6.
+O commit deste documento é o checkpoint 2.3.
 
 ## Implementado
-- Avaliador entre dois Scores/MIDIs: inventário de alturas, altura+início e altura+início+duração.
-- Precisão, recall, F1, erros médios, contagens, pares e índices sem correspondência.
-- Pareamento cronológico um a um, sem reutilizar notas; tolerâncias configuráveis e unidades quarters/seconds.
-- Filtro de percussão padrão; configurações/avisos explícitos; referência vazia recusada.
-- CLI de relatório JSON sem sobrescrever destinos. Regras em docs/EVALUATOR.md.
+- Painel Comparar dois MIDIs na aba Treinamento, seleção referência/candidato, tolerâncias e unidade temporal.
+- Métricas explicadas, contagens, erros médios, avisos e download do relatório JSON completo.
+- Resultado invalidado ao trocar arquivo/parâmetro; estado de processamento e erros.
+- API binária efêmera (5 MiB/arquivo, 10 MiB total), validação de conteúdo/configuração e hashes de origem. Não salva MIDI ou relatório na biblioteca.
+- Um pedido por processo; comparação em thread; nenhuma dependência nova.
 
 ## Testes
-- 38 testes aprovados: 27 anteriores + 11 do avaliador.
-- Casos controlados comprovam identidade, perda/excesso de notas, altura errada, duplicações, início/duração, limites, andamento/PPQN, entradas vazias e CLI.
-- Erro de duração não apaga resultado de correspondência de altura/início; erros médios não viram zero na ausência de pares.
-- Sem nova dependência, renderização, uso de GPU ou serviço pago.
+- 44 testes aprovados: 38 anteriores e 6 da API MIDI.
+- Casos novos: resultado e hashes, diferenças/configuração, arquivo inválido/vazio, limites e parâmetros inválidos, tipo de conteúdo e excesso durante streaming, ausência de persistência.
+- TypeScript/build Vite aprovados.
+- Chrome desktop: arquivos sintéticos com uma nota diferente; exibiu 1 correspondência em 2 notas e 50% nos critérios. Download JSON concluído. Troca para MIDI inválido limpou resultado anterior e mostrou erro.
+- Sem teste Android real, carga simultânea ou arquivo musical real. Não foi feita avaliação auditiva.
 
-## Limites
-Avaliador ainda interno, não integrado à interface; MIDI não pode ser enviado pelo site. Não mede qualidade artística, harmonia funcional, motivos, mãos, tocabilidade ou expressão. Sem alinhamento de introduções/repetições/rubato. Sem treinamento ou alegação de generalização. Só testes sintéticos. Hospedagem, autenticação, backup automático e Android continuam pendentes.
-GitHub é a fonte principal; não versionar áudios, DBs ou MIDIs privados. Histórico local e remoto têm SHAs próprios; publicar pela integração sobre SHA observado, sem force-push.
+## Limitações
+Sem alinhamento automático ou avaliação artística/harmonia funcional/tocabilidade/expressividade. Sem transcrição MP3, treinamento ou geração de áudio. Arquivos e resultados da comparação são efêmeros; baixar JSON para guardar. Dados salvos de áudio dos blocos anteriores permanecem independentes.
+Sem URL pública permanente, autenticação, backup externo automático ou vários workers. Timeout do navegador não interrompe necessariamente a thread. Nenhum gasto/GPU. GitHub fonte principal; dados privados fora do Git; não force-push.
 
-## Próximo bloco recomendado — 2.3 (aguardar autorização)
-Integrar a comparação MIDI à interface: selecionar referência/candidato, mostrar métricas com explicações e exportar relatório, com limites no servidor. Sem treinamento ou transcrição de MP3. Não executar nesta sessão.
+## Próximo bloco recomendado — 2.4 (aguardar autorização)
+Ampliar o avaliador inicial com comparação harmônica básica (classes de altura) e padrões rítmicos controlados, separando essas métricas de qualidade artística. Não iniciar motor evolutivo ou transcrição. Publicação e validação Android seguem pendentes.

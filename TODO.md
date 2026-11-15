@@ -37,7 +37,9 @@
 - [x] Testes controlados e CLI operada pelo agente.
 ## Bloco 2.2 — concluído
 - [x] Métricas iniciais entre dois MIDIs, casos controlados e CLI.
-## Próximo bloco 2.3 — aguardar autorização
-- [ ] Interface de comparação MIDI e relatório explicável.
-- [ ] API limitada para análise MIDI, sem processamento de áudio.
-- [ ] Testes de interface e erros de envio.
+## Bloco 2.3 — concluído
+- [x] Painel MIDI, API limitada e download JSON.
+- [x] Testes API e fluxo Chrome desktop, inclusive erro.
+## Próximo bloco 2.4 — aguardar autorização
+- [ ] Métricas harmônicas básicas e padrões rítmicos com casos controlados.
+- [ ] Manter limites explícitos: não equivalem a qualidade artística.

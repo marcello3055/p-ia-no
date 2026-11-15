@@ -1,7 +1,7 @@
 # Avaliador simbólico inicial — Bloco 2.2
 
 ## Uso pelo agente
-`packages.music.evaluate.evaluate(reference, candidate, config)` recebe dois Scores do leitor MIDI. CLI: `.venv/bin/python scripts/compare_midi.py referencia.mid candidato.mid --output relatorio.json`. Não sobrescreve relatórios. Ainda não há upload de MIDI ou painel de comparação no site.
+`packages.music.evaluate.evaluate(reference, candidate, config)` recebe dois Scores do leitor MIDI. CLI: `.venv/bin/python scripts/compare_midi.py referencia.mid candidato.mid --output relatorio.json`. Não sobrescreve relatórios. Há painel de comparação na aba Treinamento desde o Bloco 2.3.
 
 ## Critérios e interpretação
 - pitch_inventory_only: interseção de multiconjuntos de alturas, ignorando tempo. Diagnóstico; não é medida de harmonia ou melodia.
@@ -23,3 +23,7 @@ Sem avaliação de motivos, harmonia funcional, contraponto, mãos, tocabilidade
 
 ## Validação
 11 testes novos: identidade, ausência/excesso/altura incorreta, duplicata sem dupla contagem, caso em que vizinho mais próximo perderia correspondência, fronteira da tolerância, duração, andamento/resolução, entradas vazias, tolerâncias inválidas, filtro de percussão e relatório CLI sem sobrescrita. Apenas exemplos sintéticos; validação perceptual e repertório real pendentes. Nenhuma dependência nova.
+
+## API e interface — Bloco 2.3
+POST /api/midi/compare: application/octet-stream com bytes referência+candidato; query reference_bytes delimita os dois arquivos. Até 5 MiB cada, 10 MiB total, limite contado durante streaming. Configuração em query: time_unit (quarters/seconds), onset_tolerance e duration_tolerance entre 0 e 10, duration_relative entre 0 e 1. Percussão excluída. Um pedido por processo; ocupado retorna 503. Análise em thread para não bloquear o event loop. Sem gravação de MIDI ou relatório em disco. Hashes dos dois arquivos no relatório para rastreabilidade.
+Interface mostra os três critérios, contagens, erros e limites; permite baixar JSON com o relatório completo e nomes dos arquivos. Não conserva resultado após reload. Envio sem progresso percentual, mas com estado Enviando e comparando. Timeout cliente 60 s não é garantia de interrupção imediata da thread no servidor. Ainda restrito a desenvolvimento, sem autenticação/publicação.

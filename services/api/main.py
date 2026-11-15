@@ -10,12 +10,14 @@ from starlette.background import BackgroundTask
 from services.api.backup import export_backup
 from fastapi.staticfiles import StaticFiles
 from services.api.storage import Store
+from services.api.midi_compare import compare_router
 
 def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     root = Path(data_dir or os.environ.get('PIANO_DATA_DIR', Path(__file__).resolve().parents[2] / 'data'))
     store = Store(root, max_bytes, quota_bytes)
     app = FastAPI(title='P-IA-NO', version='0.0.4', docs_url=None, redoc_url=None)
     app.include_router(store.router())
+    app.include_router(compare_router())
     @app.get('/api/backup')
     async def download_backup():
         temporary = Path(tempfile.mkdtemp(prefix='piano-export-'))

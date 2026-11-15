@@ -55,3 +55,6 @@ Módulo Python independente de API/frontend: Score/Note/Event, tempo PPQN e conv
 
 ## Bloco 2.2 — avaliador inicial
 Comparação simbólica independente da API. Pareamento um a um por altura/início, métricas separadas com cobertura, índices e configuração versionada. Unidades musicais ou segundos configuráveis; sem alinhamento implícito. Métricas não representam qualidade artística. Detalhes em docs/EVALUATOR.md.
+
+## Bloco 2.3 — comparação pela interface
+Painel React MidiCompare e endpoint efêmero /api/midi/compare; upload binário limitado, sem dependência multipart ou persistência. Comparação em thread, um pedido por processo. Resultados anteriores invalidados ao mudar seleção/configuração. Download JSON no cliente. Não equivale a treinamento nem áudio gerado.
