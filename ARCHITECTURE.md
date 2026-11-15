@@ -61,3 +61,6 @@ Painel React MidiCompare e endpoint efêmero /api/midi/compare; upload binário 
 
 ## Bloco 2.4 — diagnósticos complementares
 patterns.py opera sobre notas normalizadas pelo avaliador. Classes de altura por duração e Jaccard temporal via varredura de eventos (sem matriz de frames), ataques únicos e intervalos normalizados. Retorna dados explicáveis e null quando não há suporte suficiente. Integrado à API, JSON e painel por evaluator_version 0.2.0.
+
+## Bloco 3.1 — redução simbólica
+packages/music/reduce.py implementa heurística determinística sobre Score; scripts/reduce_midi.py exporta MIDI e relatório rastreável. Três trilhas, um canal de piano; restrições consideram notas sustentadas. Sem dependências novas. Regras e limitações em docs/REDUCER.md.

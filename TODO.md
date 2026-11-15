@@ -44,6 +44,10 @@
 - [x] Classes de altura e padrões de ataques com testes controlados.
 - [x] Métricas no relatório/API/painel, com limites explícitos.
 - [ ] Nova verificação visual/móvel dos diagnósticos.
-## Próximo bloco 3.1 — aguardar autorização
-- [ ] Redutor MIDI experimental e distribuição básica entre mãos.
-- [ ] MIDI de piano e testes controlados; sem renderização de áudio neste bloco.
+## Bloco 3.1 — concluído
+- [x] Redutor MIDI experimental e distribuição básica entre mãos.
+- [x] MIDI de piano e testes controlados; sem renderização de áudio neste bloco.
+
+## Próximo bloco 3.2 — aguardar autorização
+- [ ] Validar licença/disponibilidade do renderizador e amostras gratuitas.
+- [ ] Renderização audível WAV/MP3 com testes; sem transcrição neste bloco.
