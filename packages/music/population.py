@@ -1,4 +1,4 @@
-"""Initial candidate population. No fitness, selection, mutation or learning yet."""
+"""Candidate manifests and deterministic proposal generation."""
 from dataclasses import asdict, dataclass
 import hashlib
 from itertools import product

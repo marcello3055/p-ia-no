@@ -88,3 +88,6 @@ Experimentos isolados align_reference.py/compare_audio_pair.py; time_map.py conv
 
 ## Bloco 4.3 — reprodução
 packages/music/evolution.py transforma um manifesto e seu ranking supervisionado em nova geração imutável. Valida hash/geração e bloqueia diagnósticos; elites, recombinação uniforme, mutação e imigrantes dentro do espaço finito existente. CLI de um ciclo em scripts/evolve_once.py. Detalhes em docs/EVOLUTION.md.
+
+## Bloco 4.4 — sessões
+packages/music/session.py coordena avaliação/reprodução por geração e persiste envelopes JSON atômicos, com hashes encadeados e configuração vinculada aos arquivos de entrada e código. Usa fcntl no servidor Linux e sementes derivadas por geração. CLI scripts/evolve_session.py inicia/retoma com limite por execução; sem fila web neste bloco. Dados privados em data/ exigem backup separado do Git.

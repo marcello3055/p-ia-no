@@ -114,3 +114,9 @@
 - [x] Testes e execução controlada de uma geração com manifestos e ancestralidade.
 - [ ] Próximo 4.4: múltiplas gerações, checkpoints e retomada determinística.
 - [ ] Validar mapa interno do par real antes de usá-lo para reprodução.
+
+## Bloco 4.4 — concluído (atualiza pendências históricas)
+- [x] Múltiplas gerações, checkpoints atômicos e retomada determinística testada.
+- [x] Integridade, vínculo às entradas/código e lock contra execução concorrente.
+- [ ] Próximo 4.5: exportação/restauração segura de sessões para recuperação em outro ambiente.
+- [ ] Painel de evolução, comparação humana e currículo cumulativo.

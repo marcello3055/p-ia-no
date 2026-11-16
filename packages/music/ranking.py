@@ -1,4 +1,4 @@
-"""Supervised symbolic ranking for generation zero; not an artistic judgement."""
+"""Supervised symbolic ranking for a candidate population; not an artistic judgement."""
 from dataclasses import asdict
 import math
 from .evaluate import EvaluationConfig, evaluate
@@ -66,6 +66,6 @@ def rank_population(source,reference,manifest,weights=None,config=None):
             'results':rows,'evaluations':evaluations,
             'limitations':['Correspondência com uma referência simbólica alinhada, não qualidade artística.',
                            'Sem reconhecimento de melodia principal, harmonia funcional, expressividade ou avaliação completa de tocabilidade.',
-                           'Sem currículo, mínimos por critério, seleção, reprodução ou generalização demonstrada.',
+                           'Sem currículo, mínimos por critério ou generalização demonstrada.',
                            'Empates recebem mesma posição; ordenação por ID serve apenas para reprodução.',
                            'Pesos iniciais convencionais, não calibrados por preferência humana.']}

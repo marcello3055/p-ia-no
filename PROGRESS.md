@@ -1,16 +1,16 @@
-# Progresso — Bloco 4.3, primeiro ciclo evolutivo
+# Progresso — Bloco 4.4, sessões retomáveis
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior remoto: acc30c14d2daedc61930dd21cac2ea89a3e60736 (4.2b, confirmado).
-O commit deste documento é o checkpoint 4.3.
+Checkpoint anterior remoto: 99bbe2ec1d2809b95495d1975335ddeedd88035d.
+O commit deste documento identifica o checkpoint 4.4.
 
 ## Implementado
-Seleção de elites, recombinação, mutação, imigrantes e preservação do baseline. População configurável, parâmetros únicos, limites de execução e ancestralidade reproduzível. Ranking vinculado à população/geração por hash. Recusa de diagnósticos/rejeitados. CLI grava populações e rankings 0/1 sem sobrescrever destino existente. Docs/EVOLUTION.md descreve operação e limites.
+Execução de várias gerações com 100 candidatos, semente reproduzível por geração, checkpoints atômicos e encadeados, validação de integridade/entradas/código, lock Linux contra escrita concorrente e retomada sem repetir gerações concluídas. CLI operada pelo agente; até 100 novas gerações por chamada. Documentação em docs/EVOLUTION.md.
 
-## Verificação
-89 testes passaram. CLI real em exemplo MIDI controlado: 100 candidatos, baseline + 10 elites + 10 imigrantes + 79 descendentes; melhor score 1,0 antes e depois, sem ganho demonstrado. Checkpoint e whitespace conferidos. Sem nova dependência, gasto, GPU ou alteração de interface. Nenhuma alegação de aprendizagem ou generalização.
+## Testes e resultado
+95 testes passaram, incluindo retomada idêntica byte a byte à execução contínua, falha de gravação/interrupção, corrupção/lacunas, entradas incompatíveis e concorrência. CLI executada até geração 1 e retomada até 3 no exemplo simbólico controlado. Melhor score permaneceu 1,0 em todas: funcionamento e preservação demonstrados, sem evidência de melhora musical. Checkpoint e whitespace conferidos. Sem dependências novas, GPU ou gasto.
 
-## Par real preservado
-Correção anterior: OST 24,5–50 s / piano 20–38 s, conforme região indicada pelo usuário. Ranking diagnóstico: 100 candidatos, 62 avaliações únicas, baseline/máximo 0,212052; training_allowed=false. Regiões indicadas não validam automaticamente cada nota do mapa interno DTW. Pacote privado P-IA-NO_Tifa_par_corrigido.zip preservado separadamente. Não repetir identificação da região nem substituir a referência por outro trecho sem evidência.
+## Limites e continuidade
+Dados da sessão em data/session-4-4, fora do Git; não são backup durável por si sós. Código, documentação e testes preservados no GitHub. Sem integração ao painel ou execução de sessões em segundo plano. Par Tifa preservado: OST 24,5–50 s e piano 20–38 s; mapa interno ainda experimental, training_allowed=false, não utilizado para evolução. Áudios originais e pacote corrigido continuam separados do código.
 
-## Próximo bloco recomendado — 4.4 (aguardar autorização)
-Múltiplas gerações com checkpoints e retomada determinística, inicialmente em referências controladas. Manter bloqueio dos diagnósticos reais. Currículo, alinhamento interno confiável, comparação auditiva, interface evolutiva e validação em músicas inéditas continuam pendentes.
+## Próximo bloco recomendado — 4.5 (aguardar autorização)
+Exportação/restauração segura dos checkpoints e dados necessários à sessão, para retomá-la também após perda do ambiente. Depois, acompanhamento visual das gerações e comparação dos candidatos. Currículo cumulativo, alinhamento confiável do par real e validação musical permanecem pendentes.
