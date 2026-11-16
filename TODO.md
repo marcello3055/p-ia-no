@@ -77,3 +77,8 @@
 - [x] Validar áudio completo local e preparar recorte até 30 s sem ação técnica do usuário.
 - [x] Cache com integridade, relatório e testes de MP3/WAV/FLAC, limites e falhas.
 - [ ] MP3-2b: receber gravação orquestral autorizada, selecionar trecho e executar avaliação experimental; não considerar exemplos sintéticos como validação real.
+
+## MP3-2b — primeiro trecho real processado
+- [x] Arquivo mult instrumental fornecido pelo usuário, recorte 30–50 s, transcrição CPU e áudio de redução.
+- [x] Verificar MIDI/MP3 e registrar medições sem inventar precisão ou avaliação auditiva.
+- [ ] MP3-2c: feedback humano do baseline e uma intervenção focal com comparação A/B.

@@ -30,3 +30,9 @@ Conclusão: inferência MP3 em CPU é viável neste ambiente; Basic Pitch isolad
 
 ## Preparação para gravação real — MP3-2a
 O agente pode agora preparar um trecho de arquivo completo com `scripts/prepare_audio_clip.py`, no ambiente principal: validação, recorte mono/22.050 Hz e cache verificável. Consulte docs/AUDIO_CLIPS.md. Não houve novo ensaio de transcrição real neste bloco; o arquivo orquestral ainda não foi fornecido. O script audio_probe.py continua restrito às três fontes sintéticas.
+
+## MP3-2b — arquivo fornecido pelo usuário
+```sh
+OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 .venv-audio/bin/python experiments/transcribe_clip.py arquivo.mp3 --output-dir data/ensaio-novo --start 30 --seconds 20
+```
+Operação interna em trecho máximo de 30 s. Sem benchmark de precisão quando não há referência; gera transcrição bruta, ativações, estimativas, redução pianística e áudio. Pasta nova obrigatória; não publicar como API. Primeiro ensaio real documentado em docs/REAL_AUDIO_PROBE.md. Relatórios com notas e mídia ficam fora do Git; preservar pacote privado de resultados para retomada.

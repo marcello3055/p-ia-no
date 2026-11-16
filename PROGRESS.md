@@ -1,18 +1,17 @@
-# Progresso — MP3-2a, preparação de trechos
-Data: 15/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: b1348090502b9c78aa14805f7f098af712af3468 (experimento sintético MP3-1).
-O commit deste documento é o checkpoint MP3-2a. Último frontend funcional: ff2bb71064ad44deb7247929241b61a5121deb4b.
+# Progresso — MP3-2b
+Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
+Checkpoint anterior: 7c6b557b70dd7acf5fca771c9d0ecb10c0eadcbf.
+O commit deste documento é o checkpoint MP3-2b.
 
-## Implementado
-Preparação interna de arquivo local MP3/WAV/FLAC: valida formato real, tamanho/duração, recorta 1–30 segundos e gera WAV mono PCM16/22.050 Hz. Original preservado; relatório com hashes, parâmetros, versão FFmpeg, duração efetiva e indicação de silêncio/fim. Cache íntegro é reutilizado sem decodificar novamente. CLI para operação pelo agente; nenhuma ação técnica exigida do usuário. Fonte: packages/music/audio_clip.py; documentação docs/AUDIO_CLIPS.md.
-Arquivos do projeto e ambientes foram encontrados após aviso de manutenção; não foi necessária recuperação/reinstalação. Nenhuma dependência nova, GPU ou gasto.
+## Implementado e executado
+Novo script experiments/transcribe_clip.py integra preparação de arquivo local, transcrição Basic Pitch/ONNX CPU e redutor/renderizador existentes. Executado no arquivo de Tifa’s Theme enviado pelo usuário, trecho 30–50 s. Resultado: 99 notas estimadas; 65 preservadas e 34 descartadas (24 polifonia, 10 alcance). Piano WAV/MP3 com 23 s incluindo cauda. Nenhum treinamento, GPU, serviço pago ou extração de URL.
+Mídia e relatório detalhado privados em data/real-clip-01; não enviar áudios, MIDIs derivados ou ativações ao Git. Pacote privado de entrega contém o recorte, saída de piano, MIDI, transcrição bruta, ativações e relatório para continuidade.
 
-## Testado
-71 testes passaram: 66 anteriores e cinco novos. Recorte real MP3, taxa/canais, preservação do original, cache sem regravação, fim de arquivo, silêncio, parâmetros inválidos, conteúdo falso, cache corrompido, configuração diferente, WAV/FLAC e execução CLI. Checkpoint e whitespace verificados. Sem mudança de frontend; build/Chrome não repetidos. Aviso Starlette/httpx pré-existente permanece.
+## Verificações
+Inferência real completa em ~0,813 s (não extrapolar), pico RSS processo 301,78 MiB. MIDI relido com 65 notas; MP3 decodificado integralmente sem erro; áudio não silencioso/não saturado, pico 1410/32768. Relatório confirma ausência de métricas de referência e recorte de 20 s. Script compila. Checkpoint/whitespace verificados. Código da aplicação não mudou; 71 testes anteriores não repetidos nem contabilizados como nova execução.
 
 ## Limites
-Nenhuma gravação orquestral real foi fornecida; NÃO houve validação musical real neste bloco. Testes usam sinais sintéticos. Recorte temporal, não reconhecimento de frases. Downmix pode cancelar sinais fora de fase. Ferramenta interna não deve ser publicada como serviço de decodificação de arquivos adversariais. Cache e relatórios privados fora do Git, não incluídos no backup web. Sem nova inferência, interface de transcrição, evolução ou modelo aprovado.
-O ensaio anterior Basic Pitch/ONNX permanece preservado em experiments/audio-probe-results.json: mistura sintética teve 23 correspondências de 24 esperadas, mas 46 notas estimadas (precisão 0,5). Não é evidência de transcrição orquestral confiável. Planejamento URL intacto.
+Sem referência MIDI conferida, sem acurácia calculada e sem avaliação auditiva humana concluída. Distribuição 15 notas esquerda/50 direita não prova função musical. Intensidade baseada em ativação não equivale a dinâmica recuperada. Redução experimental pode perder melodia/baixo ou conservar erros de transcrição. Sem pedal/expressividade nova, integração de transcrição à interface, arranjador aprovado ou análise integral. Docs: docs/REAL_AUDIO_PROBE.md. Planejamento URL preservado.
 
-## Próximo bloco — MP3-2b (aguardar arquivo e autorização)
-Receber MP3 orquestral autorizado, selecionar 15–30 s com a ferramenta pronta, executar transcrição experimental e inspecionar erros. Usuário pode anexar música inteira, sem cortar/converter. Não usar conteúdo privado de outras tarefas nem extrair áudio de URLs. Sem arquivo, esta validação continua bloqueada; evitar novos testes sintéticos que apenas repitam o já conhecido.
+## Próximo bloco recomendado — MP3-2c (aguardar avaliação e autorização)
+Usuário compara o recorte original e o piano gerado, identifica problema prioritário (melodia, notas estranhas, acompanhamento ou timbre). Testar uma intervenção focal e comparar A/B com este baseline, sem treinar sobre erros não inspecionados. Baseline privado deve ser recuperado do pacote entregue se os arquivos temporários expirarem.
