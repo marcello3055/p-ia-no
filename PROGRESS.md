@@ -1,16 +1,13 @@
-# Progresso — Bloco 4.7, candidatos e critérios por geração
+# Progresso — Bloco 4.8, recuperação musical verificada
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior remoto: 6737c3efc1b299ec8e53455fd867e1752dd4d41d.
-O commit deste documento identifica o checkpoint 4.7.
+Checkpoint anterior remoto: 12a750376881890fbcbff970ce1152d6e489cd50.
+O commit deste documento identifica o checkpoint 4.8.
 
-## Implementado
-Seleção de geração e consulta dos 10 primeiros candidatos no painel. Detalhes expansíveis com critérios, pesos, contribuição para o score, notas e parâmetros; empates explícitos e aviso de diagnóstico. API reutiliza validação da cadeia; consulta somente leitura. Nenhum novo treinamento, avaliação ou renderização.
-
-## Testado
-109 testes passaram, incluindo correspondência exata com ranking salvo, contribuição total, empates, geração ausente e corrupção da cadeia. Build TypeScript/Vite passou. Chrome confirmou seleção da geração 0 e abertura dos critérios: resultado 1,000 e contribuições 0,500/0,250/0,150/0,100 no exemplo controlado. Whitespace/checkpoint verificados. Sem custo, GPU ou dependência nova.
+## Implementado e testado
+API e CLI recuperam candidato pela fonte/configuração salvas, verificam cadeia, hash da fonte/código e identidade exata do MIDI com resultado avaliado. Não repetem treinamento/ranking nem modificam sessões. 114 testes passaram; recuperação na sessão restaurada de desenvolvimento, geração 4, confirmou hash idêntico. Whitespace/checkpoint conferidos. Sem dependência nova, GPU ou gasto.
 
 ## Limites
-Ainda sem escuta dos candidatos neste painel, início do treino web ou aprovação reutilizável. Android pendente. Pontuações não representam expressividade nem generalização. Tifa permanece intacto e diagnóstico: OST 24,5–50 s / piano 20–38 s, mapa interno pendente. Código musical e hashes das sessões preservados. Docs/SESSION_HISTORY.md descreve operação.
+Ainda sem botão/player no painel; reconstrução pronta para renderização direta. Fonte source.mid necessária na pasta para API, ou caminho original explícito na CLI. Sessões antigas sem fonte disponível retornam erro claro. Código musical permanece inalterado para compatibilidade. Tifa intacto, diagnóstico, OST 24,5–50 s/piano 20–38 s; mapa interno ainda pendente. Não há novo resultado auditivo ou treinamento real validado com os MP3s.
 
-## Próximo bloco — 4.8 (aguardar autorização)
-Recuperar a proposta MIDI de um candidato selecionado, verificando fonte/configuração contra o checkpoint. Em seguida integrar renderização e player para escuta das propostas, sem repetir treinamento. Validar alinhamento real e currículo em blocos posteriores.
+## Próximo bloco — 4.9 (aguardar autorização)
+Renderizar diretamente a proposta verificada em piano e integrar player ao candidato no painel. Não reutilizar endpoint experimental que aplica nova redução baseline. Depois, fechar alinhamento real e integrar execução com par de áudio. Detalhes em docs/CANDIDATE_RECOVERY.md.

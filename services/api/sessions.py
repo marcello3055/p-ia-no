@@ -12,7 +12,7 @@ MAX_TOTAL = 64 * 1024 * 1024
 MAX_GENERATIONS = 201
 
 
-def history(folder, selected_generation=None):
+def history(folder, selected_generation=None, include_checkpoint=False):
     total = 0
     def read(path):
         nonlocal total
@@ -40,7 +40,9 @@ def history(folder, selected_generation=None):
                 or ranking['population_sha256']!=population_digest(population)):
             raise ValueError('Integridade inválida.')
         previous=envelope['sha256']
-        if generation == selected_generation:
+        if generation == selected_generation and include_checkpoint:
+            selected={'settings':settings,'checkpoint':payload}
+        elif generation == selected_generation:
             by_id={r['id']:r for r in ranking['results']}
             configs={r['id']:r['config'] for r in population['candidates']}
             if len(by_id)!=len(configs) or set(by_id)!=set(configs):
@@ -105,4 +107,19 @@ def sessions_router(root):
         try: return history(folder, generation)
         except (ValueError,KeyError,TypeError,AttributeError,OSError):
             raise HTTPException(409,'Candidatos indisponíveis: confira a integridade do histórico.')
+    @router.get('/{session_id}/generations/{generation}/candidates/{candidate_id}/midi')
+    def candidate_midi(session_id: str, generation: int, candidate_id: str):
+        from services.candidate_recovery import recover_candidate
+        from fastapi.responses import Response
+        if not ID.fullmatch(session_id) or not 0<=generation<MAX_GENERATIONS or not re.fullmatch(r'candidate-[0-9a-f]{16}',candidate_id):
+            raise HTTPException(404,'Candidato não encontrado.')
+        folder=root/session_id
+        if folder.is_symlink() or not folder.is_dir(): raise HTTPException(404,'Sessão não encontrada.')
+        try:
+            midi=recover_candidate(folder,generation,candidate_id)
+            return Response(midi,media_type='audio/midi',headers={
+                'Content-Disposition':f'attachment; filename="generation-{generation}-{candidate_id}.mid"',
+                'Cache-Control':'no-store'})
+        except (ValueError,KeyError,TypeError,AttributeError,OSError,EOFError):
+            raise HTTPException(409,'Não foi possível recuperar a proposta: confira a fonte MIDI, o código e os checkpoints.')
     return router

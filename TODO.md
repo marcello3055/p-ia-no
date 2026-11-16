@@ -134,3 +134,7 @@
 ## Bloco 4.7 — concluído
 - [x] Selecionar geração e consultar melhores candidatos, critérios, pesos e contribuições.
 - [ ] Próximo 4.8: recuperar MIDI do candidato com verificação contra checkpoint; depois player/renderização.
+
+## Bloco 4.8 — concluído
+- [x] Recuperação MIDI de candidato com identidade verificada contra checkpoint.
+- [ ] Próximo 4.9: renderização direta e player da proposta no painel, sem nova redução baseline.

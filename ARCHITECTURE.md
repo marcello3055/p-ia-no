@@ -100,3 +100,6 @@ services/api/sessions.py expõe leitura limitada e validada dos checkpoints sem 
 
 ## Bloco 4.7 — detalhes de candidatos
 Endpoint de geração lê a cadeia existente e retorna ranking limitado, critérios e configurações. GenerationCandidates.tsx consulta por sessão/geração e mostra detalhes expansíveis. Nenhum cálculo musical novo, preservando avaliações e compatibilidade das sessões.
+
+## Bloco 4.8 — recuperação de proposta
+services/candidate_recovery.py usa o snapshot interno validado da API de sessões, reconstrói somente um candidato e verifica seu MIDI contra hash registrado. Fonte e versão do código musical também conferidas. Endpoint binário e CLI, sem alteração de pacotes musicais ou exposição do snapshot completo na API pública.
