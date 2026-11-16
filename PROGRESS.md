@@ -1,14 +1,16 @@
-# Progresso — Bloco 4.5, exportação/restauração de sessões
+# Progresso — Bloco 4.6, histórico no painel
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior remoto: ae23be251aff7a1896dda924f3babf5541a75df3.
-O commit deste documento identifica o checkpoint 4.5.
+Checkpoint anterior remoto: b456b0684adeb888478cdddf22ad25e5970202e7.
+O commit deste documento é o checkpoint 4.6.
 
-## Implementado e testado
-Backup ZIP privado com entradas MIDI, configurações e gerações; inventário e hashes; validação de cadeia/ambiente/código; bloqueio de caminhos indevidos, links, duplicatas, conteúdo excessivo e sobrescrita. Restauração validada em pasta nova e continuação da evolução. Código musical anterior inalterado para compatibilidade de sessões.
-102 testes passaram. Execução real da CLI exportou data/session-4-4 na geração 3 para data/session-4-5.zip, restaurou em data/session-restored-4-5 e continuou até geração 4. Score máximo 1,0, sem melhora musical demonstrada. Checkpoint e whitespace verificados; sem dependência nova, GPU ou gasto.
+## Implementado
+API somente leitura para listar sessões e verificar histórico encadeado. Painel em Treinamento com seleção de sessão, atualização manual, geração, melhor score/baseline, avaliados/falhas/avaliações únicas e identificação de diagnóstico. Estados de carregamento, vazio, erro e sessão ocupada/sem processo ativo. Sem iniciar treinamento ou alterar checkpoints.
+
+## Verificação
+107 testes passaram e build TypeScript/Vite concluído. Chrome confirmou session-4-4 (gerações 0–3) e troca para session-restored-4-5 (0–4), 100 candidatos por geração e pontuações reais 1,000/0,525. Não houve melhoria musical demonstrada. Whitespace e documentação de checkpoint verificados. Sem GPU, nova dependência ou gasto. Verificação Android e inspeção visual detalhada pendentes.
 
 ## Limites
-Operação pelo agente, sem integração web. Pacote não inclui áudio original/código/modelos, nem instala dependências; exige código e ambiente compatíveis. Limites e comandos em docs/SESSION_BACKUP.md. Dados do ensaio fora do Git; exportar não equivale a salvar externamente. Sessão sintética reproduzível. Áudios Tifa intactos; regiões OST 24,5–50 s/piano 20–38 s, mapa interno ainda diagnóstico e bloqueado para reprodução automática.
+Máximo 50 sessões/201 checkpoints por consulta; detalhes em docs/SESSION_HISTORY.md. Sessões controladas existentes, não treinamento validado com Tifa. Par real intacto: OST 24,5–50 s/piano 20–38 s, alinhamento interno diagnóstico. Áudio/transcrição e início de treino ainda não estão integrados ao fluxo web. Sem publicação permanente/autenticação pública. GitHub preserva código; dados privados exigem backup separado.
 
-## Próximo bloco recomendado — 4.6 (aguardar autorização)
-Consulta das sessões e histórico de gerações no painel, exibindo pontuações reais e estado do processamento. Depois, seleção de candidatos para escuta/comparação. Currículo e validação do alinhamento real seguem pendentes.
+## Próximo bloco — 4.7 (aguardar autorização)
+Seleção de geração e consulta dos melhores candidatos e pontuações por critério. Depois, escuta/comparação das propostas. Currículo e alinhamento confiável do par real continuam pendentes.

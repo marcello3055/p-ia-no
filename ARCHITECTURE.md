@@ -94,3 +94,6 @@ packages/music/session.py coordena avaliação/reprodução por geração e pers
 
 ## Bloco 4.5 — portabilidade
 services/session_backup.py exporta snapshots privados sob lock e restaura ZIP por lista de nomes permitidos, limites e validação integral antes de publicar destino novo. Mantido separado do código musical para preservar hashes das sessões 4.4. Scripts/session_backup.py fornece CLI; não executa conteúdo importado.
+
+## Bloco 4.6 — histórico web
+services/api/sessions.py expõe leitura limitada e validada dos checkpoints sem iniciar evolução; EvolutionHistory.tsx mostra sessões e tabela de gerações. Processamento síncrono de leitura no pool do FastAPI. Nenhum código musical alterado, preservando hashes das sessões.

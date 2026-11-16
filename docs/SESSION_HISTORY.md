@@ -1,0 +1,11 @@
+# Histórico de sessões no painel — 4.6
+
+Treinamento → Histórico das gerações. Selecione uma sessão e use Atualizar histórico para consultar os checkpoints salvos. A tabela apresenta geração (0 = inicial), melhor score, baseline, candidatos avaliados, falhas, avaliações únicas e identificação de diagnóstico. Score entre 0 e 1 compara com referência simbólica, não mede qualidade musical ou generalização. Sessões atuais são ensaios controlados; não são treinamento validado com Tifa.
+
+GET /api/sessions lista pastas imediatas de PIANO_DATA_DIR que contêm session.json. GET /api/sessions/{id} lê e verifica hashes e cadeia antes de retornar somente resumo. Nomes restritos, sem seguir links, limite 50 sessões, 201 checkpoints, 16 MiB por arquivo/64 MiB totais por consulta. Histórico excedente retorna erro explícito; paginação futura. Não exporta notas, caminhos absolutos ou hashes das entradas. Dados inválidos retornam 409; sessão inexistente 404.
+
+Lock ocupado é exibido como Sessão em uso por outro processo (pode ser evolução ou backup). Sem processo ativo não implica conclusão nem aprovação. A lista representa os checkpoints completos disponíveis no instante da leitura; atualizar consulta novos dados. Não há percentual fictício, estimativa de tempo nem indicação inventada de tarefa concluída. Código musical não foi alterado; a leitura verifica integridade, não compatibilidade para execução ou correção do alinhamento.
+
+107 testes passaram: lista vazia, inexistente, leitura real sem modificar JSON, lock ocupado, corrupção, links, limites e sessão sem checkpoints. Build TypeScript/Vite passou. Chrome: carregamento de session-4-4 até geração 3 e troca para session-restored-4-5 até geração 4 confirmados, 100 candidatos e valores salvos (melhor 1,000/baseline 0,525). Verificação móvel e teste visual detalhado continuam pendentes; tabela tem rolagem horizontal e foco acessível. Preview local de desenvolvimento, sem hospedagem permanente ou autenticação pública.
+
+Próximo bloco: selecionar uma geração e consultar os melhores candidatos com suas pontuações por critério. Escuta/renderização das propostas será uma integração posterior, reutilizando o motor existente.

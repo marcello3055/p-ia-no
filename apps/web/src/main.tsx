@@ -5,6 +5,7 @@ import { AudioInput } from './AudioInput';
 import { MidiCompare } from './MidiCompare';
 import { PianoExperiment } from './PianoExperiment';
 import { SavedLibrary } from './SavedLibrary';
+import { EvolutionHistory } from './EvolutionHistory';
 type Status = 'checking' | 'online' | 'offline';
 function App() {
   const [status, setStatus] = useState<Status>('checking');
@@ -46,11 +47,11 @@ function App() {
       else return;
       event.preventDefault(); selectTab(next); document.getElementById(`tab-${next}`)?.focus();
     }}>{label}</button>)}</div>
-    <section id="panel-0" role="tabpanel" aria-labelledby="tab-0" hidden={tab !== 0} tabIndex={0}><h2>Ouça seus exemplos</h2><p>Selecione a gravação orquestral e o arranjo correspondente para piano. Por enquanto, você pode ouvir e comparar os arquivos originais.</p><div className="audio-grid"><AudioInput id="orchestra" title="Música-base · orquestra" onFileChange={setBase}/><AudioInput id="reference" title="Música-objetivo · piano" onFileChange={setReference}/></div><SavedLibrary mode="pairs" first={base} second={reference}/><p className="hint">Salvar exemplos ainda não inicia treinamento.</p><MidiCompare/></section>
+    <section id="panel-0" role="tabpanel" aria-labelledby="tab-0" hidden={tab !== 0} tabIndex={0}><h2>Ouça seus exemplos</h2><p>Selecione a gravação orquestral e o arranjo correspondente para piano. Por enquanto, você pode ouvir e comparar os arquivos originais.</p><div className="audio-grid"><AudioInput id="orchestra" title="Música-base · orquestra" onFileChange={setBase}/><AudioInput id="reference" title="Música-objetivo · piano" onFileChange={setReference}/></div><SavedLibrary mode="pairs" first={base} second={reference}/><p className="hint">Salvar exemplos ainda não inicia treinamento.</p><MidiCompare/><EvolutionHistory/></section>
     <section id="panel-1" role="tabpanel" aria-labelledby="tab-1" hidden={tab !== 1} tabIndex={0}><h2>Prepare uma nova música</h2><p>Ouça a gravação que você deseja transformar em piano solo.</p><AudioInput id="studio" title="Música inédita" onFileChange={setStudio}/><SavedLibrary mode="audio" first={studio}/><div className="empty"><h3>A geração a partir de MP3 ainda não está disponível</h3><p>Este player reproduz somente o áudio original. A seleção de arranjadores e a geração de piano serão adicionadas em etapas futuras.</p></div><PianoExperiment/></section>
     <section id="panel-2" role="tabpanel" aria-labelledby="tab-2" hidden={tab !== 2} tabIndex={0}><div className="empty"><p className="eyebrow">SUA BIBLIOTECA</p><h2>Nenhum arranjador disponível</h2><p>Quando o treinamento e a aprovação forem implementados, suas versões aprovadas aparecerão aqui. Ainda não foram criados ou treinados modelos.</p></div><section className="empty" aria-label="Backup dos dados"><h2>Proteja seus áudios e exemplos</h2><p>Baixe uma cópia dos áudios salvos e dos pares de treinamento. O arquivo não inclui arranjadores de IA, pois ainda não existem modelos treinados.</p><a className="backup-link" href="/api/backup" download="P-IA-NO-dados.zip">Baixar backup dos dados</a><p className="hint">Guarde o ZIP fora deste ambiente. O backup não é automático nem criptografado. Para recuperar os dados, envie o arquivo ao agente: a restauração será feita em uma pasta nova, sem apagar a biblioteca atual.</p></section></section>
     <section className="connection" aria-labelledby="connection-title"><div><p className="eyebrow">STATUS DO SERVIÇO</p><h2 id="connection-title">Conexão com o servidor</h2><p role="status" aria-live="polite">{status === 'checking' ? 'Verificando conexão…' : status === 'online' ? 'Servidor conectado.' : 'Servidor indisponível. A reprodução local continua disponível.'}</p></div><button disabled={status === 'checking'} onClick={() => setRetry(n => n + 1)}>Verificar novamente</button></section>
-    <footer>Bloco 3.3 · piano experimental a partir de MIDI. Sem transcrição MP3, treinamento ou hospedagem permanente.</footer>
+    <footer>Bloco 4.6 · histórico de sessões evolutivas e piano experimental. Geração por MP3 e início de treinamento ainda não estão disponíveis no site.</footer>
   </main>;
 }
 createRoot(document.getElementById('root')!).render(<React.StrictMode><App/></React.StrictMode>);

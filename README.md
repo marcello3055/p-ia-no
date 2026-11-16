@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 4.5
+## Estado — Bloco 4.6
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -78,3 +78,6 @@ Várias gerações com checkpoints atômicos, integridade e retomada determinís
 
 ## Backup de sessões (4.5)
 Exportação ZIP e restauração validada de sessões simbólicas em nova pasta. Inclui entradas MIDI e checkpoints; o agente opera scripts/session_backup.py. Procedimento em docs/SESSION_BACKUP.md. Não é backup automático externo.
+
+## Histórico no painel (4.6)
+Treinamento agora lista sessões evolutivas e suas gerações, com pontuações e contagens reais. Consulta somente leitura, atualização manual. Ainda não inicia evolução pelo site.

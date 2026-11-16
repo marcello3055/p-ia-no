@@ -125,3 +125,8 @@
 - [x] Exportação/restauração de sessões, integridade e continuação testadas.
 - [ ] Backup externo automático continua pendente.
 - [ ] Próximo 4.6: consulta das sessões e histórico de gerações no painel.
+
+## Bloco 4.6 — concluído
+- [x] Consulta de sessões e histórico real no painel, API e teste Chrome.
+- [ ] Próximo 4.7: selecionar geração e consultar melhores candidatos/critérios.
+- [ ] Verificação móvel; escuta/comparação; currículo e validação de alinhamento.
