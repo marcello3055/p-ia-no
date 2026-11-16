@@ -79,3 +79,6 @@ packages/music/audio_clip.py valida arquivo local com FFprobe e decodifica trech
 
 ## Bloco 4.1 — população simbólica
 packages/music/population.py cria configurações únicas do redutor, com baseline, seed local e manifesto verificável. generate_proposals reutiliza uma representação Score, exporta MIDI e conta equivalência de notas geradas. CLI registra geração 0; nenhum avaliador ou rede independente treinada. docs/POPULATION.md define o espaço inicial e limites.
+
+## Bloco 4.2 — avaliação da população
+packages/music/ranking.py usa generate_proposals e evaluate sobre uma referência alinhada. Cache por hash do MIDI em cada chamada; relatórios detalhados compartilhados por chave. Ranking e contribuições explícitas, falhas nulas, empates sem desempate musical. scripts/rank_population.py salva manifesto e relatório com hashes. Pesos iniciais não constituem currículo ou modelo treinado.

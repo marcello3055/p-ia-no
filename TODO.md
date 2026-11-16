@@ -90,3 +90,9 @@
 - [ ] Próximo 4.2: integrar avaliação explicável com referência simbólica controlada e registrar ranking.
 - [ ] Depois: seleção, mutação, recombinação, diversidade, checkpoints de gerações e interface.
 - Refinamento MP3-2c/A-B adiado por decisão do usuário; não é bloqueio para a Etapa 4.
+
+## Bloco 4.2 — concluído
+- [x] Avaliação supervisionada dos candidatos, contribuições, pesos, ranking, empates e cache.
+- [x] Casos controlados e checkpoint CLI reproduzível; sem alegar ganho artístico.
+- [ ] Próximo 4.3: ciclo controlado de seleção, mutação/recombinação e diversidade.
+- [ ] Posteriormente: currículo cumulativo, mínimos por critério, múltiplas gerações/checkpoints e interface.

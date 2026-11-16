@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 4.1
+## Estado — Bloco 4.2
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -63,3 +63,6 @@ Ferramenta interna recorta MP3/WAV/FLAC automaticamente para testes de até 30 s
 
 ## População inicial de candidatos (4.1)
 100 configurações por padrão, tamanho ajustável, IDs e manifesto reproduzíveis, geração MIDI sem renderizar áudio por candidato. Ainda sem seleção/evolução. [Detalhes](docs/POPULATION.md). Prova MP3 aceita pelo usuário como suficiente para prosseguir (melodia 7/10, avaliação humana limitada ao trecho).
+
+## Classificação dos candidatos (4.2)
+População pode ser avaliada contra referência MIDI alinhada, com pesos configuráveis, critérios explicados, empates e cache de resultados idênticos. Ainda sem evolução/reprodução ou avaliação artística. [Detalhes](docs/RANKING.md).
