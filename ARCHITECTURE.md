@@ -91,3 +91,6 @@ packages/music/evolution.py transforma um manifesto e seu ranking supervisionado
 
 ## Bloco 4.4 — sessões
 packages/music/session.py coordena avaliação/reprodução por geração e persiste envelopes JSON atômicos, com hashes encadeados e configuração vinculada aos arquivos de entrada e código. Usa fcntl no servidor Linux e sementes derivadas por geração. CLI scripts/evolve_session.py inicia/retoma com limite por execução; sem fila web neste bloco. Dados privados em data/ exigem backup separado do Git.
+
+## Bloco 4.5 — portabilidade
+services/session_backup.py exporta snapshots privados sob lock e restaura ZIP por lista de nomes permitidos, limites e validação integral antes de publicar destino novo. Mantido separado do código musical para preservar hashes das sessões 4.4. Scripts/session_backup.py fornece CLI; não executa conteúdo importado.

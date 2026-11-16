@@ -1,16 +1,14 @@
-# Progresso — Bloco 4.4, sessões retomáveis
+# Progresso — Bloco 4.5, exportação/restauração de sessões
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior remoto: 99bbe2ec1d2809b95495d1975335ddeedd88035d.
-O commit deste documento identifica o checkpoint 4.4.
+Checkpoint anterior remoto: ae23be251aff7a1896dda924f3babf5541a75df3.
+O commit deste documento identifica o checkpoint 4.5.
 
-## Implementado
-Execução de várias gerações com 100 candidatos, semente reproduzível por geração, checkpoints atômicos e encadeados, validação de integridade/entradas/código, lock Linux contra escrita concorrente e retomada sem repetir gerações concluídas. CLI operada pelo agente; até 100 novas gerações por chamada. Documentação em docs/EVOLUTION.md.
+## Implementado e testado
+Backup ZIP privado com entradas MIDI, configurações e gerações; inventário e hashes; validação de cadeia/ambiente/código; bloqueio de caminhos indevidos, links, duplicatas, conteúdo excessivo e sobrescrita. Restauração validada em pasta nova e continuação da evolução. Código musical anterior inalterado para compatibilidade de sessões.
+102 testes passaram. Execução real da CLI exportou data/session-4-4 na geração 3 para data/session-4-5.zip, restaurou em data/session-restored-4-5 e continuou até geração 4. Score máximo 1,0, sem melhora musical demonstrada. Checkpoint e whitespace verificados; sem dependência nova, GPU ou gasto.
 
-## Testes e resultado
-95 testes passaram, incluindo retomada idêntica byte a byte à execução contínua, falha de gravação/interrupção, corrupção/lacunas, entradas incompatíveis e concorrência. CLI executada até geração 1 e retomada até 3 no exemplo simbólico controlado. Melhor score permaneceu 1,0 em todas: funcionamento e preservação demonstrados, sem evidência de melhora musical. Checkpoint e whitespace conferidos. Sem dependências novas, GPU ou gasto.
+## Limites
+Operação pelo agente, sem integração web. Pacote não inclui áudio original/código/modelos, nem instala dependências; exige código e ambiente compatíveis. Limites e comandos em docs/SESSION_BACKUP.md. Dados do ensaio fora do Git; exportar não equivale a salvar externamente. Sessão sintética reproduzível. Áudios Tifa intactos; regiões OST 24,5–50 s/piano 20–38 s, mapa interno ainda diagnóstico e bloqueado para reprodução automática.
 
-## Limites e continuidade
-Dados da sessão em data/session-4-4, fora do Git; não são backup durável por si sós. Código, documentação e testes preservados no GitHub. Sem integração ao painel ou execução de sessões em segundo plano. Par Tifa preservado: OST 24,5–50 s e piano 20–38 s; mapa interno ainda experimental, training_allowed=false, não utilizado para evolução. Áudios originais e pacote corrigido continuam separados do código.
-
-## Próximo bloco recomendado — 4.5 (aguardar autorização)
-Exportação/restauração segura dos checkpoints e dados necessários à sessão, para retomá-la também após perda do ambiente. Depois, acompanhamento visual das gerações e comparação dos candidatos. Currículo cumulativo, alinhamento confiável do par real e validação musical permanecem pendentes.
+## Próximo bloco recomendado — 4.6 (aguardar autorização)
+Consulta das sessões e histórico de gerações no painel, exibindo pontuações reais e estado do processamento. Depois, seleção de candidatos para escuta/comparação. Currículo e validação do alinhamento real seguem pendentes.

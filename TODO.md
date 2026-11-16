@@ -120,3 +120,8 @@
 - [x] Integridade, vínculo às entradas/código e lock contra execução concorrente.
 - [ ] Próximo 4.5: exportação/restauração segura de sessões para recuperação em outro ambiente.
 - [ ] Painel de evolução, comparação humana e currículo cumulativo.
+
+## Bloco 4.5 — concluído
+- [x] Exportação/restauração de sessões, integridade e continuação testadas.
+- [ ] Backup externo automático continua pendente.
+- [ ] Próximo 4.6: consulta das sessões e histórico de gerações no painel.
