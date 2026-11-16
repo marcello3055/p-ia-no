@@ -85,3 +85,6 @@ packages/music/ranking.py usa generate_proposals e evaluate sobre uma referênci
 
 ## Diagnóstico 4.2a — áudio-objetivo
 Experimentos isolados align_reference.py/compare_audio_pair.py; time_map.py converte notas da referência por mapa temporal monotônico. Fonte transcrita reutilizada e mapeamento independente dos candidatos. Hashes vinculam gravações. Relatório marca diagnóstico e impede autorização de treinamento (flag a ser respeitada pelo futuro consumidor). Sem integração ao frontend ou alteração da população/evaluador base.
+
+## Bloco 4.3 — reprodução
+packages/music/evolution.py transforma um manifesto e seu ranking supervisionado em nova geração imutável. Valida hash/geração e bloqueia diagnósticos; elites, recombinação uniforme, mutação e imigrantes dentro do espaço finito existente. CLI de um ciclo em scripts/evolve_once.py. Detalhes em docs/EVOLUTION.md.

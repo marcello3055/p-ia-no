@@ -1,17 +1,16 @@
-# Progresso — 4.2b, correção de regiões correspondentes
+# Progresso — Bloco 4.3, primeiro ciclo evolutivo
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: 08de52b49c0763a7cb5b860e7e305ae8b622a8ee.
-O commit deste documento é o checkpoint 4.2b.
+Checkpoint anterior remoto: acc30c14d2daedc61930dd21cac2ea89a3e60736 (4.2b, confirmado).
+O commit deste documento é o checkpoint 4.3.
 
-## Correção e execução
-Usuário rejeitou alinhamento global anterior. Região indicada: OST começa entre 24 e 25 s e termina em 50; piano 20 s até fim do segundo 37. Adotados OST 24,5–50 s (25,5 s) e piano 20–38 s (18 s), preservando incerteza do início OST. Novo DTW ponta a ponta dentro dessas regiões, corredor normalizado 15%, extremos fixos; sem busca de outros trechos.
-Nova transcrição do trecho ampliado: 126 notas OST, 83 no baseline; 79 notas de referência, todas mapeadas. Ranking recalculado: 100 candidatos, 62 avaliações únicas, baseline e máximo 0,212052. Score diagnóstico, não precisão/qualidade ou evidência de melhora. Regiões reconhecidas como indicadas pelo usuário; mapa interno ainda não validado. training_allowed=false, nenhuma seleção/reprodução.
+## Implementado
+Seleção de elites, recombinação, mutação, imigrantes e preservação do baseline. População configurável, parâmetros únicos, limites de execução e ancestralidade reproduzível. Ranking vinculado à população/geração por hash. Recusa de diagnósticos/rejeitados. CLI grava populações e rankings 0/1 sem sobrescrever destino existente. Docs/EVOLUTION.md descreve operação e limites.
 
-## Verificado
-84 testes passaram. Verificação sintética adicional de DTW ancorado: identidade, extremos exatos, monotonicidade, corredor e transformação temporal da nota. Script de verificação preservado. Inferências/ranking reais concluídos; hashes vinculam fonte/referência. Checkpoint e whitespace conferidos. Sem dependência nova, GPU ou gasto; frontend inalterado. Não houve nova escuta humana da saída.
+## Verificação
+89 testes passaram. CLI real em exemplo MIDI controlado: 100 candidatos, baseline + 10 elites + 10 imigrantes + 79 descendentes; melhor score 1,0 antes e depois, sem ganho demonstrado. Checkpoint e whitespace conferidos. Sem nova dependência, gasto, GPU ou alteração de interface. Nenhuma alegação de aprendizagem ou generalização.
 
-## Preservação e limites
-Áudios/estimativas/relatórios privados fora do Git em data/source-corrected-01 e data/pair-corrected-01, pacote corrigido preparado. Relatório anterior em data/pair-01 marcado como rejeitado pelo usuário; histórico preservado, não reutilizar pontuações. Arquivos originais intactos. DTW interno toca quase a borda do corredor (desvio 0,14971), requer cautela; 24,5 s é escolha aproximada. Transcrições têm incerteza e velocidades não recuperam interpretação. Melhor score igual ao baseline não implica incapacidade dos futuros bots, apenas resultado deste espaço inicial/critério. Docs/PAIRED_AUDIO.md detalha métodos.
+## Par real preservado
+Correção anterior: OST 24,5–50 s / piano 20–38 s, conforme região indicada pelo usuário. Ranking diagnóstico: 100 candidatos, 62 avaliações únicas, baseline/máximo 0,212052; training_allowed=false. Regiões indicadas não validam automaticamente cada nota do mapa interno DTW. Pacote privado P-IA-NO_Tifa_par_corrigido.zip preservado separadamente. Não repetir identificação da região nem substituir a referência por outro trecho sem evidência.
 
-## Próximo bloco recomendado — 4.3 (aguardar autorização)
-Implementar seleção/reprodução, mutação/recombinação e diversidade com exemplos simbólicos controlados e testes. Manter o par real corrigido como diagnóstico, recusando uso automático de ranking com training_allowed=false. Não pedir novamente identificação da mesma região, já fornecida pelo usuário. Currículo e validação de alinhamento interno seguem pendentes, sem bloquear implementação/testes do motor.
+## Próximo bloco recomendado — 4.4 (aguardar autorização)
+Múltiplas gerações com checkpoints e retomada determinística, inicialmente em referências controladas. Manter bloqueio dos diagnósticos reais. Currículo, alinhamento interno confiável, comparação auditiva, interface evolutiva e validação em músicas inéditas continuam pendentes.

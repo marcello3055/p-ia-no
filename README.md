@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 4.2
+## Estado — Bloco 4.3
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -69,3 +69,6 @@ População pode ser avaliada contra referência MIDI alinhada, com pesos config
 
 ## Referência de piano em áudio (diagnóstico 4.2a)
 Primeiro par real processado com alinhamento DTW proposto e transcrição do piano-objetivo. Ranking calculado apenas para diagnóstico: correspondência temporal ainda requer confirmação. Nenhum score representa acurácia musical. [Estado e limites](docs/PAIRED_AUDIO.md).
+
+## Primeiro ciclo evolutivo (4.3)
+Seleção, recombinação, mutação e diversidade implementadas e testadas em referência simbólica controlada. Operação e limites em [docs/EVOLUTION.md](docs/EVOLUTION.md). O par real de Tifa permanece diagnóstico; não orienta reprodução automaticamente.

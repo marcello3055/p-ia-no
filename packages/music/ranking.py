@@ -3,7 +3,7 @@ from dataclasses import asdict
 import math
 from .evaluate import EvaluationConfig, evaluate
 from .midi import read_midi
-from .population import load_population, generate_proposals
+from .population import load_population, generate_proposals, population_digest
 
 DEFAULT_WEIGHTS={'pitch_onset':.5,'duration':.25,'pitch_classes':.15,'attacks':.1}
 
@@ -57,7 +57,7 @@ def rank_population(source,reference,manifest,weights=None,config=None):
     best=eligible[0]['score'] if eligible else None
     best_ids=[r['id'] for r in eligible if r['score']==best]
     baseline=next(r for r in rows if r['id']==manifest['baseline_id'])
-    return {'schema_version':1,'ranker_version':'0.1.0','evaluator_version':'0.2.0','generation':0,
+    return {'schema_version':1,'ranker_version':'0.1.0','evaluator_version':'0.2.0','generation':manifest['generation'],'population_sha256':population_digest(manifest),
             'weights':weights,'evaluation_config':asdict(config),'population_size':len(rows),
             'evaluated':len(eligible),'failed':len(rows)-len(eligible),'unique_evaluations':len(cache),
             'ranking':[r['id'] for r in eligible],'best_score':best,'best_candidate_ids':best_ids,

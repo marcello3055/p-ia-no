@@ -108,3 +108,9 @@
 - [x] Rejeitar diagnóstico global anterior; OST 24,5–50 s / piano 20–38 s.
 - [x] DTW restrito com extremos fixos e ranking diagnóstico recalculado; sem reprodução.
 - [ ] Retomar 4.3 em referência simbólica controlada, preservando bloqueio do par real para treinamento até avaliação do mapa interno.
+
+## Bloco 4.3 — concluído (atualiza pendências históricas acima)
+- [x] Seleção, recombinação, mutação, diversidade e recusa de rankings diagnósticos.
+- [x] Testes e execução controlada de uma geração com manifestos e ancestralidade.
+- [ ] Próximo 4.4: múltiplas gerações, checkpoints e retomada determinística.
+- [ ] Validar mapa interno do par real antes de usá-lo para reprodução.

@@ -35,7 +35,7 @@ def initialize_population(size=100, seed=0):
 
 
 def load_population(manifest):
-    if manifest.get('schema_version')!=1 or manifest.get('population_version')!='0.1.0' or manifest.get('generation')!=0:
+    if manifest.get('schema_version')!=1 or manifest.get('population_version')!='0.1.0' or (type(manifest.get('generation')) is not int or manifest['generation']<0):
         raise ValueError('Versão/geração de população não suportada.')
     rows=manifest.get('candidates')
     if not isinstance(rows,list) or not 1<=len(rows)<=len(SPACE) or manifest.get('size')!=len(rows):
@@ -70,3 +70,8 @@ def generate_proposals(source, manifest):
                    'midi_sha256':hashlib.sha256(midi).hexdigest()},midi
         except ValueError as exc:
             yield {'id':item.id,'status':'failed','score':None,'error':str(exc)},None
+
+
+def population_digest(manifest):
+    load_population(manifest)
+    return hashlib.sha256(json.dumps(manifest,sort_keys=True,separators=(",",":"),allow_nan=False).encode()).hexdigest()
