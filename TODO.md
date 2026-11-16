@@ -103,3 +103,8 @@
 - [ ] Confirmar/corrigir o trecho correspondente (alinhamento atual ambíguo); não usar ranking para evolução antes disso.
 - [ ] Futuro consumidor de seleção deverá recusar relatórios training_allowed=false.
 - A reprodução 4.3 continua pendente, após validação da comparação solicitada pelo usuário.
+
+## 4.2b — âncoras corrigidas pelo usuário
+- [x] Rejeitar diagnóstico global anterior; OST 24,5–50 s / piano 20–38 s.
+- [x] DTW restrito com extremos fixos e ranking diagnóstico recalculado; sem reprodução.
+- [ ] Retomar 4.3 em referência simbólica controlada, preservando bloqueio do par real para treinamento até avaliação do mapa interno.

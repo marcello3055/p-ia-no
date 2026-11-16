@@ -16,8 +16,9 @@ alignment=json.loads(a.alignment.read_text())
 if digest(a.reference)!=alignment['sources']['target_sha256']: raise ValueError('Referência diferente do alinhamento')
 source_report=json.loads(a.source_report.read_text())
 if source_report['clip']['clip_sha256']!=alignment['sources']['query_sha256']: raise ValueError('Fonte diferente do alinhamento')
-start=max(0,alignment['target_start_seconds']-1)
-seconds=alignment['target_end_seconds']+1-start
+anchored=alignment.get('region_confirmed_by_user',False)
+start=alignment['target_start_seconds'] if anchored else max(0,alignment['target_start_seconds']-1)
+seconds=alignment['target_end_seconds']+(0 if anchored else 1)-start
 if not 1<=seconds<=30: raise ValueError('Trecho candidato excede bloco de 30 segundos')
 a.output_dir.mkdir(parents=True)
 clip=prepare_clip(a.reference,a.output_dir/'reference',start,seconds)
@@ -35,10 +36,10 @@ notes=[Note(0,0,e['pitch'],max(1,min(127,round(e['activation']*127))),0,round(e[
 source=Score(480,1,[round(source_report['clip']['actual_seconds']*960)],notes,[],[])
 manifest=initialize_population()
 r=rank_population(source,ref,manifest,config=EvaluationConfig(time_unit='seconds',onset_tolerance=.2,duration_absolute_tolerance=.2))
-r.update(status='diagnostic_only_alignment_unverified',training_allowed=False,
+r.update(status='diagnostic_only_internal_warp_unverified' if anchored else 'diagnostic_only_alignment_unverified',training_allowed=False,
          provenance={'source_report_sha256':digest(a.source_report),'reference_sha256':digest(a.reference),'alignment_sha256':digest(a.alignment),'model_sha256':digest(model_path)},
          alignment=alignment,reference_clip=clip,warping=diagnostic,reference_estimates=len(estimates),reference_inference_seconds=elapsed)
-r['limitations']+=['Alinhamento ambíguo; NÃO usar este ranking para seleção/reprodução sem validação.','Ambos os lados derivam de transcrições incertas; score não é precisão nem qualidade artística.','Notas nas bordas podem ser truncadas. Tolerância 200 ms é experimental, não calibrada.']
+r['limitations']+=['Mapa interno ainda não validado; ranking somente diagnóstico, sem seleção/reprodução.','Ambos os lados derivam de transcrições incertas; score não é precisão nem qualidade artística.','Notas nas bordas podem ser truncadas. Tolerância 200 ms é experimental, não calibrada.']
 (a.output_dir/'population.json').write_text(json.dumps(manifest,indent=2))
 (a.output_dir/'ranking.json').write_text(json.dumps(r,indent=2,ensure_ascii=False))
 print(json.dumps({k:r[k] for k in ['status','training_allowed','evaluated','unique_evaluations','baseline_score','best_score','reference_estimates','warping']}))
