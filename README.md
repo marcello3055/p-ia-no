@@ -66,3 +66,6 @@ Ferramenta interna recorta MP3/WAV/FLAC automaticamente para testes de até 30 s
 
 ## Classificação dos candidatos (4.2)
 População pode ser avaliada contra referência MIDI alinhada, com pesos configuráveis, critérios explicados, empates e cache de resultados idênticos. Ainda sem evolução/reprodução ou avaliação artística. [Detalhes](docs/RANKING.md).
+
+## Referência de piano em áudio (diagnóstico 4.2a)
+Primeiro par real processado com alinhamento DTW proposto e transcrição do piano-objetivo. Ranking calculado apenas para diagnóstico: correspondência temporal ainda requer confirmação. Nenhum score representa acurácia musical. [Estado e limites](docs/PAIRED_AUDIO.md).

@@ -82,3 +82,6 @@ packages/music/population.py cria configurações únicas do redutor, com baseli
 
 ## Bloco 4.2 — avaliação da população
 packages/music/ranking.py usa generate_proposals e evaluate sobre uma referência alinhada. Cache por hash do MIDI em cada chamada; relatórios detalhados compartilhados por chave. Ranking e contribuições explícitas, falhas nulas, empates sem desempate musical. scripts/rank_population.py salva manifesto e relatório com hashes. Pesos iniciais não constituem currículo ou modelo treinado.
+
+## Diagnóstico 4.2a — áudio-objetivo
+Experimentos isolados align_reference.py/compare_audio_pair.py; time_map.py converte notas da referência por mapa temporal monotônico. Fonte transcrita reutilizada e mapeamento independente dos candidatos. Hashes vinculam gravações. Relatório marca diagnóstico e impede autorização de treinamento (flag a ser respeitada pelo futuro consumidor). Sem integração ao frontend ou alteração da população/evaluador base.

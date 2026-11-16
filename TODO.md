@@ -96,3 +96,10 @@
 - [x] Casos controlados e checkpoint CLI reproduzível; sem alegar ganho artístico.
 - [ ] Próximo 4.3: ciclo controlado de seleção, mutação/recombinação e diversidade.
 - [ ] Posteriormente: currículo cumulativo, mínimos por critério, múltiplas gerações/checkpoints e interface.
+
+## 4.2a — par real e alinhamento provisório
+- [x] Reutilizar estimativas OST e transcrever o piano-objetivo enviado.
+- [x] Propor trecho correspondente com DTW e pontuar população em modo diagnóstico.
+- [ ] Confirmar/corrigir o trecho correspondente (alinhamento atual ambíguo); não usar ranking para evolução antes disso.
+- [ ] Futuro consumidor de seleção deverá recusar relatórios training_allowed=false.
+- A reprodução 4.3 continua pendente, após validação da comparação solicitada pelo usuário.
