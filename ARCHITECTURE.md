@@ -76,3 +76,6 @@ Adicionar uma referência de origem separada do arquivo de áudio armazenado, co
 
 ## MP3-2a — preparação reutilizável
 packages/music/audio_clip.py valida arquivo local com FFprobe e decodifica trecho limitado por FFmpeg; saída mono PCM16/22.050 Hz. Cache identificado por hash de entrada/configuração/versão FFmpeg, com integridade da saída conferida antes da reutilização. scripts/prepare_audio_clip.py é operado pelo agente. Não há mudanças na API, frontend, armazenamento web ou adaptador de transcrição.
+
+## Bloco 4.1 — população simbólica
+packages/music/population.py cria configurações únicas do redutor, com baseline, seed local e manifesto verificável. generate_proposals reutiliza uma representação Score, exporta MIDI e conta equivalência de notas geradas. CLI registra geração 0; nenhum avaliador ou rede independente treinada. docs/POPULATION.md define o espaço inicial e limites.

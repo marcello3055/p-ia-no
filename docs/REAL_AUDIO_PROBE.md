@@ -19,3 +19,6 @@ Velocidades derivam da ativação do modelo, não de uma recuperação validada 
 
 ## Próximo bloco recomendado
 Receber avaliação auditiva do usuário sobre o trecho: reconhecimento da melodia, notas estranhas, acompanhamento e timbre. Escolher um defeito concreto e testar uma única intervenção com comparação A/B, preservando este baseline. Não avançar à evolução numérica como se a transcrição já fosse confiável. Integração ao site, análise integral, biblioteca e URLs seguem no plano.
+
+## Feedback e decisão do usuário — 16/11/2026
+O usuário ouviu o resultado: melodia reconhecível, algumas notas sobrando, avaliação subjetiva da melodia 7/10, suficiente para prova de conceito. Isso não mede precisão automática, generalização ou aprovação de arranjador definitivo. O usuário decidiu não refinar notas extras agora e retomar a Etapa 4. Essa decisão substitui o próximo bloco de comparação A/B proposto acima; baseline e resultados continuam preservados.

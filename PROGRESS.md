@@ -1,17 +1,19 @@
-# Progresso — MP3-2b
+# Progresso — Bloco 4.1
 Data: 16/11/2026. Repositório: https://github.com/marcello3055/p-ia-no
-Checkpoint anterior: 7c6b557b70dd7acf5fca771c9d0ecb10c0eadcbf.
-O commit deste documento é o checkpoint MP3-2b.
+Checkpoint anterior: 96db664261415e44b391f70ad1fda85a81f79fb5 (MP3-2b).
+O commit deste documento é o checkpoint 4.1.
 
-## Implementado e executado
-Novo script experiments/transcribe_clip.py integra preparação de arquivo local, transcrição Basic Pitch/ONNX CPU e redutor/renderizador existentes. Executado no arquivo de Tifa’s Theme enviado pelo usuário, trecho 30–50 s. Resultado: 99 notas estimadas; 65 preservadas e 34 descartadas (24 polifonia, 10 alcance). Piano WAV/MP3 com 23 s incluindo cauda. Nenhum treinamento, GPU, serviço pago ou extração de URL.
-Mídia e relatório detalhado privados em data/real-clip-01; não enviar áudios, MIDIs derivados ou ativações ao Git. Pacote privado de entrega contém o recorte, saída de piano, MIDI, transcrição bruta, ativações e relatório para continuidade.
+## Direção confirmada
+Usuário avaliou melodia do trecho Tifa como 7/10, reconhecível com notas extras, suficiente para prova de conceito. Determinou avançar à Etapa 4 sem refinar essas notas agora. Avaliação humana não equivale a acurácia/generalização nem aprovação de modelo definitivo. Baseline MP3 permanece preservado; comparação A/B antes proposta foi adiada.
 
-## Verificações
-Inferência real completa em ~0,813 s (não extrapolar), pico RSS processo 301,78 MiB. MIDI relido com 65 notas; MP3 decodificado integralmente sem erro; áudio não silencioso/não saturado, pico 1410/32768. Relatório confirma ausência de métricas de referência e recorte de 20 s. Script compila. Checkpoint/whitespace verificados. Código da aplicação não mudou; 71 testes anteriores não repetidos nem contabilizados como nova execução.
+## Implementado
+População inicial de 100 candidatos por padrão, configurável 1–390 no espaço inicial. Variam divisão de mãos, capacidade simultânea e alcance. Baseline fixo, semente local, IDs derivados de parâmetros e manifesto completo validado/recarregável. Uma entrada simbólica compartilhada; cada candidato produz MIDI ou falha explicada. Contagem de saídas musicais distintas. Nenhuma transcrição repetida, renderização em massa, nova dependência, GPU ou custo.
+
+## Testado
+76 testes passaram (71 anteriores + 5 novos). Cobrem configurações únicas/seed, limites/adulteração, fonte imutável, 100 MIDIs válidos, duplicatas musicais, falhas individuais, replay e não sobrescrita. CLI adicional em fonte sintética de 40 notas: 100 candidatos, 100 saídas geradas, zero falhas, 4 saídas musicais distintas. Não significa 100 músicas diferentes. Checkpoint/whitespace verificados; frontend não alterado, build/navegador não repetidos.
 
 ## Limites
-Sem referência MIDI conferida, sem acurácia calculada e sem avaliação auditiva humana concluída. Distribuição 15 notas esquerda/50 direita não prova função musical. Intensidade baseada em ativação não equivale a dinâmica recuperada. Redução experimental pode perder melodia/baixo ou conservar erros de transcrição. Sem pedal/expressividade nova, integração de transcrição à interface, arranjador aprovado ou análise integral. Docs: docs/REAL_AUDIO_PROBE.md. Planejamento URL preservado.
+Geração inicial 0, sem fitness/ranking/seleção/mutação/recombinação. Escores nulos e evaluated=0. Nenhum aprendizado ou melhora alegados. Três parâmetros iniciais, não todas as estratégias do objetivo final; espaço será ampliado conforme necessário. Instrumentação/transcrição/expressividade ainda experimentais. Manifestos/MIDIs de execução ficam em data/, fora do Git e fora do backup web; CLI reproduz sem sobrescrever. Sem painel da população nesta etapa.
 
-## Próximo bloco recomendado — MP3-2c (aguardar avaliação e autorização)
-Usuário compara o recorte original e o piano gerado, identifica problema prioritário (melodia, notas estranhas, acompanhamento ou timbre). Testar uma intervenção focal e comparar A/B com este baseline, sem treinar sobre erros não inspecionados. Baseline privado deve ser recuperado do pacote entregue se os arquivos temporários expirarem.
+## Próximo bloco recomendado — 4.2 (aguardar autorização)
+Integrar avaliador simbólico existente à população, com referência controlada, escores explicáveis e ranking registrado. Depois, em outros blocos, seleção/reprodução e checkpoints de gerações. Não retomar refinamento isolado da transcrição neste momento. Planejamento de URLs e demais requisitos preservados.

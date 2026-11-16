@@ -82,3 +82,11 @@
 - [x] Arquivo mult instrumental fornecido pelo usuário, recorte 30–50 s, transcrição CPU e áudio de redução.
 - [x] Verificar MIDI/MP3 e registrar medições sem inventar precisão ou avaliação auditiva.
 - [ ] MP3-2c: feedback humano do baseline e uma intervenção focal com comparação A/B.
+
+## Decisão de 16/11/2026 e Bloco 4.1
+- [x] Prova MP3 aceita pelo usuário para avançar; melodia subjetiva 7/10, com notas extras.
+- [x] População inicial configurável (100 padrão), parâmetros únicos, baseline e manifesto reproduzível.
+- [x] Propostas MIDI, falhas individuais e contagem de resultados musicais distintos.
+- [ ] Próximo 4.2: integrar avaliação explicável com referência simbólica controlada e registrar ranking.
+- [ ] Depois: seleção, mutação, recombinação, diversidade, checkpoints de gerações e interface.
+- Refinamento MP3-2c/A-B adiado por decisão do usuário; não é bloqueio para a Etapa 4.
