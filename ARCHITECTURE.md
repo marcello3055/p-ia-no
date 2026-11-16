@@ -97,3 +97,6 @@ services/session_backup.py exporta snapshots privados sob lock e restaura ZIP po
 
 ## Bloco 4.6 — histórico web
 services/api/sessions.py expõe leitura limitada e validada dos checkpoints sem iniciar evolução; EvolutionHistory.tsx mostra sessões e tabela de gerações. Processamento síncrono de leitura no pool do FastAPI. Nenhum código musical alterado, preservando hashes das sessões.
+
+## Bloco 4.7 — detalhes de candidatos
+Endpoint de geração lê a cadeia existente e retorna ranking limitado, critérios e configurações. GenerationCandidates.tsx consulta por sessão/geração e mostra detalhes expansíveis. Nenhum cálculo musical novo, preservando avaliações e compatibilidade das sessões.

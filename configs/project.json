@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "4.6",
+  "stage": "4.7",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "session-history-panel",
+  "status": "generation-candidate-details",
   "open_source_only": true
 }

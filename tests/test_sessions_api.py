@@ -56,3 +56,24 @@ class SessionApiTests(unittest.TestCase):
         (self.folder/'generation-00000.json').unlink()
         data=self.client.get('/api/sessions/test-session').json()
         self.assertEqual(data['history'],[]); self.assertIsNone(data['generation'])
+
+    def test_candidate_criteria_match_saved_values(self):
+        self.seed()
+        checkpoint=json.loads((self.folder/'generation-00001.json').read_text())['payload']
+        response=self.client.get('/api/sessions/test-session/generations/1')
+        self.assertEqual(response.status_code,200)
+        data=response.json(); self.assertEqual(len(data['candidates']),10)
+        self.assertEqual(data['weights'],checkpoint['ranking']['weights'])
+        saved={r['id']:r for r in checkpoint['ranking']['results']}
+        self.assertEqual([r['id'] for r in data['candidates']],checkpoint['ranking']['ranking'][:10])
+        for candidate in data['candidates']:
+            self.assertEqual(candidate['criteria'],saved[candidate['id']]['criteria'])
+            self.assertAlmostEqual(sum(candidate['contributions'].values()),candidate['score'])
+        self.assertEqual(data['best_tie_count'],len(checkpoint['ranking']['best_candidate_ids']))
+
+    def test_candidate_missing_and_corrupt(self):
+        self.seed()
+        for generation in [-1,2,201]:
+            self.assertEqual(self.client.get(f'/api/sessions/test-session/generations/{generation}').status_code,404)
+        (self.folder/'generation-00000.json').write_text('{}')
+        self.assertEqual(self.client.get('/api/sessions/test-session/generations/1').status_code,409)

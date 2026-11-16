@@ -12,7 +12,7 @@ MAX_TOTAL = 64 * 1024 * 1024
 MAX_GENERATIONS = 201
 
 
-def history(folder):
+def history(folder, selected_generation=None):
     total = 0
     def read(path):
         nonlocal total
@@ -28,7 +28,7 @@ def history(folder):
     paths = sorted(folder.glob('generation-*.json'))
     if len(paths)>MAX_GENERATIONS:
         raise ValueError('Consulta limitada a 201 checkpoints por sessão.')
-    previous = None; rows = []
+    previous = None; rows = []; selected = None
     for generation,path in enumerate(paths):
         if path.name != f'generation-{generation:05d}.json':
             raise ValueError('Checkpoint ausente.')
@@ -40,11 +40,26 @@ def history(folder):
                 or ranking['population_sha256']!=population_digest(population)):
             raise ValueError('Integridade inválida.')
         previous=envelope['sha256']
+        if generation == selected_generation:
+            by_id={r['id']:r for r in ranking['results']}
+            configs={r['id']:r['config'] for r in population['candidates']}
+            if len(by_id)!=len(configs) or set(by_id)!=set(configs):
+                raise ValueError('Candidatos inconsistentes.')
+            selected={'generation':generation,'weights':ranking['weights'],
+                      'diagnostic':ranking.get('training_allowed') is False or ranking.get('status','').startswith(('diagnostic','rejected')),
+                      'total_evaluated':ranking['evaluated'],'total_failed':ranking['failed'],
+                      'best_tie_count':len(ranking['best_candidate_ids']),
+                      'candidates':[{k:by_id[c][k] for k in ('id','rank','score','criteria','contributions','output_notes')} |
+                                    {'config':configs[c]} for c in ranking['ranking'][:10]]}
+
         rows.append({'generation':generation,'best_score':ranking['best_score'],
                      'baseline_score':ranking['baseline_score'],'evaluated':ranking['evaluated'],
                      'failed':ranking['failed'],'unique_evaluations':ranking['unique_evaluations'],
                      'best_candidate_ids':ranking['best_candidate_ids'],
                      'diagnostic':ranking.get('training_allowed') is False or ranking.get('status','').startswith(('diagnostic','rejected'))})
+    if selected_generation is not None:
+        if selected is None: raise HTTPException(404,'Geração não encontrada.')
+        return selected
     state='idle'
     lock_path=folder/'.lock'
     if lock_path.is_symlink(): raise ValueError('Lock inválido.')
@@ -80,4 +95,14 @@ def sessions_router(root):
         try: return history(folder)
         except (ValueError,KeyError,TypeError,AttributeError,OSError):
             raise HTTPException(409,'Histórico indisponível: confira integridade, formato e limite de 201 checkpoints.')
+    @router.get('/{session_id}/generations/{generation}')
+    def candidates(session_id: str, generation: int):
+        if not ID.fullmatch(session_id) or not 0<=generation<MAX_GENERATIONS:
+            raise HTTPException(404,'Sessão ou geração não encontrada.')
+        folder=root/session_id
+        if folder.is_symlink() or not folder.is_dir() or not (folder/'session.json').is_file():
+            raise HTTPException(404,'Sessão não encontrada.')
+        try: return history(folder, generation)
+        except (ValueError,KeyError,TypeError,AttributeError,OSError):
+            raise HTTPException(409,'Candidatos indisponíveis: confira a integridade do histórico.')
     return router

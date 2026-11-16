@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GenerationCandidates } from './GenerationCandidates';
 type Row = { generation:number; best_score:number|null; baseline_score:number|null; evaluated:number; failed:number; unique_evaluations:number; diagnostic:boolean };
 type Session = { id:string; state:string; population_size:number; generation:number|null; history:Row[] };
 const score = (value:number|null) => value === null ? '—' : value.toFixed(3).replace('.', ',');
@@ -44,7 +45,7 @@ export function EvolutionHistory() {
     {session&&<><p><strong>{session.population_size} candidatos por geração</strong> · {session.state==='busy'?'Sessão em uso por outro processo':'Sem processo ativo'} · Última geração salva: {session.generation??'nenhuma'}</p>
       <p className="hint">Sem processo ativo não significa treinamento concluído. Use Atualizar histórico para consultar novos checkpoints. Geração 0 é a população inicial.</p>
       <div className="metric-table" tabIndex={0} role="region" aria-label="Pontuações por geração"><table><caption>Pontuações de 0 a 1 — valores calculados e salvos</caption><thead><tr><th scope="col">Geração</th><th scope="col">Melhor</th><th scope="col">Baseline</th><th scope="col">Avaliados</th><th scope="col">Falhas</th><th scope="col">Resultados únicos avaliados</th><th scope="col">Uso</th></tr></thead><tbody>{session.history.map(row=><tr key={row.generation}><td>{row.generation}</td><td>{score(row.best_score)}</td><td>{score(row.baseline_score)}</td><td>{row.evaluated}</td><td>{row.failed}</td><td>{row.unique_evaluations}</td><td>{row.diagnostic?'Somente diagnóstico':'Referência simbólica'}</td></tr>)}</tbody></table></div>
-      {session.history.length===0&&<p>Nenhuma geração completa salva.</p>}</>}
+      {session.history.length===0?<p>Nenhuma geração completa salva.</p>:<GenerationCandidates key={session.id} sessionId={session.id} generations={session.history.map(row=>row.generation)}/>}</>}
     <p className="hint">Neste bloco, a consulta é somente leitura. Iniciar sessões, ouvir candidatos e aprovar arranjadores pelo painel serão etapas posteriores.</p>
   </section>;
 }

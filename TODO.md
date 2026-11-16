@@ -130,3 +130,7 @@
 - [x] Consulta de sessões e histórico real no painel, API e teste Chrome.
 - [ ] Próximo 4.7: selecionar geração e consultar melhores candidatos/critérios.
 - [ ] Verificação móvel; escuta/comparação; currículo e validação de alinhamento.
+
+## Bloco 4.7 — concluído
+- [x] Selecionar geração e consultar melhores candidatos, critérios, pesos e contribuições.
+- [ ] Próximo 4.8: recuperar MIDI do candidato com verificação contra checkpoint; depois player/renderização.
