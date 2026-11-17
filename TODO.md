@@ -138,3 +138,9 @@
 ## Bloco 4.8 — concluído
 - [x] Recuperação MIDI de candidato com identidade verificada contra checkpoint.
 - [ ] Próximo 4.9: renderização direta e player da proposta no painel, sem nova redução baseline.
+
+## Bloco 4.9 — implementado e testado no servidor
+- [x] Renderização direta do candidato verificado, MP3, cache e concorrência.
+- [x] Player/download integrados e build passou.
+- [ ] 4.10: verificar fluxo de escuta Chrome/Android e recuperar artefatos privados disponíveis.
+- [ ] Priorizar alinhamento do par real e primeiro treino experimental com os dois áudios.

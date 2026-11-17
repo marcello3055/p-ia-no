@@ -13,6 +13,7 @@ from services.api.storage import Store
 from services.api.midi_compare import compare_router
 from services.api.piano import piano_router
 from services.api.sessions import sessions_router
+from services.api.candidate_audio import candidate_audio_router
 
 def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     root = Path(data_dir or os.environ.get('PIANO_DATA_DIR', Path(__file__).resolve().parents[2] / 'data'))
@@ -22,6 +23,7 @@ def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     app.include_router(compare_router())
     app.include_router(piano_router())
     app.include_router(sessions_router(root))
+    app.include_router(candidate_audio_router(root))
     @app.get('/api/backup')
     async def download_backup():
         temporary = Path(tempfile.mkdtemp(prefix='piano-export-'))

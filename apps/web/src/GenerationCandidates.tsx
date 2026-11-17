@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CandidateAudio } from './CandidateAudio';
 type Values = Record<string,number|null>;
 type Candidate = {id:string; rank:number; score:number; output_notes:number; criteria:Values; contributions:Values; config:{split_pitch:number;max_notes_per_hand:number;max_span:number}};
 type Details = {generation:number;weights:Values;diagnostic:boolean;total_evaluated:number;total_failed:number;best_tie_count:number;candidates:Candidate[]};
@@ -38,9 +39,9 @@ export function GenerationCandidates({sessionId,generations}:{sessionId:string;g
       {details.candidates.map(candidate=><details key={candidate.id} className="candidate-detail"><summary>Posição {candidate.rank} · Pontuação {number(candidate.score)} · {candidate.id}</summary>
         <p>{candidate.output_notes} notas na proposta. Divisão das mãos na nota MIDI {candidate.config.split_pitch}; até {candidate.config.max_notes_per_hand} notas simultâneas por mão; alcance de {candidate.config.max_span} semitons.</p>
         <div className="metric-table" tabIndex={0} role="region" aria-label={`Critérios de ${candidate.id}`}><table><caption>Como a pontuação foi calculada</caption><thead><tr><th scope="col">Critério</th><th scope="col">Resultado</th><th scope="col">Peso</th><th scope="col">Contribuição</th></tr></thead><tbody>{criteria.map(([key,label])=><tr key={key}><th scope="row">{label}</th><td>{number(candidate.criteria[key])}</td><td>{number(details.weights[key])}</td><td>{number(candidate.contributions[key])}</td></tr>)}</tbody></table></div>
-        <p className="hint">Contribuição = resultado × peso. A soma das contribuições forma a pontuação geral; os valores exibidos são arredondados.</p>
+        <CandidateAudio key={`${sessionId}-${generation}-${candidate.id}`} sessionId={sessionId} generation={generation} candidateId={candidate.id}/><p className="hint">Contribuição = resultado × peso. A soma das contribuições forma a pontuação geral; os valores exibidos são arredondados.</p>
       </details>)}
-      <p className="hint">Esses critérios ainda não avaliam expressividade nem reconhecem isoladamente a melodia principal. Nenhuma nova avaliação ou renderização foi executada nesta consulta.</p>
+      <p className="hint">Esses critérios ainda não avaliam expressividade nem reconhecem isoladamente a melodia principal. Consultar critérios não recalcula avaliações. O botão de áudio renderiza somente a proposta escolhida.</p>
     </>}
   </section>;
 }

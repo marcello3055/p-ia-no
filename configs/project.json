@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "4.8",
+  "stage": "4.9",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "verified-candidate-recovery",
+  "status": "candidate-piano-player",
   "open_source_only": true
 }

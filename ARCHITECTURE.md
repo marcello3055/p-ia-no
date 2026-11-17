@@ -103,3 +103,6 @@ Endpoint de geração lê a cadeia existente e retorna ranking limitado, critér
 
 ## Bloco 4.8 — recuperação de proposta
 services/candidate_recovery.py usa o snapshot interno validado da API de sessões, reconstrói somente um candidato e verifica seu MIDI contra hash registrado. Fonte e versão do código musical também conferidas. Endpoint binário e CLI, sem alteração de pacotes musicais ou exposição do snapshot completo na API pública.
+
+## Bloco 4.9 — áudio por candidato
+Rota candidate_audio recupera MIDI verificado e renderiza diretamente; cache LRU por processo, 8 itens/24 MiB, lock de renderização e worker com limpeza. CandidateAudio.tsx solicita MP3 sob demanda, cria player/download e revoga recursos ao desmontar. Código musical inalterado para preservar sessões existentes.
