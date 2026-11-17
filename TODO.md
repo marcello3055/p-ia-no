@@ -144,3 +144,9 @@
 - [x] Player/download integrados e build passou.
 - [ ] 4.10: verificar fluxo de escuta Chrome/Android e recuperar artefatos privados disponíveis.
 - [ ] Priorizar alinhamento do par real e primeiro treino experimental com os dois áudios.
+
+## Bloco 4.10 — concluído
+- [x] Fluxo de preparo e avanço de reprodução no Chrome com sessão sintética reproduzível.
+- [x] Originais/recortes de Tifa íntegros e transcrições legíveis disponíveis.
+- [ ] Próximo 4.11: verificar alinhamento interno real com cache para permitir treino experimental.
+- [ ] Android e download MP3 no navegador; avaliação auditiva humana.
