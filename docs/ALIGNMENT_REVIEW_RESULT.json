@@ -1,0 +1,147 @@
+{
+  "status": "independent_note_diagnostic_requires_listening",
+  "training_allowed": false,
+  "method": "50 ms samples of activation-weighted pitch-class profiles; same-class source attack matches within 200 ms",
+  "limitations": [
+    "Transcriptions are uncertain and share the same model; not ground truth.",
+    "Pitch classes ignore octave, voice identity and ordering inside chords.",
+    "Attack hits permit many-to-one matches; not note precision or recall.",
+    "Reference estimates have no original clip provenance manifest; input hash recorded, pairing relies on existing experiment directory.",
+    "No subjective listening performed by this script; no automatic musical approval."
+  ],
+  "inputs_sha256": {
+    "data/pair-corrected-01/alignment.json": "fd7dc6d37993d7449d86e9fc1acb4f860854a0835d3fe2ea6462e53e0f7ca9cb",
+    "data/alignment-audit-4-11/alignment-proposed.json": "2f5b249e41272e3a97f8292380cac128dcf1d0bb594bd54d067ad442915e762a",
+    "data/source-corrected-01/report.json": "c21145e455328f933b963a6f203dd52c871dec07d2e2505293c04f1c64424fe4",
+    "data/pair-corrected-01/comparison/reference-estimates.json": "98ed4c33f4e2b51e8fef9ceef9ca4f7af79b36d2cfa43021aba6deb70eeb6c4f"
+  },
+  "windows": [
+    {
+      "source_absolute_seconds": [
+        24.5,
+        50.0
+      ],
+      "comparisons": {
+        "previous": {
+          "note_chroma_cosine": 0.698623833452308,
+          "active_sample_fraction": 0.9882352941176471,
+          "source_attacks": 126,
+          "same_pitch_class_attack_hits_within_200ms": 61,
+          "attack_hit_fraction": 0.48412698412698413
+        },
+        "bounded": {
+          "note_chroma_cosine": 0.5969344396080912,
+          "active_sample_fraction": 0.9862745098039216,
+          "source_attacks": 126,
+          "same_pitch_class_attack_hits_within_200ms": 40,
+          "attack_hit_fraction": 0.31746031746031744
+        }
+      }
+    },
+    {
+      "source_absolute_seconds": [
+        36.5,
+        39.5
+      ],
+      "comparisons": {
+        "previous": {
+          "note_chroma_cosine": 0.903151704430777,
+          "active_sample_fraction": 0.9833333333333333,
+          "source_attacks": 13,
+          "same_pitch_class_attack_hits_within_200ms": 8,
+          "attack_hit_fraction": 0.6153846153846154
+        },
+        "bounded": {
+          "note_chroma_cosine": 0.743745656875162,
+          "active_sample_fraction": 0.9833333333333333,
+          "source_attacks": 13,
+          "same_pitch_class_attack_hits_within_200ms": 6,
+          "attack_hit_fraction": 0.46153846153846156
+        }
+      }
+    },
+    {
+      "source_absolute_seconds": [
+        39.5,
+        42.5
+      ],
+      "comparisons": {
+        "previous": {
+          "note_chroma_cosine": 0.5503982792652102,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 16,
+          "same_pitch_class_attack_hits_within_200ms": 10,
+          "attack_hit_fraction": 0.625
+        },
+        "bounded": {
+          "note_chroma_cosine": 0.2933342807726162,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 16,
+          "same_pitch_class_attack_hits_within_200ms": 1,
+          "attack_hit_fraction": 0.0625
+        }
+      }
+    },
+    {
+      "source_absolute_seconds": [
+        42.5,
+        45.5
+      ],
+      "comparisons": {
+        "previous": {
+          "note_chroma_cosine": 0.6254235858733695,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 18,
+          "same_pitch_class_attack_hits_within_200ms": 6,
+          "attack_hit_fraction": 0.3333333333333333
+        },
+        "bounded": {
+          "note_chroma_cosine": 0.3947666387986234,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 18,
+          "same_pitch_class_attack_hits_within_200ms": 3,
+          "attack_hit_fraction": 0.16666666666666666
+        }
+      }
+    },
+    {
+      "source_absolute_seconds": [
+        45.5,
+        48.5
+      ],
+      "comparisons": {
+        "previous": {
+          "note_chroma_cosine": 0.5691860823880863,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 16,
+          "same_pitch_class_attack_hits_within_200ms": 1,
+          "attack_hit_fraction": 0.0625
+        },
+        "bounded": {
+          "note_chroma_cosine": 0.5956985762812186,
+          "active_sample_fraction": 1.0,
+          "source_attacks": 16,
+          "same_pitch_class_attack_hits_within_200ms": 0,
+          "attack_hit_fraction": 0.0
+        }
+      }
+    }
+  ],
+  "listening_order": [
+    {
+      "label": "OST 39,5–45,5 s",
+      "starts_in_comparison": 0.0,
+      "ends_in_comparison": 6.0
+    },
+    {
+      "label": "previous: piano 29.513–32.218 s",
+      "starts_in_comparison": 7.0,
+      "ends_in_comparison": 9.704625850340136
+    },
+    {
+      "label": "bounded: piano 32.646–35.699 s",
+      "starts_in_comparison": 10.704625850340136,
+      "ends_in_comparison": 13.75764172335601
+    }
+  ]
+}

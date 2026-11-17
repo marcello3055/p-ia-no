@@ -96,3 +96,6 @@ Fluxo Preparar áudio → player verificado no Chrome com sessão sintética rep
 
 ## Auditoria de alinhamento (4.11)
 Detectadas deformações temporais no mapa do par real. Alternativa limitada implementada e testada, ainda sem validação musical. Evidências em docs/ALIGNMENT_AUDIT.md. Não houve treino do par real.
+
+### Checkpoint 4.12
+Conferência limitada concluída; alternativa de alinhamento não demonstrou melhora musical. Próximo passo: piloto curto dos bots com o par real, sob correspondência provisória documentada. Ver docs/ALIGNMENT_REVIEW.md.
