@@ -150,3 +150,8 @@
 - [x] Originais/recortes de Tifa íntegros e transcrições legíveis disponíveis.
 - [ ] Próximo 4.11: verificar alinhamento interno real com cache para permitir treino experimental.
 - [ ] Android e download MP3 no navegador; avaliação auditiva humana.
+
+## Bloco 4.11 — concluído
+- [x] Auditoria do mapa anterior e alternativa DTW sem colapsos temporais.
+- [x] Testes controlados e execução real nos recortes já salvos.
+- [ ] 4.12: conferir correspondência musical nos pontos divergentes antes de liberar seleção.

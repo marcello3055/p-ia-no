@@ -1,0 +1,78 @@
+{
+  "original": {
+    "points": 275,
+    "flat_runs": 18,
+    "longest_flat_source_seconds": 2.6989051094890524,
+    "largest_reference_step_seconds": 1.725388601036272,
+    "min_local_reference_per_source": 0.0,
+    "max_local_reference_per_source": 18.53946967388009
+  },
+  "proposed": {
+    "points": 275,
+    "flat_runs": 0,
+    "longest_flat_source_seconds": 0,
+    "largest_reference_step_seconds": 0.1865284974093342,
+    "min_local_reference_per_source": 0.5010667479426489,
+    "max_local_reference_per_source": 2.004266991770863
+  },
+  "max_reference_time_change_seconds": 4.010362694300518,
+  "checkpoints": [
+    {
+      "source_absolute_seconds": 24.5,
+      "original_reference_seconds": 20.0,
+      "proposed_reference_seconds": 20.0
+    },
+    {
+      "source_absolute_seconds": 27.5,
+      "original_reference_seconds": 22.704663212435232,
+      "proposed_reference_seconds": 22.948796098750382
+    },
+    {
+      "source_absolute_seconds": 30.5,
+      "original_reference_seconds": 24.240780249923805,
+      "proposed_reference_seconds": 25.217311795184397
+    },
+    {
+      "source_absolute_seconds": 33.5,
+      "original_reference_seconds": 27.647668393782382,
+      "proposed_reference_seconds": 28.100274306613837
+    },
+    {
+      "source_absolute_seconds": 36.5,
+      "original_reference_seconds": 29.04663212435233,
+      "proposed_reference_seconds": 29.603474550441938
+    },
+    {
+      "source_absolute_seconds": 39.5,
+      "original_reference_seconds": 29.512953367875646,
+      "proposed_reference_seconds": 32.64553489789699
+    },
+    {
+      "source_absolute_seconds": 42.5,
+      "original_reference_seconds": 30.538860103626945,
+      "proposed_reference_seconds": 34.19536726607742
+    },
+    {
+      "source_absolute_seconds": 45.5,
+      "original_reference_seconds": 32.21761658031088,
+      "proposed_reference_seconds": 35.698567509905516
+    },
+    {
+      "source_absolute_seconds": 48.5,
+      "original_reference_seconds": 37.25388601036269,
+      "proposed_reference_seconds": 37.24839987808595
+    },
+    {
+      "source_absolute_seconds": 50.0,
+      "original_reference_seconds": 38.0,
+      "proposed_reference_seconds": 38.0
+    }
+  ],
+  "status": "temporal_distortion_audited_not_musically_validated",
+  "training_allowed": false,
+  "limitations": [
+    "Limites de inclinação evitam colapsos, mas não demonstram correspondência musical.",
+    "Custos de caminhos com diferentes passos não são diretamente comparáveis.",
+    "Nenhuma transcrição refeita; nenhum ranking usado para seleção."
+  ]
+}

@@ -1,7 +1,7 @@
 # P-IA-NO
 Plataforma de Inteligência Artificial para Arranjos Orquestrais em Piano.
 
-## Estado — Bloco 4.10
+## Estado — Bloco 4.11
 Três abas. Seleção e reprodução local continuam disponíveis. Agora é possível salvar áudios e pares nomeados na API, listar e reproduzir os arquivos depois de recarregar a página ou reiniciar o processo.
 
 Armazenamento de desenvolvimento: SQLite e arquivos em `data/`, fora do Git. Até 100 MiB por arquivo, 30 minutos de duração e 1 GiB total de áudio. FFprobe verifica o formato real; conteúdo idêntico é reutilizado. A API recebe bytes por streaming e limpa arquivos parciais em falhas normais. Um envio interrompido pode já ter salvo um dos áudios: a nova tentativa reutiliza conteúdo existente.
@@ -93,3 +93,6 @@ Abra um candidato e use Preparar áudio de piano. O servidor recupera a proposta
 
 ## Verificação de escuta (4.10)
 Fluxo Preparar áudio → player verificado no Chrome com sessão sintética reproduzível. Script scripts/create_listening_demo.py cria a sessão de QA em pasta nova, incluindo fonte e referência. Android e avaliação auditiva humana continuam pendentes.
+
+## Auditoria de alinhamento (4.11)
+Detectadas deformações temporais no mapa do par real. Alternativa limitada implementada e testada, ainda sem validação musical. Evidências em docs/ALIGNMENT_AUDIT.md. Não houve treino do par real.
