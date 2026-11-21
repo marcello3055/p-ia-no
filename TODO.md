@@ -154,7 +154,9 @@
 ## Bloco 4.11 — concluído
 - [x] Auditoria do mapa anterior e alternativa DTW sem colapsos temporais.
 - [x] Testes controlados e execução real nos recortes já salvos.
-- [ ] 4.12: conferir correspondência musical nos pontos divergentes antes de liberar seleção.
+- [x] 4.12: conferência limitada encerrada; piloto provisório separado autorizado.
 
 - [x] 4.12: diagnóstico independente de notas e escuta curta preparada; investigação encerrada sem validação musical.
-- [ ] 4.13: piloto curto com par real e referência provisória explícita, comparação audível; evitar novas auditorias como pré-condição.
+- [x] 4.13: piloto curto com par real e referência provisória explícita, comparação audível; evitar novas auditorias como pré-condição.
+
+- [ ] 4.14: persistir tolerâncias configuráveis na sessão e registrar preferência auditiva do piloto; sem repetir auditorias.

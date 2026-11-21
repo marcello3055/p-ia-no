@@ -1,0 +1,87 @@
+{
+  "status": "experimental_provisional_alignment",
+  "approved_arranger": false,
+  "musical_alignment_validated": false,
+  "human_regions": {
+    "reference_end": 38,
+    "reference_start": 20,
+    "source_end": 50,
+    "source_start": 24.5,
+    "source_start_uncertainty_seconds": [
+      24,
+      25
+    ]
+  },
+  "scope": "One Tifa excerpt; generation 0 plus 3 evolutionary generations; 100 candidates each; seed 0.",
+  "baseline_score": 0.12553052399710288,
+  "best_final_score": 0.12780875556051202,
+  "evaluated_candidate_slots": 400,
+  "same_midi": false,
+  "resume_verification": "passed",
+  "elapsed_seconds": 3.710782387999984,
+  "limitations": [
+    "No fresh transcription; uncertain notes on both sides.",
+    "Reference estimates provenance relies on existing experiment directory; no original per-file clip manifest.",
+    "Original diagnostic rankings remain unchanged and are NOT consumed by evolution.",
+    "Default session evaluator: onset 0.1 quarter = 50 ms at these MIDI tempos, stricter than earlier 200 ms diagnostic.",
+    "No melody recognition, expressive interpretation, generalization or auditory improvement demonstrated."
+  ],
+  "history": [
+    {
+      "generation": 0,
+      "unique_evaluations": 62,
+      "population_sha256": "dd595ff6d2fd7d3820c78d5e5f5b82f5582389af709d01adfd46b8140f8c0991",
+      "best_score": 0.12780875556051202
+    },
+    {
+      "generation": 1,
+      "unique_evaluations": 53,
+      "population_sha256": "77da1e8bbb75b0e0a36b0817e01c1934be6e00c7a24cefa3d7ad0bdd8b9911e6",
+      "best_score": 0.12780875556051202
+    },
+    {
+      "generation": 2,
+      "unique_evaluations": 52,
+      "population_sha256": "52b4d7b657b89ccacbb085f2364a564d6efd6e835960ffdadf619ff87f170125",
+      "best_score": 0.12780875556051202
+    },
+    {
+      "generation": 3,
+      "unique_evaluations": 55,
+      "population_sha256": "822ad54e5a551931220c20f238c60384c5a9a1a6d452e0de553f8e9a3bbf57cf",
+      "best_score": 0.12780875556051202
+    }
+  ],
+  "outputs": [
+    {
+      "candidate": "candidate-74b34b1ea2557ed8",
+      "criteria": {
+        "attacks": 0.1983471074380165,
+        "duration": 0.0,
+        "pitch_classes": 0.4988774381495802,
+        "pitch_onset": 0.06172839506172839
+      },
+      "generation": 0,
+      "label": "baseline",
+      "midi_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+      "score": 0.12553052399710288,
+      "notes": 83,
+      "seconds": 28.5
+    },
+    {
+      "candidate": "candidate-72b4de1f1d8c7624",
+      "criteria": {
+        "attacks": 0.18367346938775508,
+        "duration": 0.0,
+        "pitch_classes": 0.4826958105646631,
+        "pitch_onset": 0.07407407407407407
+      },
+      "generation": 3,
+      "label": "best",
+      "midi_sha256": "bba448cb4eeac4bad3126d89f326f72b2dbdfd1a0ac072d72735b3ea94d61a59",
+      "score": 0.12780875556051202,
+      "notes": 56,
+      "seconds": 28.5
+    }
+  ]
+}

@@ -99,3 +99,6 @@ Detectadas deformações temporais no mapa do par real. Alternativa limitada imp
 
 ### Checkpoint 4.12
 Conferência limitada concluída; alternativa de alinhamento não demonstrou melhora musical. Próximo passo: piloto curto dos bots com o par real, sob correspondência provisória documentada. Ver docs/ALIGNMENT_REVIEW.md.
+
+### Checkpoint 4.13 — piloto com par real
+Executados 100 candidatos por população, inicial + três gerações, com referência de piano transcrita e alinhamento provisório. Dois MP3s reais produzidos; não houve ganho entre gerações. Ver docs/PILOT_4_13.md.

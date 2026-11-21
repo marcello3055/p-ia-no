@@ -1,12 +1,16 @@
-# Progresso — Bloco 4.12 concluído
-17/11/2026. Checkpoint anterior remoto: 96375628534be077d3e9f9ca6db09520759ddcbf. O commit deste documento identifica 4.12.
+# Progresso — Bloco 4.13 concluído
+17/11/2026. Anterior remoto c924753d9c393f13aaf89ba8c91d903c54d7460c. O commit deste documento identifica o checkpoint atual.
 
-Implementados diagnóstico de correspondência com notas em cache e preparação de escuta curta. Testes controlados passaram; comparação real executada e duração MP3 verificada. Sem inferência nova, GPU, instalações ou custos. Motor/API/frontend inalterados; testes integrais anteriores não repetidos nem alegados como novos.
+Piloto evolutivo REAL sobre transcrições em cache de Tifa: 100 candidatos × 4 populações (inicial + 3 gerações), 400 posições avaliadas. Referência é o piano-objetivo informado; alinhamento provisório registrado. Código novo experiments/pilot_audio_pair.py, motor/API/frontend preservados.
 
-Resultado: regularidade temporal do 4.11 não provou melhora musical; métricas independentes de notas favorecem o mapa anterior, ainda sujeito a distorções. Nenhum alinhamento aprovado e nenhum treinamento novo executado. Ver docs/ALIGNMENT_REVIEW.md e resultado JSON.
+Inicial 83 notas, score 0,125530524. Melhor 56 notas, score 0,127808756; melhor já encontrado na população inicial, sem aumento de score nas gerações seguintes. Não afirmar aprendizado ou melhoria auditiva. Ambos MP3s gerados, 28,5 s. Avaliador padrão usa 50 ms (não 200 ms do diagnóstico anterior); duração zerou. Limitações em docs/PILOT_4_13.md.
 
-## Direção após manifestação do usuário
-Encerrar auditorias sucessivas. Não exigir alinhamento perfeito para um piloto experimental. Priorizar bots arranjando e avaliador comparando com piano-objetivo, com limitações explícitas e escuta humana. Não exigir novo envio de arquivos ou repetição dos limites globais.
+Testado: execução, quatro populações distintas, reprodução exata dos candidatos, retomada com mesmo hash, exportação/restauração de backup, decodificação MP3, opt-in e recusa de sobrescrita. Sem GPU/instalação/gasto/transcrição nova. Checkpoint privado b13aefe097b635ce90c2f47fb9c680d272f7e3cdad9bdd55ecb7f6461a1f0dab.
 
-## Próximo bloco 4.13
-Rodada curta de evolução (100 candidatos, poucas gerações) sobre o par real já transcrito, correspondência provisória registrada, comparação audível baseline/melhor. Não alterar diagnósticos para fingir validação, não aprovar automaticamente modelo, não alegar generalização. Aguardar autorização do próximo bloco.
+## Próximo 4.14 (aguardar autorização)
+Preferência auditiva entre inicial/melhor; configurar e persistir tolerâncias do avaliador nas sessões com compatibilidade, visando próximo piloto curto. Sem nova sequência de auditorias prévias. Biblioteca de arranjadores aprovados e treinamento com MP3 pela interface permanecem pendentes.
+
+## Artefatos persistentes
+Backup privado P-IA-NO_piloto_4-13.zip: libfile_907b506dc950819197873da47d5fa161. Áudio inicial: libfile_9ec07407af688191a5f0462390b97fbb. Melhor candidato: libfile_2c6ce048d634819193cfae600c5fc44b. Gravação confirmada nos três itens.
+
+Finalização retomada em 21/11/2026: sem repetir treinamento ou renderização; conclusão do versionamento e entrega dos áudios já preservados.
