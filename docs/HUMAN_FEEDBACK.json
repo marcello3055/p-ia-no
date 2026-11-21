@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "date": "2026-11-21",
+      "pilot": "4.13",
+      "preferred": "candidate-72b4de1f1d8c7624",
+      "compared_with": "candidate-74b34b1ea2557ed8",
+      "strength": "slight",
+      "reason": "Mais limpo, menos notas sobrando.",
+      "melody": "Reconhecível e bem ok em ambos.",
+      "user_quote": "Julgo o segundo um pouco melhor, somente porque está mais limpo, tem menos notas sobrando. Mas em ambos a melodia está bem ok, dá para saber bem a música da qual a melodia foi retirada.",
+      "approved_arranger": false,
+      "automatic_weight_update": false
+    }
+  ]
+}

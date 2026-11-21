@@ -1,16 +1,15 @@
-# Progresso — Bloco 4.13 concluído
-17/11/2026. Anterior remoto c924753d9c393f13aaf89ba8c91d903c54d7460c. O commit deste documento identifica o checkpoint atual.
+# Progresso — Bloco 4.14 concluído
+21/11/2026. Checkpoint remoto anterior 28fcb5da2d4fb518e6794187d37dc6cad27fec04. O commit deste documento identifica o atual.
 
-Piloto evolutivo REAL sobre transcrições em cache de Tifa: 100 candidatos × 4 populações (inicial + 3 gerações), 400 posições avaliadas. Referência é o piano-objetivo informado; alinhamento provisório registrado. Código novo experiments/pilot_audio_pair.py, motor/API/frontend preservados.
+Feedback humano registrado: segundo candidato 4.13 ligeiramente melhor, menos sobras; melodia boa/reconhecível nos dois. Sem aprovação permanente de arranjador nem atualização automática de pesos.
 
-Inicial 83 notas, score 0,125530524. Melhor 56 notas, score 0,127808756; melhor já encontrado na população inicial, sem aumento de score nas gerações seguintes. Não afirmar aprendizado ou melhoria auditiva. Ambos MP3s gerados, 28,5 s. Avaliador padrão usa 50 ms (não 200 ms do diagnóstico anterior); duração zerou. Limitações em docs/PILOT_4_13.md.
+Implementadas tolerâncias configuráveis, persistentes e imutáveis dentro da sessão; CLI JSON, esquema 2. Retomada e backup reutilizam configuração. Histórico antigo preservado; para executar sessões antigas usar seu checkout original (4.13: 28fcb5d), pois hash de código não é contornado.
 
-Testado: execução, quatro populações distintas, reprodução exata dos candidatos, retomada com mesmo hash, exportação/restauração de backup, decodificação MP3, opt-in e recusa de sobrescrita. Sem GPU/instalação/gasto/transcrição nova. Checkpoint privado b13aefe097b635ce90c2f47fb9c680d272f7e3cdad9bdd55ecb7f6461a1f0dab.
+Executado piloto 4.14: 100 candidatos, inicial + 3 gerações, tolerância 200 ms, mesmos dados/cache. Melhor = inicial de 83 notas, score 0,212052307 constante; MIDI/MP3 idênticos ao inicial anterior. Sem melhoria. Não apresentar aumento de score por mudança de tolerância como evolução musical. Não solicitar nova escuta de áudio idêntico.
 
-## Próximo 4.14 (aguardar autorização)
-Preferência auditiva entre inicial/melhor; configurar e persistir tolerâncias do avaliador nas sessões com compatibilidade, visando próximo piloto curto. Sem nova sequência de auditorias prévias. Biblioteca de arranjadores aprovados e treinamento com MP3 pela interface permanecem pendentes.
+125 testes passaram. Piloto, retomada e restauração do backup concluídos. Sem instalação, GPU, despesa ou nova transcrição. Evidências docs/PILOT_4_14.md e PILOT_4_14_RESULT.json.
 
-## Artefatos persistentes
-Backup privado P-IA-NO_piloto_4-13.zip: libfile_907b506dc950819197873da47d5fa161. Áudio inicial: libfile_9ec07407af688191a5f0462390b97fbb. Melhor candidato: libfile_2c6ce048d634819193cfae600c5fc44b. Gravação confirmada nos três itens.
+Backup privado P-IA-NO_piloto_4-14.zip: libfile_111a013223488191b07808261aa9bb68. Checkpoint interno 218f362d28e447af0e3c67cf927a8a7eb93827f1877f595de67e92acec26385e. Pacote antigo permanece libfile_907b506dc950819197873da47d5fa161.
 
-Finalização retomada em 21/11/2026: sem repetir treinamento ou renderização; conclusão do versionamento e entrega dos áudios já preservados.
+## Próximo bloco 4.15 — aguardar autorização
+Ajuste limitado do avaliador para notas sem suporte com proteção melódica, confrontar com preferência humana usando candidatos em cache. Não aumentar gerações cegamente nem reabrir auditorias. Fluxo MP3 na interface e biblioteca de arranjadores aprovados continuam pendentes.

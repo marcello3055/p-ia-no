@@ -68,3 +68,38 @@ class SessionTests(unittest.TestCase):
         with (self.root/'locked'/'.lock').open('a') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             with self.assertRaises(ValueError): self.run_at('locked', 1, resume=True)
+
+
+class ConfiguredSessionTests(SessionTests):
+    def test_configuration_persisted_resumed_and_locked(self):
+        from packages.music.evaluate import EvaluationConfig
+        from dataclasses import asdict
+        config = EvaluationConfig(time_unit='seconds', onset_tolerance=.2, duration_absolute_tolerance=.2)
+        self.run_at('configured', 0, evaluation_config=config)
+        settings = json.loads((self.root/'configured/session.json').read_text())
+        self.assertEqual(settings['evaluation_config'], asdict(config))
+        self.run_at('configured', 1, resume=True)
+        for path in (self.root/'configured').glob('generation-*.json'):
+            self.assertEqual(json.loads(path.read_text())['payload']['ranking']['evaluation_config'], asdict(config))
+        with self.assertRaises(ValueError):
+            self.run_at('configured', 2, resume=True, evaluation_config=EvaluationConfig())
+        self.assertFalse((self.root/'configured/generation-00002.json').exists())
+        with self.assertRaises(ValueError):
+            self.run_at('invalid', 0, evaluation_config=EvaluationConfig(onset_tolerance=float('nan')))
+        self.assertFalse((self.root/'invalid').exists())
+
+    def test_tolerance_changes_actual_matching_and_backup(self):
+        from packages.music.evaluate import EvaluationConfig
+        from services.session_backup import export_session, restore_session
+        self.source = write_midi(score([(72,.15,1.15)]))
+        self.reference = write_midi(score([(72,0,1)]))
+        self.run_at('strict', 0)
+        self.run_at('loose', 0, evaluation_config=EvaluationConfig(onset_tolerance=.2))
+        def best(name):
+            return json.loads((self.root/name/'generation-00000.json').read_text())['payload']['ranking']['best_score']
+        self.assertGreater(best('loose'),best('strict'))
+        folder=self.root/'loose'
+        (folder/'source.mid').write_bytes(self.source);(folder/'reference.mid').write_bytes(self.reference)
+        export_session(folder,folder/'source.mid',folder/'reference.mid',self.root/'backup.zip')
+        restore_session(self.root/'backup.zip',self.root/'restored')
+        self.assertEqual(self.run_at('loose',1,resume=True),self.run_at('restored',1,resume=True))

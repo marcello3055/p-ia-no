@@ -159,4 +159,6 @@
 - [x] 4.12: diagnóstico independente de notas e escuta curta preparada; investigação encerrada sem validação musical.
 - [x] 4.13: piloto curto com par real e referência provisória explícita, comparação audível; evitar novas auditorias como pré-condição.
 
-- [ ] 4.14: persistir tolerâncias configuráveis na sessão e registrar preferência auditiva do piloto; sem repetir auditorias.
+- [x] 4.14: persistir tolerâncias configuráveis na sessão e registrar preferência auditiva do piloto; sem repetir auditorias.
+
+- [ ] 4.15: avaliar notas sem suporte com proteção melódica e feedback humano sobre candidatos em cache.

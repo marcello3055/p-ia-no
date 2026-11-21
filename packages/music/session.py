@@ -1,4 +1,6 @@
 """Bounded symbolic evolution with atomic, verified generation checkpoints (Linux)."""
+from dataclasses import asdict
+from .evaluate import EvaluationConfig
 import fcntl
 import hashlib
 import json
@@ -33,7 +35,7 @@ def atomic_json(path, value):
             os.unlink(name)
 
 
-def run_session(source_bytes, reference_bytes, directory, target_generation, *, resume=False, seed=0):
+def run_session(source_bytes, reference_bytes, directory, target_generation, *, resume=False, seed=0, evaluation_config=None):
     """Target is absolute (0 = initial ranking); at most 100 new generations per call.
 
     The operator must supply aligned symbolic inputs. Does not consume saved audio
@@ -41,6 +43,8 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
     """
     if type(target_generation) is not int or not 0 <= target_generation <= 10000:
         raise ValueError('Geração de destino inválida (0–10000).')
+    if evaluation_config is not None:
+        evaluation_config.validate()
     initial = initialize_population(seed=seed)
     source, reference = read_midi(source_bytes), read_midi(reference_bytes)
     # Refuse resuming after implementation changes; no silent mixing of algorithms.
@@ -64,8 +68,19 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
         except BlockingIOError as exc:
             raise ValueError('Sessão já está em execução.') from exc
         config_path = directory / 'session.json'
+        saved = json.loads(config_path.read_text()) if resume else None
+        if saved is not None and saved.get('version') not in (1, 2):
+            raise ValueError('Versão de sessão não suportada.')
+        stored_config = (EvaluationConfig(**saved['evaluation_config'])
+                         if saved is not None and saved['version'] == 2 else EvaluationConfig())
+        config = evaluation_config or stored_config
+        config.validate()
+        if saved is None or saved['version'] == 2:
+            settings.update(version=2, evaluation_config=asdict(config))
+        elif config != EvaluationConfig():
+            raise ValueError('Sessão legada usa tolerâncias padrão; crie nova sessão.')
         if resume:
-            if json.loads(config_path.read_text()) != settings:
+            if saved != settings:
                 raise ValueError('Áudios simbólicos, semente ou implementação diferentes da sessão.')
         else:
             atomic_json(config_path, settings)
@@ -85,6 +100,7 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
                     or population['generation'] != generation
                     or ranking['generation'] != generation
                     or ranking['population_sha256'] != population_digest(population)
+                    or ranking.get('evaluation_config') != asdict(config)
                     or ranking.get('training_allowed') is False
                     or ranking.get('status', '').startswith(('diagnostic', 'rejected'))):
                 raise ValueError('Checkpoint incompatível ou diagnóstico.')
@@ -99,7 +115,7 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
             population = (initial if previous is None else next_generation(
                 previous['payload']['population'], previous['payload']['ranking'],
                 seed=(seed + generation) % (2**32)))
-            ranking = rank_population(source, reference, population)
+            ranking = rank_population(source, reference, population, config=config)
             payload = {'settings_sha256': digest(settings),
                        'previous_sha256': previous['sha256'] if previous else None,
                        'population': population, 'ranking': ranking}

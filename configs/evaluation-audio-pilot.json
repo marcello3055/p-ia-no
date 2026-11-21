@@ -1,0 +1,7 @@
+{
+  "time_unit": "seconds",
+  "onset_tolerance": 0.2,
+  "duration_absolute_tolerance": 0.2,
+  "duration_relative_tolerance": 0.2,
+  "include_percussion": false
+}

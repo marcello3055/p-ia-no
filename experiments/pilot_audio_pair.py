@@ -9,6 +9,8 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from packages.music.midi import Note, Score, write_midi
 from packages.music.time_map import warp_reference
 from packages.music.session import run_session, atomic_json
+from packages.music.evaluate import EvaluationConfig
+from dataclasses import asdict
 from packages.music.render import render_piano
 from services.candidate_recovery import recover_candidate
 from services.session_backup import export_session
@@ -17,6 +19,7 @@ from services.session_backup import export_session
 def main():
     p=argparse.ArgumentParser();p.add_argument('--source-report',type=Path,required=True)
     p.add_argument('--pair',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--evaluation-config',type=Path)
     p.add_argument('--allow-provisional-pilot',action='store_true');a=p.parse_args()
     if not a.allow_provisional_pilot: raise ValueError('Explicit provisional pilot opt-in required')
     if a.output.exists(): raise ValueError('Output exists; preserve previous pilot')
@@ -37,20 +40,22 @@ def main():
     notes=[Note(0,0,e['pitch'],max(1,min(127,round(e['activation']*127))),0,round(e['start_seconds']*960),round(e['end_seconds']*960),1,0) for e in report['estimates']]
     source=Score(480,1,[round(report['clip']['actual_seconds']*960)],notes,[],[])
     source_bytes,reference_bytes=write_midi(source),write_midi(ref)
+    config=EvaluationConfig(**json.loads(a.evaluation_config.read_text())) if a.evaluation_config else EvaluationConfig()
+    config.validate()
     a.output.mkdir(parents=True)
     provenance={'status':'experimental_provisional_alignment','approved_arranger':False,'musical_alignment_validated':False,
                 'scope':'One Tifa excerpt; generation 0 plus 3 evolutionary generations; 100 candidates each; seed 0.',
                 'alignment_choice':'Previous human-region DTW, provisional. Bounded alternative did not improve cached-note diagnostics.',
-                'human_regions':alignment['human_regions'],'warping':warp,
+                'human_regions':alignment['human_regions'],'warping':warp,'evaluation_config':asdict(config),
                 'inputs_sha256':{str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (source_path,ref_path,alignment_path)},
                 'limitations':['No fresh transcription; uncertain notes on both sides.',
                 'Reference estimates provenance relies on existing experiment directory; no original per-file clip manifest.',
                 'Original diagnostic rankings remain unchanged and are NOT consumed by evolution.',
-                'Default session evaluator: onset 0.1 quarter = 50 ms at these MIDI tempos, stricter than earlier 200 ms diagnostic.',
+                'Scores depend on the recorded evaluation_config; do not compare scores across different tolerances.',
                 'No melody recognition, expressive interpretation, generalization or auditory improvement demonstrated.']}
     atomic_json(a.output/'pilot.json',provenance)
     started=time.perf_counter();session=a.output/'session'
-    result=run_session(source_bytes,reference_bytes,session,3,seed=0)
+    result=run_session(source_bytes,reference_bytes,session,3,seed=0,evaluation_config=config)
     (session/'source.mid').write_bytes(source_bytes);(session/'reference.mid').write_bytes(reference_bytes)
     first=json.loads((session/'generation-00000.json').read_text())['payload']['ranking']
     last=json.loads((session/'generation-00003.json').read_text())['payload']['ranking']

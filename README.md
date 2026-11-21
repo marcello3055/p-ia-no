@@ -102,3 +102,6 @@ Conferência limitada concluída; alternativa de alinhamento não demonstrou mel
 
 ### Checkpoint 4.13 — piloto com par real
 Executados 100 candidatos por população, inicial + três gerações, com referência de piano transcrita e alinhamento provisório. Dois MP3s reais produzidos; não houve ganho entre gerações. Ver docs/PILOT_4_13.md.
+
+### Checkpoint 4.14
+Tolerâncias do avaliador persistidas por sessão; feedback humano registrado. Piloto 200 ms sem melhoria musical demonstrada, 125 testes passaram. Ver docs/PILOT_4_14.md para resultados e recuperação de sessões anteriores.

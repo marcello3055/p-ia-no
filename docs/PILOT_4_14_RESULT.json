@@ -1,0 +1,154 @@
+{
+  "alignment_choice": "Previous human-region DTW, provisional. Bounded alternative did not improve cached-note diagnostics.",
+  "approved_arranger": false,
+  "baseline_score": 0.21205230748858334,
+  "best_final_score": 0.21205230748858334,
+  "elapsed_seconds": 3.7137604019999344,
+  "evaluated_candidate_slots": 400,
+  "evaluation_config": {
+    "duration_absolute_tolerance": 0.2,
+    "duration_relative_tolerance": 0.2,
+    "include_percussion": false,
+    "onset_tolerance": 0.2,
+    "time_unit": "seconds"
+  },
+  "human_regions": {
+    "reference_end": 38,
+    "reference_start": 20,
+    "source_end": 50,
+    "source_start": 24.5,
+    "source_start_uncertainty_seconds": [
+      24,
+      25
+    ]
+  },
+  "inputs_sha256": {
+    "data/pair-corrected-01/alignment.json": "fd7dc6d37993d7449d86e9fc1acb4f860854a0835d3fe2ea6462e53e0f7ca9cb",
+    "data/pair-corrected-01/comparison/reference-estimates.json": "98ed4c33f4e2b51e8fef9ceef9ca4f7af79b36d2cfa43021aba6deb70eeb6c4f",
+    "data/source-corrected-01/report.json": "c21145e455328f933b963a6f203dd52c871dec07d2e2505293c04f1c64424fe4"
+  },
+  "limitations": [
+    "No fresh transcription; uncertain notes on both sides.",
+    "Reference estimates provenance relies on existing experiment directory; no original per-file clip manifest.",
+    "Original diagnostic rankings remain unchanged and are NOT consumed by evolution.",
+    "Scores depend on the recorded evaluation_config; do not compare scores across different tolerances.",
+    "No melody recognition, expressive interpretation, generalization or auditory improvement demonstrated."
+  ],
+  "musical_alignment_validated": false,
+  "renders": [
+    {
+      "candidate": "candidate-74b34b1ea2557ed8",
+      "criteria": {
+        "attacks": 0.44628099173553715,
+        "duration": 0.04938271604938271,
+        "pitch_classes": 0.49887743814958024,
+        "pitch_onset": 0.16049382716049385
+      },
+      "generation": 0,
+      "label": "baseline",
+      "midi_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+      "render": {
+        "bank": 0,
+        "channels": 2,
+        "chorus": false,
+        "duration_seconds": 28.5,
+        "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+        "fluidsynth_version": "2.4.4",
+        "gain": 0.2,
+        "input_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+        "limitations": [
+          "Sem expressão nova, pedal ou avaliação auditiva. Piano inicial, não qualidade final."
+        ],
+        "notes": 83,
+        "output_sha256": {
+          "piano.mp3": "88df8febcf9f811373d51dc02269a736f92a74cfbafe2fa0e6d5c51083169789",
+          "piano.wav": "4bb4f673c2fde86186a067c15ee32a7873c1a10d40d19e275bcb2ba3229cc99a"
+        },
+        "peak_pcm16": 1440,
+        "program": 0,
+        "renderer_version": "0.1.0",
+        "reverb": false,
+        "sample_rate": 44100,
+        "soundfont": "TimGM6mb.sf2",
+        "soundfont_sha256": "c5378b62028c920cb11e4803327983fee2f2cdff5dc89c708e39da417e51c854",
+        "tail_seconds": 3
+      },
+      "score": 0.21205230748858334
+    },
+    {
+      "candidate": "candidate-74b34b1ea2557ed8",
+      "criteria": {
+        "attacks": 0.44628099173553715,
+        "duration": 0.04938271604938271,
+        "pitch_classes": 0.49887743814958024,
+        "pitch_onset": 0.16049382716049385
+      },
+      "generation": 3,
+      "label": "best",
+      "midi_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+      "render": {
+        "bank": 0,
+        "channels": 2,
+        "chorus": false,
+        "duration_seconds": 28.5,
+        "ffmpeg_version": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+        "fluidsynth_version": "2.4.4",
+        "gain": 0.2,
+        "input_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+        "limitations": [
+          "Sem expressão nova, pedal ou avaliação auditiva. Piano inicial, não qualidade final."
+        ],
+        "notes": 83,
+        "output_sha256": {
+          "piano.mp3": "88df8febcf9f811373d51dc02269a736f92a74cfbafe2fa0e6d5c51083169789",
+          "piano.wav": "4bb4f673c2fde86186a067c15ee32a7873c1a10d40d19e275bcb2ba3229cc99a"
+        },
+        "peak_pcm16": 1440,
+        "program": 0,
+        "renderer_version": "0.1.0",
+        "reverb": false,
+        "sample_rate": 44100,
+        "soundfont": "TimGM6mb.sf2",
+        "soundfont_sha256": "c5378b62028c920cb11e4803327983fee2f2cdff5dc89c708e39da417e51c854",
+        "tail_seconds": 3
+      },
+      "score": 0.21205230748858334
+    }
+  ],
+  "resume_verification": "passed",
+  "run": {
+    "checkpoint_sha256": "218f362d28e447af0e3c67cf927a8a7eb93827f1877f595de67e92acec26385e",
+    "generation": 3,
+    "history": [
+      {
+        "best_score": 0.21205230748858334,
+        "generation": 0
+      },
+      {
+        "best_score": 0.21205230748858334,
+        "generation": 1
+      },
+      {
+        "best_score": 0.21205230748858334,
+        "generation": 2
+      },
+      {
+        "best_score": 0.21205230748858334,
+        "generation": 3
+      }
+    ],
+    "limitations": [
+      "Referência simbólica alinhada pelo operador; sem evidência de generalização ou melhoria auditiva."
+    ],
+    "population_size": 100
+  },
+  "same_midi": true,
+  "scope": "One Tifa excerpt; generation 0 plus 3 evolutionary generations; 100 candidates each; seed 0.",
+  "status": "experimental_provisional_alignment",
+  "warping": {
+    "clipped_at_boundaries": 0,
+    "collapsed_after_warp": 0,
+    "excluded_outside_mapping": 0,
+    "mapped_notes": 79
+  }
+}
