@@ -1,0 +1,118 @@
+{
+  "status": "offline_experiment_not_integrated",
+  "training_allowed": false,
+  "beta": 0.5,
+  "configuration": {
+    "duration_absolute_tolerance": 0.2,
+    "duration_relative_tolerance": 0.2,
+    "include_percussion": false,
+    "onset_tolerance": 0.2,
+    "time_unit": "seconds"
+  },
+  "protected_matches": 13,
+  "unique_cached_proposals": 91,
+  "eligible_proposals": 6,
+  "baseline": {
+    "f_beta": 0.15815085158150852,
+    "beta": 0.5,
+    "precision": 0.1566265060240964,
+    "recall": 0.16455696202531644,
+    "notes_without_match": 70,
+    "notes": 83,
+    "missing_protected_reference_indices": [],
+    "eligible": true
+  },
+  "human_preferred": {
+    "f_beta": 0.18151815181518152,
+    "beta": 0.5,
+    "precision": 0.19642857142857142,
+    "recall": 0.13924050632911392,
+    "notes_without_match": 45,
+    "notes": 56,
+    "missing_protected_reference_indices": [
+      2,
+      27
+    ],
+    "eligible": false,
+    "midi_sha256": "bba448cb4eeac4bad3126d89f326f72b2dbdfd1a0ac072d72735b3ea94d61a59"
+  },
+  "top": [
+    {
+      "id": "candidate-0632575b746bf2bc",
+      "midi_sha256": "a7acd4e0fc4ee32318c2b2b23956c17bf0cb2ab02cfc6c2d046333e36f2081d8",
+      "generation": 0,
+      "original_score": 0.21016328045200752,
+      "f_beta": 0.16129032258064513,
+      "beta": 0.5,
+      "precision": 0.16049382716049382,
+      "recall": 0.16455696202531644,
+      "notes_without_match": 68,
+      "notes": 81,
+      "missing_protected_reference_indices": [],
+      "eligible": true
+    },
+    {
+      "id": "candidate-d346e83cc19dbabe",
+      "midi_sha256": "85469c023d0205571f237ebe3f882c790ee03c82eeaf5ce238d2d4b27d609b4d",
+      "generation": 1,
+      "original_score": 0.21045965932646785,
+      "f_beta": 0.1597051597051597,
+      "beta": 0.5,
+      "precision": 0.15853658536585366,
+      "recall": 0.16455696202531644,
+      "notes_without_match": 69,
+      "notes": 82,
+      "missing_protected_reference_indices": [],
+      "eligible": true
+    },
+    {
+      "id": "candidate-74b34b1ea2557ed8",
+      "midi_sha256": "6586e272e4032aa5079bbd528008632947b3dcc5567fbdeddec49d9f25f1199a",
+      "generation": 0,
+      "original_score": 0.21205230748858334,
+      "f_beta": 0.15815085158150852,
+      "beta": 0.5,
+      "precision": 0.1566265060240964,
+      "recall": 0.16455696202531644,
+      "notes_without_match": 70,
+      "notes": 83,
+      "missing_protected_reference_indices": [],
+      "eligible": true
+    },
+    {
+      "id": "candidate-bc537e5fb191fd64",
+      "midi_sha256": "d7238da685ebe5f79099c84ef68aa2316009c0c05906371d6743bb4dfca5276e",
+      "generation": 1,
+      "original_score": 0.2063983591261947,
+      "f_beta": 0.14672686230248308,
+      "beta": 0.5,
+      "precision": 0.14285714285714285,
+      "recall": 0.16455696202531644,
+      "notes_without_match": 78,
+      "notes": 91,
+      "missing_protected_reference_indices": [],
+      "eligible": true
+    },
+    {
+      "id": "candidate-5ab4eead177a3ad5",
+      "midi_sha256": "534eaa9ef31711dff24635cf205ac19ecd6c69219eca6b8d6cef8a8ef752e6f9",
+      "generation": 1,
+      "original_score": 0.19225450781419742,
+      "f_beta": 0.11545293072824156,
+      "beta": 0.5,
+      "precision": 0.10743801652892562,
+      "recall": 0.16455696202531644,
+      "notes_without_match": 108,
+      "notes": 121,
+      "missing_protected_reference_indices": [],
+      "eligible": true
+    }
+  ],
+  "checkpoint_sha256": "218f362d28e447af0e3c67cf927a8a7eb93827f1877f595de67e92acec26385e",
+  "limitations": [
+    "Unmatched notes may be correct accompaniment or transcription/alignment errors.",
+    "Guard preserves only baseline matched reference notes; it does NOT recognize or guarantee melody.",
+    "F0.5 emphasizes precision; beta fixed before results, not fitted to one human preference.",
+    "One pair and one preference are calibration evidence, not generalization validation."
+  ]
+}

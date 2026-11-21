@@ -105,3 +105,6 @@ Executados 100 candidatos por população, inicial + três gerações, com refer
 
 ### Checkpoint 4.14
 Tolerâncias do avaliador persistidas por sessão; feedback humano registrado. Piloto 200 ms sem melhoria musical demonstrada, 125 testes passaram. Ver docs/PILOT_4_14.md para resultados e recuperação de sessões anteriores.
+
+### Checkpoint 4.15
+Experimento offline de limpeza: componente de precisão favorece a preferência humana, mas proteção de correspondências ainda não distingue melodia/acompanhamento. Sem alteração do treinamento. Ver docs/CLEANLINESS_REVIEW.md.

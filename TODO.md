@@ -161,4 +161,6 @@
 
 - [x] 4.14: persistir tolerâncias configuráveis na sessão e registrar preferência auditiva do piloto; sem repetir auditorias.
 
-- [ ] 4.15: avaliar notas sem suporte com proteção melódica e feedback humano sobre candidatos em cache.
+- [x] 4.15: avaliar notas sem suporte com proteção melódica e feedback humano sobre candidatos em cache.
+
+- [ ] 4.16: guia melódico heurístico para distinguir preservação de melodia de acompanhamento; testes controlados e candidatos existentes.

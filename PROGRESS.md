@@ -1,15 +1,14 @@
-# Progresso — Bloco 4.14 concluído
-21/11/2026. Checkpoint remoto anterior 28fcb5da2d4fb518e6794187d37dc6cad27fec04. O commit deste documento identifica o atual.
+# Progresso — Bloco 4.15 concluído
+21/11/2026. Anterior remoto 7801207c4992716d1547c65b61f0986e4ce28bcf. O commit deste documento identifica o checkpoint atual.
 
-Feedback humano registrado: segundo candidato 4.13 ligeiramente melhor, menos sobras; melodia boa/reconhecível nos dois. Sem aprovação permanente de arranjador nem atualização automática de pesos.
+Criado experimento de limpeza (F0,5) e proteção de correspondências. Reutilizados 91 candidatos MIDI distintos dos relatórios 4.14, mais avaliação do preferido 4.13 sob as mesmas tolerâncias. Sem transcrição, geração, renderização ou instalação nova. Motor, API e sessões intactos.
 
-Implementadas tolerâncias configuráveis, persistentes e imutáveis dentro da sessão; CLI JSON, esquema 2. Retomada e backup reutilizam configuração. Histórico antigo preservado; para executar sessões antigas usar seu checkout original (4.13: 28fcb5d), pois hash de código não é contornado.
+Preferido humano de 56 notas supera baseline no novo componente (0,18152 vs 0,15815), mas perde 2 das 13 correspondências de referência e é bloqueado pela proteção estrita. Essa regra NÃO reconhece melodia; não interpretar a perda como perda melódica. Melhor elegível tem 81 notas; sem escuta e sem alegação de melhora musical. Experimento não integrado ao treinamento.
 
-Executado piloto 4.14: 100 candidatos, inicial + 3 gerações, tolerância 200 ms, mesmos dados/cache. Melhor = inicial de 83 notas, score 0,212052307 constante; MIDI/MP3 idênticos ao inicial anterior. Sem melhoria. Não apresentar aumento de score por mudança de tolerância como evolução musical. Não solicitar nova escuta de áudio idêntico.
+Três testes controlados passaram (extras, perda de correspondência/silêncio, oitava, beta inválido); análise real executada. Resultados docs/CLEANLINESS_REVIEW_RESULT.json, método docs/CLEANLINESS_REVIEW.md. Sem novo áudio para usuário ouvir. Feedback permanece inalterado: prefere ligeiramente o candidato de 56 notas por limpeza.
 
-125 testes passaram. Piloto, retomada e restauração do backup concluídos. Sem instalação, GPU, despesa ou nova transcrição. Evidências docs/PILOT_4_14.md e PILOT_4_14_RESULT.json.
+## Próximo bloco 4.16 — aguardar autorização
+Guia melódico heurístico e testes que distingam retirada de acompanhamento e de melodia; avaliar proteção nos candidatos existentes. Não reabrir auditorias de alinhamento, não aumentar gerações sem objetivo. Interface de treinamento por MP3 e biblioteca de arranjadores aprovados continuam pendentes.
 
-Backup privado P-IA-NO_piloto_4-14.zip: libfile_111a013223488191b07808261aa9bb68. Checkpoint interno 218f362d28e447af0e3c67cf927a8a7eb93827f1877f595de67e92acec26385e. Pacote antigo permanece libfile_907b506dc950819197873da47d5fa161.
-
-## Próximo bloco 4.15 — aguardar autorização
-Ajuste limitado do avaliador para notas sem suporte com proteção melódica, confrontar com preferência humana usando candidatos em cache. Não aumentar gerações cegamente nem reabrir auditorias. Fluxo MP3 na interface e biblioteca de arranjadores aprovados continuam pendentes.
+## Recuperação
+4.14 ZIP libfile_111a013223488191b07808261aa9bb68; 4.13 ZIP libfile_907b506dc950819197873da47d5fa161. Recuperação de sessões exige checkout correspondente ao hash de código. Nenhum arquivo desses pilotos foi alterado neste bloco.
