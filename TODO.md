@@ -165,4 +165,6 @@
 
 - [x] 4.16: guia melódico heurístico para distinguir preservação de melodia de acompanhamento; testes controlados e candidatos existentes.
 
-- [ ] 4.17: integrar indicadores opcionais de limpeza/guia melódico; configuração persistente e piloto curto, sem bloqueio musical absoluto.
+- [x] 4.17: integrar indicadores opcionais de limpeza/guia melódico; configuração persistente e piloto curto, sem bloqueio musical absoluto.
+
+- [ ] 4.18: criação de sessão pelo backend a partir de par analisado, com progresso/erros; considerar feedback 54 vs 56 notas.

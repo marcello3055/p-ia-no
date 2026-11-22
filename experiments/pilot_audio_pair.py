@@ -20,6 +20,7 @@ def main():
     p=argparse.ArgumentParser();p.add_argument('--source-report',type=Path,required=True)
     p.add_argument('--pair',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--evaluation-config',type=Path)
+    p.add_argument('--ranking-profile',choices=['standard','clean-melody-v1'],default='standard')
     p.add_argument('--allow-provisional-pilot',action='store_true');a=p.parse_args()
     if not a.allow_provisional_pilot: raise ValueError('Explicit provisional pilot opt-in required')
     if a.output.exists(): raise ValueError('Output exists; preserve previous pilot')
@@ -46,7 +47,7 @@ def main():
     provenance={'status':'experimental_provisional_alignment','approved_arranger':False,'musical_alignment_validated':False,
                 'scope':'One Tifa excerpt; generation 0 plus 3 evolutionary generations; 100 candidates each; seed 0.',
                 'alignment_choice':'Previous human-region DTW, provisional. Bounded alternative did not improve cached-note diagnostics.',
-                'human_regions':alignment['human_regions'],'warping':warp,'evaluation_config':asdict(config),
+                'ranking_profile':a.ranking_profile,'human_regions':alignment['human_regions'],'warping':warp,'evaluation_config':asdict(config),
                 'inputs_sha256':{str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in (source_path,ref_path,alignment_path)},
                 'limitations':['No fresh transcription; uncertain notes on both sides.',
                 'Reference estimates provenance relies on existing experiment directory; no original per-file clip manifest.',
@@ -55,7 +56,7 @@ def main():
                 'No melody recognition, expressive interpretation, generalization or auditory improvement demonstrated.']}
     atomic_json(a.output/'pilot.json',provenance)
     started=time.perf_counter();session=a.output/'session'
-    result=run_session(source_bytes,reference_bytes,session,3,seed=0,evaluation_config=config)
+    result=run_session(source_bytes,reference_bytes,session,3,seed=0,evaluation_config=config,ranking_profile=a.ranking_profile)
     (session/'source.mid').write_bytes(source_bytes);(session/'reference.mid').write_bytes(reference_bytes)
     first=json.loads((session/'generation-00000.json').read_text())['payload']['ranking']
     last=json.loads((session/'generation-00003.json').read_text())['payload']['ranking']

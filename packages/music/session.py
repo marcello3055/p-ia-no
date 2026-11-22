@@ -35,7 +35,7 @@ def atomic_json(path, value):
             os.unlink(name)
 
 
-def run_session(source_bytes, reference_bytes, directory, target_generation, *, resume=False, seed=0, evaluation_config=None):
+def run_session(source_bytes, reference_bytes, directory, target_generation, *, resume=False, seed=0, evaluation_config=None, ranking_profile=None):
     """Target is absolute (0 = initial ranking); at most 100 new generations per call.
 
     The operator must supply aligned symbolic inputs. Does not consume saved audio
@@ -43,6 +43,8 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
     """
     if type(target_generation) is not int or not 0 <= target_generation <= 10000:
         raise ValueError('Geração de destino inválida (0–10000).')
+    if ranking_profile not in (None, "standard", "clean-melody-v1"):
+        raise ValueError("Perfil desconhecido.")
     if evaluation_config is not None:
         evaluation_config.validate()
     initial = initialize_population(seed=seed)
@@ -69,16 +71,19 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
             raise ValueError('Sessão já está em execução.') from exc
         config_path = directory / 'session.json'
         saved = json.loads(config_path.read_text()) if resume else None
-        if saved is not None and saved.get('version') not in (1, 2):
+        if saved is not None and saved.get('version') not in (1, 2, 3):
             raise ValueError('Versão de sessão não suportada.')
         stored_config = (EvaluationConfig(**saved['evaluation_config'])
-                         if saved is not None and saved['version'] == 2 else EvaluationConfig())
+                         if saved is not None and saved['version'] >= 2 else EvaluationConfig())
         config = evaluation_config or stored_config
         config.validate()
-        if saved is None or saved['version'] == 2:
+        if saved is None or saved['version'] >= 2:
             settings.update(version=2, evaluation_config=asdict(config))
         elif config != EvaluationConfig():
             raise ValueError('Sessão legada usa tolerâncias padrão; crie nova sessão.')
+        profile = ranking_profile or (saved.get('ranking_profile', 'standard') if saved else 'standard')
+        if profile != 'standard' or (saved and saved['version'] == 3):
+            settings.update(version=3, ranking_profile=profile)
         if resume:
             if saved != settings:
                 raise ValueError('Áudios simbólicos, semente ou implementação diferentes da sessão.')
@@ -101,6 +106,7 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
                     or ranking['generation'] != generation
                     or ranking['population_sha256'] != population_digest(population)
                     or ranking.get('evaluation_config') != asdict(config)
+                    or ranking.get('ranking_profile', 'standard') != profile
                     or ranking.get('training_allowed') is False
                     or ranking.get('status', '').startswith(('diagnostic', 'rejected'))):
                 raise ValueError('Checkpoint incompatível ou diagnóstico.')
@@ -115,7 +121,7 @@ def run_session(source_bytes, reference_bytes, directory, target_generation, *, 
             population = (initial if previous is None else next_generation(
                 previous['payload']['population'], previous['payload']['ranking'],
                 seed=(seed + generation) % (2**32)))
-            ranking = rank_population(source, reference, population, config=config)
+            ranking = rank_population(source, reference, population, config=config, profile=profile)
             payload = {'settings_sha256': digest(settings),
                        'previous_sha256': previous['sha256'] if previous else None,
                        'population': population, 'ranking': ranking}

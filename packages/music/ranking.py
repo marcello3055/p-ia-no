@@ -1,6 +1,7 @@
 """Supervised symbolic ranking for a candidate population; not an artistic judgement."""
 from dataclasses import asdict
 import math
+from .guide import upper_voice
 from .evaluate import EvaluationConfig, evaluate
 from .midi import read_midi
 from .population import load_population, generate_proposals, population_digest
@@ -26,13 +27,19 @@ def criteria(report):
             'attacks':report['rhythm_diagnostics']['f1']}
 
 
-def rank_population(source,reference,manifest,weights=None,config=None):
+def rank_population(source,reference,manifest,weights=None,config=None, profile="standard"):
+    if profile not in ("standard", "clean-melody-v1"):
+        raise ValueError("Perfil de avaliação desconhecido.")
     load_population(manifest)
     weights=normalized_weights(weights); config=config or EvaluationConfig()
     # Reject invalid/empty references before generating a population.
     self_report=evaluate(reference,reference,config)
     if any(value is None and weights[key]>0 for key,value in criteria(self_report).items()):
         raise ValueError('Referência não permite calcular um critério com peso positivo.')
+    guide=set(upper_voice(reference)['reference_indices']) if profile=='clean-melody-v1' else set()
+    if profile=='clean-melody-v1':
+        weights={k:v*.6 for k,v in weights.items()}
+        weights.update(cleanliness=.3, melody_guide=.1)
     rows=[]; cache={}; evaluations={}
     for generated,midi in generate_proposals(source,manifest):
         row={**generated,'rank':None,'criteria':None,'contributions':None}
@@ -41,7 +48,13 @@ def rank_population(source,reference,manifest,weights=None,config=None):
             if key not in cache:
                 report=evaluate(reference,read_midi(midi),config)
                 values=criteria(report)
-                if any(v is None and weights[k]>0 for k,v in values.items()):
+                if profile=='clean-melody-v1':
+                    precision=report['pitch_and_onset']['precision']; recall=report['pitch_and_onset']['recall']
+                    denominator=.25*precision+recall
+                    values['cleanliness']=1.25*precision*recall/denominator if denominator else 0.
+                    matched={m['reference_index'] for m in report['matches']}
+                    values['melody_guide']=len(guide & matched)/len(guide) if guide else None
+                if any(v is None and weights[k]>0 and k!="melody_guide" for k,v in values.items()):
                     raise ValueError('Critério ativo indefinido; classificação interrompida.')
                 contributions={k:(weights[k]*v if v is not None else 0.0) for k,v in values.items()}
                 cache[key]=(values,contributions,sum(contributions.values()))
@@ -58,7 +71,7 @@ def rank_population(source,reference,manifest,weights=None,config=None):
     best_ids=[r['id'] for r in eligible if r['score']==best]
     baseline=next(r for r in rows if r['id']==manifest['baseline_id'])
     return {'schema_version':1,'ranker_version':'0.1.0','evaluator_version':'0.2.0','generation':manifest['generation'],'population_sha256':population_digest(manifest),
-            'weights':weights,'evaluation_config':asdict(config),'population_size':len(rows),
+            'ranking_profile':profile,'guide_note_count':len(guide),'weights':weights,'evaluation_config':asdict(config),'population_size':len(rows),
             'evaluated':len(eligible),'failed':len(rows)-len(eligible),'unique_evaluations':len(cache),
             'ranking':[r['id'] for r in eligible],'best_score':best,'best_candidate_ids':best_ids,
             'baseline_id':baseline['id'],'baseline_score':baseline['score'],

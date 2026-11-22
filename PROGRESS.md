@@ -1,12 +1,13 @@
-# Progresso — Bloco 4.16 concluído
-21/11/2026. Anterior remoto 434c4452aa0f2bdffab73a25002ba671778563f5. O commit deste documento identifica o checkpoint atual.
+# Progresso — Bloco 4.17 concluído
+21/11/2026. Remoto anterior 24e90a3e638ca5d282e1336fb4d2021d22ad6118. O commit deste documento identifica o checkpoint atual.
 
-Guia melódico heurístico implementado fora do motor (experiments/melody_guide.py), com proteção baseada nas correspondências do baseline e resultados por critério. Seis testes controlados passaram. Inspecionadas 91 propostas em cache; sem treinamento, áudio novo, transcrição ou gasto. Nenhum hash/código de sessão modificado.
+Perfil clean-melody-v1 integrado ao ranker/sessões/CLI, persistido esquema 3. 60% critérios anteriores + 30% limpeza F0,5 + 10% guia melódico heurístico. Sem bloqueio absoluto do guia. Tabela frontend exibe novos critérios apenas quando presentes. Standard continua padrão. Sessões anteriores preservadas e exigem checkout original para execução.
 
-Tifa: guia 24 notas, baseline corresponde 5, preferido humano 4. Não é percentual de reconhecimento da melodia. Regra estrita continua bloqueando preferido por uma nota e NÃO foi adotada como bloqueio de produção. Melhor elegível 81 notas, sem melhora auditiva demonstrada. Feedback humano preservado. docs/MELODY_GUIDE.md documenta método e falhas, docs/MELODY_GUIDE_RESULT.json contém resultados.
+Piloto real 100 candidatos, inicial + 3 gerações: melhor inicial 0,197031970, final 0,197820789; baseline 0,195509973. Novo melhor de 54 notas, MIDI diferente do anterior de 56; limpeza maior, cobertura do guia menor que baseline (4/24 vs 5/24). Não alegar melhora auditiva. MP3 28,5s pronto, avaliação humana pendente.
 
-## Próximo 4.17 — aguardar autorização
-Integrar limpeza e cobertura do guia como indicadores experimentais opcionais, explicáveis e persistentes; não usar heurística incerta como bloqueio absoluto. Piloto curto e comparação audível se resultado mudar. Evitar novas rodadas de auditoria/calibração sem entrega. Interface MP3 e biblioteca de arranjadores aprovados continuam pendentes.
+134 testes existentes + 3 novos passaram; build frontend passou. Recuperação de candidato, retomada e restauração do backup verificadas. Sem transcrição nova/GPU/gasto. Método docs/PILOT_4_17.md, evidências PILOT_4_17_RESULT.json.
 
-## Recuperação
-4.14 ZIP libfile_111a013223488191b07808261aa9bb68; 4.13 ZIP libfile_907b506dc950819197873da47d5fa161. Retomada de cada sessão exige código original; nenhum arquivo dos pilotos alterado neste bloco.
+Artefatos: Tifa_candidato_4-17.mp3 libfile_5b1bcc95f5fc81918f050607f8c88bc0; P-IA-NO_piloto_4-17.zip libfile_ca84111451508191b305a537e2bb486a. Hash sessão 10f671331bc413afd49da9c40d689f05e9951b8f4ed35de0563ce5b10cce6c10. Backup4.14 libfile_111a013223488191b07808261aa9bb68; backup4.13 libfile_907b506dc950819197873da47d5fa161.
+
+## Próximo bloco 4.18 (aguardar autorização)
+Feedback auditivo 54 vs 56 notas. Ligar exemplos de áudio com análise em cache à criação de sessão no backend, execução curta/progresso/erros/proveniência; botão de iniciar no frontend em incremento posterior. Parar sequência de calibrações em Tifa. Biblioteca de arranjadores aprovados e fluxo completo de novos MP3s continuam pendentes.

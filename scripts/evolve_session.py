@@ -18,6 +18,7 @@ def main():
     parser.add_argument('--seed', type=int, default=0)
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--evaluation-config', type=Path, help='JSON de tolerâncias; omitido na retomada reutiliza configuração salva.')
+    parser.add_argument('--ranking-profile', choices=['standard','clean-melody-v1'])
     args = parser.parse_args()
     def read(path):
         with path.open('rb') as handle:
@@ -25,7 +26,7 @@ def main():
     try:
         config = EvaluationConfig(**json.loads(args.evaluation_config.read_text())) if args.evaluation_config else None
         result = run_session(read(args.source), read(args.reference), args.output_dir,
-                             args.until, resume=args.resume, seed=args.seed, evaluation_config=config)
+                             args.until, resume=args.resume, seed=args.seed, evaluation_config=config, ranking_profile=args.ranking_profile)
         print(json.dumps(result, ensure_ascii=False))
     except Exception as exc:
         print(f'Falha: {exc}. Checkpoints completos preservados.', file=sys.stderr)

@@ -111,3 +111,6 @@ Experimento offline de limpeza: componente de precisão favorece a preferência 
 
 ### Checkpoint 4.16
 Guia melódico heurístico implementado e seis testes controlados passaram. Limitações no par real registradas; ainda não integrado como bloqueio de treinamento. Ver docs/MELODY_GUIDE.md.
+
+### Checkpoint 4.17
+Perfil experimental de limpeza/guia integrado e persistente; três gerações geraram novo candidato de 54 notas. Indicadores separados na tabela. Testes e build passaram; escuta pendente. Ver docs/PILOT_4_17.md.
