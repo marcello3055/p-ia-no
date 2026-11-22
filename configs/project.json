@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "name": "P-IA-NO",
-  "stage": "4.15",
+  "stage": "4.16",
   "population_size": 100,
   "allow_paid_compute": false,
   "transcription_enabled": false,
-  "status": "offline-cleanliness-review-complete",
+  "status": "experimental-melody-guide-tested",
   "open_source_only": true
 }

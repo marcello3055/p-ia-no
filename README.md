@@ -108,3 +108,6 @@ Tolerâncias do avaliador persistidas por sessão; feedback humano registrado. P
 
 ### Checkpoint 4.15
 Experimento offline de limpeza: componente de precisão favorece a preferência humana, mas proteção de correspondências ainda não distingue melodia/acompanhamento. Sem alteração do treinamento. Ver docs/CLEANLINESS_REVIEW.md.
+
+### Checkpoint 4.16
+Guia melódico heurístico implementado e seis testes controlados passaram. Limitações no par real registradas; ainda não integrado como bloqueio de treinamento. Ver docs/MELODY_GUIDE.md.

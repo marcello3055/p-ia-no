@@ -163,4 +163,6 @@
 
 - [x] 4.15: avaliar notas sem suporte com proteção melódica e feedback humano sobre candidatos em cache.
 
-- [ ] 4.16: guia melódico heurístico para distinguir preservação de melodia de acompanhamento; testes controlados e candidatos existentes.
+- [x] 4.16: guia melódico heurístico para distinguir preservação de melodia de acompanhamento; testes controlados e candidatos existentes.
+
+- [ ] 4.17: integrar indicadores opcionais de limpeza/guia melódico; configuração persistente e piloto curto, sem bloqueio musical absoluto.
