@@ -1,0 +1,61 @@
+{
+  "pair": {
+    "id": "6e9888cabe7941cea254492eb6a04250",
+    "name": "Tifa — piloto com trechos analisados",
+    "base_id": "7f390b7d35384f3d8f72242929e2c638",
+    "reference_id": "586e4ad874ab4f3d81a6c30ac53fbc3f",
+    "created_at": "2026-11-24T13:46:03.810380+00:00"
+  },
+  "manifest": {
+    "pair_id": "6e9888cabe7941cea254492eb6a04250",
+    "source_sha256": "8cdf5e2552139d3fa59608dacb814f98bdc55312dcc2406fc983b874eed68282",
+    "reference_sha256": "31eac429ea77dadb324880b7350b359740e7bbe67fe5bf107e0e07df40317cbc",
+    "base_audio_sha256": "3744c635c41c8500aaeb2c97180112f79ede89df924c6f10dbf57da0042b5511",
+    "reference_audio_sha256": "9e6f2ac38fa3f91444f63ee8079e433c0105e4f71b3077cf3dc56d481ea2d9f9",
+    "alignment": "provisional",
+    "provenance": {
+      "alignment_choice": "Previous human-region DTW, provisional. Bounded alternative did not improve cached-note diagnostics.",
+      "approved_arranger": false,
+      "evaluation_config": {
+        "duration_absolute_tolerance": 0.2,
+        "duration_relative_tolerance": 0.2,
+        "include_percussion": false,
+        "onset_tolerance": 0.2,
+        "time_unit": "seconds"
+      },
+      "human_regions": {
+        "reference_end": 38,
+        "reference_start": 20,
+        "source_end": 50,
+        "source_start": 24.5,
+        "source_start_uncertainty_seconds": [
+          24,
+          25
+        ]
+      },
+      "inputs_sha256": {
+        "data/pair-corrected-01/alignment.json": "fd7dc6d37993d7449d86e9fc1acb4f860854a0835d3fe2ea6462e53e0f7ca9cb",
+        "data/pair-corrected-01/comparison/reference-estimates.json": "98ed4c33f4e2b51e8fef9ceef9ca4f7af79b36d2cfa43021aba6deb70eeb6c4f",
+        "data/source-corrected-01/report.json": "c21145e455328f933b963a6f203dd52c871dec07d2e2505293c04f1c64424fe4"
+      },
+      "limitations": [
+        "No fresh transcription; uncertain notes on both sides.",
+        "Reference estimates provenance relies on existing experiment directory; no original per-file clip manifest.",
+        "Original diagnostic rankings remain unchanged and are NOT consumed by evolution.",
+        "Scores depend on the recorded evaluation_config; do not compare scores across different tolerances.",
+        "No melody recognition, expressive interpretation, generalization or auditory improvement demonstrated."
+      ],
+      "musical_alignment_validated": false,
+      "ranking_profile": "clean-melody-v1",
+      "scope": "One Tifa excerpt; generation 0 plus 3 evolutionary generations; 100 candidates each; seed 0.",
+      "status": "experimental_provisional_alignment",
+      "warping": {
+        "clipped_at_boundaries": 0,
+        "collapsed_after_warp": 0,
+        "excluded_outside_mapping": 0,
+        "mapped_notes": 79
+      }
+    }
+  },
+  "available": true
+}

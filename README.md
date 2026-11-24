@@ -114,3 +114,6 @@ Guia melódico heurístico implementado e seis testes controlados passaram. Limi
 
 ### Checkpoint 4.17
 Perfil experimental de limpeza/guia integrado e persistente; três gerações geraram novo candidato de 54 notas. Indicadores separados na tabela. Testes e build passaram; escuta pendente. Ver docs/PILOT_4_17.md.
+
+### Checkpoint 4.18
+Backend inicia sessões curtas a partir de pares com análise em cache; estados e erros persistidos. 141 testes passaram. Tifa pronto, Roses and Wine ainda sem análise. Botão da interface pendente. Ver docs/TRAINING_JOBS.md.

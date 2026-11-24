@@ -10,6 +10,7 @@ from starlette.background import BackgroundTask
 from services.api.backup import export_backup
 from fastapi.staticfiles import StaticFiles
 from services.api.storage import Store
+from services.api.training import training_router
 from services.api.midi_compare import compare_router
 from services.api.piano import piano_router
 from services.api.sessions import sessions_router
@@ -20,6 +21,7 @@ def create_app(data_dir=None, max_bytes=100 * 1024**2, quota_bytes=1024**3):
     store = Store(root, max_bytes, quota_bytes)
     app = FastAPI(title='P-IA-NO', version='0.0.4', docs_url=None, redoc_url=None)
     app.include_router(store.router())
+    app.include_router(training_router(store))
     app.include_router(compare_router())
     app.include_router(piano_router())
     app.include_router(sessions_router(root))
