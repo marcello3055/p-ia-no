@@ -168,3 +168,6 @@
 - [x] 4.17: integrar indicadores opcionais de limpeza/guia melódico; configuração persistente e piloto curto, sem bloqueio musical absoluto.
 
 - [ ] 4.18: criação de sessão pelo backend a partir de par analisado, com progresso/erros; considerar feedback 54 vs 56 notas.
+
+- [x] 4.17b: registrar feedback positivo leve e cadastrar par Roses and Wine, com integridade conferida.
+- [ ] Preparar teste curto de Roses and Wine com configuração congelada antes de usá-lo em ajustes; sem pressupor alinhamento por duração.

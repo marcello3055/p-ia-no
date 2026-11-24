@@ -12,6 +12,17 @@
       "user_quote": "Julgo o segundo um pouco melhor, somente porque está mais limpo, tem menos notas sobrando. Mas em ambos a melodia está bem ok, dá para saber bem a música da qual a melodia foi retirada.",
       "approved_arranger": false,
       "automatic_weight_update": false
+    },
+    {
+      "date": "2026-11-24",
+      "pilot": "4.17",
+      "preferred": "candidate-aec146090cc9b667",
+      "compared_with": "candidate-72b4de1f1d8c7624",
+      "strength": "slight",
+      "user_quote": "acho que estamos progredindo. Ficou um pouco melhor.",
+      "comparison_context": "Resposta à comparação proposta entre 54 e 56 notas; motivo específico não informado.",
+      "approved_arranger": false,
+      "automatic_weight_update": false
     }
   ]
 }

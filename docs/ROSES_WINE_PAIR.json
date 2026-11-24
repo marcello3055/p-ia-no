@@ -1,0 +1,38 @@
+{
+  "name": "Roses and Wine — Final Fantasy VIII",
+  "composition_id": "roses-and-wine-ffviii",
+  "status": "registered_not_analyzed",
+  "alignment_verified": false,
+  "training_used": false,
+  "files": {
+    "base": {
+      "id": "3c837212bfd2439282f580ceae013f77",
+      "name": "[Video Soundtrack] Roses and Wine [FINAL FANTASY VIII].mp3",
+      "size": 2210517,
+      "duration": 138.312,
+      "created_at": "2026-11-24T13:41:32.281780+00:00",
+      "sha256": "983edd52dfa231ffa3cf0436c912e4cb6585a6d99e0ac08bf6f911f2a1b0348c",
+      "library_file_id": "libfile_656196cadb408191bdc93cb4bbba32d4",
+      "full_decode": "passed",
+      "readback_sha256": "passed"
+    },
+    "reference": {
+      "id": "46f3bba70573432abb4f5d9969a45023",
+      "name": "Roses and Wine (Final Fantasy VIII) on piano.mp3",
+      "size": 1587826,
+      "duration": 140.094694,
+      "created_at": "2026-11-24T13:41:32.640915+00:00",
+      "sha256": "b813e4aa108feccef9c0a3273c0f554d0ec0e4dc8b7a777896abcbe6e7b79e06",
+      "library_file_id": "libfile_d5900a0329e08191bab7baa5fe87c4e9",
+      "full_decode": "passed",
+      "readback_sha256": "passed"
+    }
+  },
+  "pair": {
+    "id": "d7af68a5fcf54400ac27626f11703a2d",
+    "name": "Roses and Wine — Final Fantasy VIII",
+    "base_id": "3c837212bfd2439282f580ceae013f77",
+    "reference_id": "46f3bba70573432abb4f5d9969a45023",
+    "created_at": "2026-11-24T13:41:32.677549+00:00"
+  }
+}
